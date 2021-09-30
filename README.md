@@ -1,13 +1,27 @@
-# Based on Udemy Course The Complete Node.js Developer Course (3rd Edition)
+## [The Complete Node.js Developer Course](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content)
 
-<p>- Code-along exercises</p>
-<p>- Ad-hoc Challenges</p>
-<p>- Code-along exercises</p>
-<p>- Notes App</p>
-<p>- Weather App</p>
-<p>- Task App</p>
-<p>- Notes App</p>
+<p>This repository is based on the Udemy course <span>[The Complete Node.js Developer Course]</span> and follows all the sections and excercises </p>
 
+ * Code-along exercises 
+ * Ad-hoc Challenges 
+ * Notes App
+ * Weather App 
+ * Task App 
 
-#### first-node-script.js
-<p> This file is the very first code along to create a Javascript file and test all the integrations. Very basic and nothing fancy. </p>
+### Code-along exercises 
+* `first-node-script.js` This file is the very first code along to create a Javascript file and test all the integrations. Very basic and nothing fancy.
+
+### Ad-hoc Challenges 
+* No files related yet
+
+### Notes App
+* No files related yet
+
+### Weather App 
+* No files related yet
+
+### Task App 
+* No files related yet
+
+### Udemy course link
+* https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content
