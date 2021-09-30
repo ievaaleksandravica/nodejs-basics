@@ -1,6 +1,7 @@
 ## [The Complete Node.js Developer Course](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content)
 
-<p>This repository is based on the Udemy course <span>[The Complete Node.js Developer Course]</span> and follows all the sections and excercises </p>
+This repository is based on the Udemy course  [The Complete Node.js Developer Course](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content)
+ and follows all the sections and excercises
 
  * Code-along exercises 
  * Ad-hoc Challenges 
@@ -22,6 +23,3 @@
 
 ### Task App 
 * No files related yet
-
-### Udemy course link
-* https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content
