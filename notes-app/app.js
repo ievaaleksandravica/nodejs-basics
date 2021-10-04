@@ -1,5 +1,10 @@
-// the variable itself can be called however you want, the important part is to name the node modules correctly. Convention, stick to the same name.
-const fs = require('fs');
+// need to provide relative path - with ./ you can go to the folder where you are at and then access the file.
+// const add = require('./utils.js');
+// const sum = add(2, 3);
 
-// works as overwrite, it does not append if you wanna add. If file does not exist it will create it, if it does, it will just change the contents of it.
-fs.writeFileSync('notes.txt', 'My name is Ieva.');
+// here you run the things from this file.
+// console.log(sum);
+
+const message = require('./notes.js');
+
+console.log(message());
