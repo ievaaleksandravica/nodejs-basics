@@ -9,4 +9,4 @@ const chalk = require('chalk');
 console.log(getNotes());
 // console.log(validator.isEmail('ieva@example.com'));
 // console.log(validator.isURL('https://example.com'))
-console.log(chalk.green.bold.inverse('success!'))
+console.log(chalk.green.bold.inverse('important!'))
