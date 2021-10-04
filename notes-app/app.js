@@ -6,8 +6,11 @@
 // console.log(sum);
 
 const message = require('./notes.js');
-const validator = require('validator');
+const chalk = require('chalk');
+
+// const validator = require('validator');
 
 console.log(message());
-console.log(validator.isEmail('ieva@example.com'));
-console.log(validator.isURL('https://example.com'))
+// console.log(validator.isEmail('ieva@example.com'));
+// console.log(validator.isURL('https://example.com'))
+console.log(chalk.green.bold.inverse('success!'))
