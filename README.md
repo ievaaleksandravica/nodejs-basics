@@ -20,7 +20,6 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Script to call functions from other files 
    * Require and use validator npm module
    * Require and use chalk npm module
-
 * `notes.txt` File created as a result of the above mentioned file. Appended by running script from ch-1-append-file.js
 * `notes.js` Functions to be called in app.js file
 
@@ -31,10 +30,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * No files related yet
 
 ### Comments
+#### NPM modules
 * `npm init` initializes npm and creates package.json
-* `npm -i package@version` use for installing packages
+* `npm -i package@version` use for installing packages locally
+* `sudo npm -i package@version -g` use for installing packages globally (installing on operating system itself) - don't need to require it, gives access to new command in the terminal, in case of nodemon package you can now have nodemon command.
 * `npm install` recreates node_modules folder in case its overwritten/deleted for some reason
 
-### Useful npm modules
+#### Useful npm modules
 * `validator` - validates the content of a string
 * `chalk` - let's us customize how things are printed in the terminal
+* `nodemon` - gives more information about what's happening when you run it. You should just use `nodemon app.js` to execute a file using the nodemon package. If you apply changes it does display them automatically. use ctrl+c to exit
