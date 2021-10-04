@@ -16,7 +16,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `utils.js` Script to require functions in app.js
 
 ### Notes App
-* `app.js` Script to call functions from other files / require validator npm module.
+* `app.js` 
+** Script to call functions from other files 
+** Require and use validator npm module
+** Require and use chalk npm module
+
 * `notes.txt` File created as a result of the above mentioned file. Appended by running script from ch-1-append-file.js
 * `notes.js` Functions to be called in app.js file
 
@@ -28,4 +32,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
 ### Comments
 * `npm init` initializes npm and creates package.json
-* `npm -i` use for installing packages
+* `npm -i package@version` use for installing packages
+* `npm install` recreates node_modules folder in case its overwritten/deleted for some reason
+
+### Useful npm modules
+* `validator` - validates the content of a string
+* `chalk` - let's us customize how things are printed in the terminal
