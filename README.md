@@ -13,6 +13,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `first-node-script.js` This file is the very first code along to create a Javascript file and test all the integrations. Very basic and nothing fancy.
 * `app-write-file.js` Script to write files - works as overwrite. If file exists it will overwrite, if doesn't it creates it and pushes the content.
 * `append-file-content.js` Script to append files. 
+* `utils.js` Script to require functions in app.js
 
 ### Notes App
 * `app.js` Script to call functions from other files.
