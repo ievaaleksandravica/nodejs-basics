@@ -4,10 +4,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
  and follows all the sections and excercises
 
  * Code-along exercises 
- * Ad-hoc Challenges 
  * Notes App
  * Weather App 
  * Task App 
+ * Comments
 
 ### Code-along exercises 
 * `first-node-script.js` This file is the very first code along to create a Javascript file and test all the integrations. Very basic and nothing fancy.
@@ -16,7 +16,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `utils.js` Script to require functions in app.js
 
 ### Notes App
-* `app.js` Script to call functions from other files.
+* `app.js` Script to call functions from other files / require validator npm module.
 * `notes.txt` File created as a result of the above mentioned file. Appended by running script from ch-1-append-file.js
 * `notes.js` Functions to be called in app.js file
 
@@ -25,3 +25,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
 ### Task App 
 * No files related yet
+
+### Comments
+* `npm init` initializes npm and creates package.json
+* `npm -i` use for installing packages
