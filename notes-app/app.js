@@ -6,5 +6,8 @@
 // console.log(sum);
 
 const message = require('./notes.js');
+const validator = require('validator');
 
 console.log(message());
+console.log(validator.isEmail('ieva@example.com'));
+console.log(validator.isURL('https://example.com'))
