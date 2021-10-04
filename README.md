@@ -13,10 +13,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `first-node-script.js` This file is the very first code along to create a Javascript file and test all the integrations. Very basic and nothing fancy.
 
 ### Ad-hoc Challenges 
-* No files related yet
+* `ch-1-append-file.js` Script to append files. 
 
 ### Notes App
-* No files related yet
+* `app.js` Script to write files - works as overwrite. If file exists it will overwrite, if doesn't it creates it and pushes the content.
+* `notes.txt` File created as a result of the above mentioned file. Appended by running script from ch-1-append-file.js
 
 ### Weather App 
 * No files related yet
