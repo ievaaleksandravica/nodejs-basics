@@ -21,6 +21,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Require and use validator npm module
    * Require and use chalk npm module
    * Get the arguments entered in console. e.g. `node app.js add`  `process.argv` - argument vector (array) - first node path executable on your machine, path to app.js, value you provided
+   * Setting up yargs commands for add, remove, read and list.
 * `notes.txt` File created as a result of the above mentioned file. Appended by running script from ch-1-append-file.js
 * `notes.js` Functions to be called in app.js file
 
@@ -41,3 +42,5 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `validator` - validates the content of a string
 * `chalk` - let's us customize how things are printed in the terminal
 * `nodemon` - gives more information about what's happening when you run it. You should just use `nodemon app.js` to execute a file using the nodemon package. If you apply changes it does display them automatically. use ctrl+c to exit
+* `yargs` - application that helps to parse command line arguments. Provides hash object instead and parses it. Allows to create specific commands and execute the code you want.
+
