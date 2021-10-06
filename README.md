@@ -34,8 +34,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Setting up yargs commands for add, remove, read and list.
    * Adding and defining yargs options, using the `builder` property.
    * Replacing `console.log(yargs.argv)` with `yargs.parse` to skip the duplicate printing, but still allow to parse the options.
-* `notes.txt` File created as a result of the above mentioned file. Appended by running script from ch-1-append-file.js
+* `notes.json` File storing all the notes.
 * `notes.js` Functions to be called in app.js file
+   * `addNote` function that loads existing notes, checks if a note exists, if not, then adds a note to notes array & updates the json file. Run with help of `loadNotes` and `saveNotes` helper functions.
+
 
 ### Weather App 
 * No files related yet
