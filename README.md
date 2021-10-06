@@ -29,6 +29,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * 2. shortcut for one line functions, no return needed
    * 3. do not work with objects, need to use the ES6 syntax of `name() {}`
    * 4. they are not binded by their own `this` keywords therefore great to use with standard functions
+* `4-arrow-challenge.js` challenge to create method where you need to use the filter method. `getTasksToDo` uses ES6 syntax, `filter` method uses arrow function shortcut.
 
 ### Notes App
 * `app.js` 
@@ -40,10 +41,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Adding and defining yargs options, using the `builder` property.
    * Replacing `console.log(yargs.argv)` with `yargs.parse` to skip the duplicate printing, but still allow to parse the options.
    * Configuring `add` and `remove` commands by defining yargs commands and calling the related functions in the handler.
+   * File is refactored to use ES6 and Arrow Function Syntax
+
 * `notes.json` File storing all the notes.
 * `notes.js` Functions to be called in app.js file
    * `addNote` function that loads existing notes, checks if a note exists, if not, then adds a note to notes array & updates the json file. Run with help of `loadNotes` and `saveNotes` helper functions.
    * `removeNote` function that loads, existing notes, checks if a note is found, if yes, removes it and updated the json file.  Run with help of `loadNotes` and `saveNotes` helper functions.
+   * file is refactored to use ES6 and Arrow Function Syntax
 
 
 ### Weather App 
