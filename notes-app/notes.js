@@ -23,6 +23,20 @@ const addNote = function (title, body) {
     const updatingNotes = saveNotes(notes)
 };
 
+const removeNote = function (title) {
+    const notes = loadNotes();
+    const notesToKeep = notes.filter(function (note) {
+        return note.title !== title
+    });
+    if (notes.length !== notesToKeep.length) {
+        const updateNotes = saveNotes(notesToKeep);
+        console.log(chalk.green('Note successfully removed!'))
+
+    } else {
+        console.log(chalk.red('No such note could be found!'))
+    }
+}
+
 const loadNotes = function () {
     try {
         const dataBuffer = fs.readFileSync('notes.json');
@@ -42,5 +56,6 @@ const saveNotes = function (notes) {
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 }
