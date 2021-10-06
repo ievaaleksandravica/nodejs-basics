@@ -45,9 +45,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
 * `notes.json` File storing all the notes.
 * `notes.js` Functions to be called in app.js file
-   * `addNote` function that loads existing notes, checks if a note exists, if not, then adds a note to notes array & updates the json file. Run with help of `loadNotes` and `saveNotes` helper functions.
+   * `addNote` function that loads existing notes, checks if a note exists, if not, then adds a note to notes array & updates the json file. Run with help of `loadNotes` and `saveNotes` helper functions. Refactored with `find` instead of `filter` function.
    * `removeNote` function that loads, existing notes, checks if a note is found, if yes, removes it and updated the json file.  Run with help of `loadNotes` and `saveNotes` helper functions.
    * file is refactored to use ES6 and Arrow Function Syntax
+   * `listNotes` function that loads all notes and displays them.
+   * `readNotes` function that finds a note by title and displays the body of the note.
 
 
 ### Weather App 
