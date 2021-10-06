@@ -24,6 +24,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * 2. Change the name and age property
    * 3. Stringify the changed object and overwrite the original data
 * `2-json.json` JSON object storing data
+* `3-arrow-function.js` examples of ES6 arrow function syntax and benefits
+   * 1. alternative syntax with `=>`
+   * 2. shortcut for one line functions, no return needed
+   * 3. do not work with objects, need to use the ES6 syntax of `name() {}`
+   * 4. they are not binded by their own `this` keywords therefore great to use with standard functions
 
 ### Notes App
 * `app.js` 
