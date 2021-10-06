@@ -4,6 +4,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
  and follows all the sections and excercises
 
  * Code-along exercises 
+ * Playground
  * Notes App
  * Weather App 
  * Task App 
@@ -14,6 +15,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `app-write-file.js` Script to write files - works as overwrite. If file exists it will overwrite, if doesn't it creates it and pushes the content.
 * `append-file-content.js` Script to append files. 
 * `utils.js` Script to require functions in app.js
+
+### Playground
+* `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
+* `1-json.json` JSON object storing data
+* `2-json.js` Challenge based on the above mentioned JSON and FS functionality:
+   * 1. Load and parse the JSON Data
+   * 2. Change the name and age property
+   * 3. Stringify the changed object and overwrite the original data
+* `2-json.json` JSON object storing data
 
 ### Notes App
 * `app.js` 
