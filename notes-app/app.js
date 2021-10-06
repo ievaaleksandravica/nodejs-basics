@@ -4,7 +4,7 @@
 const yargs = require('yargs');
 const chalk = require('chalk');
 
-const getNotes = require('./notes.js');
+const notes = require('./notes.js');
 
 // const validator = require('validator');
 
@@ -44,6 +44,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
+        notes.addNote(argv.title, argv.body);
         console.log(chalk.gray('Title: '), chalk.bold.green(argv.title)),
             console.log(chalk.gray('Body:  '), chalk.green(argv.body))
     }
