@@ -71,3 +71,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `nodemon` - gives more information about what's happening when you run it. You should just use `nodemon app.js` to execute a file using the nodemon package. If you apply changes it does display them automatically. use ctrl+c to exit
 * `yargs` - application that helps to parse command line arguments. Provides hash object instead and parses it. Allows to create specific commands and execute the code you want.
 
+#### Debugging tools:
+* `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
+* `node debugger` - works with browsers, needs to be added.       
+      * Simply put `debugger` where you want your app to stop and you can get all the values existing so far.
+      * In order for this to run, your terminal command will now be e.g. `node inspect app.js list` -
+      * Head to the browser (Chrome is the only browser that can be used) and use `chrome://inspect` and you will see two values - Google Home and Remote Target. Get the remote target and `inspect`.
+      * Import your folder. Execute the run command. It will pause at `debugger` part. In the `scope` part you can get access to the variables you already set up.
+
+#### Error Messages
+* `ReferenceError` gives an explicit message of why things fail. It's still up to us to work through it.
+* `Stack trace` - after the error message - all functions that are running until it gets to the error. First line usually has the most important message, e.g. at saveNotes (/Users/ievaaleksandravica/code/ievaaleksandravica/nodejs-course/notes-app/notes.js:60:27)
+
