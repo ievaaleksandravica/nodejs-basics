@@ -89,6 +89,7 @@ yargs.command({
     handler() {
         console.log(chalk.white.inverse('Listing all notes:'))
         notes.listNotes();
+
     }
 })
 
