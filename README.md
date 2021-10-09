@@ -60,7 +60,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
 
 ### Weather App 
-* No files related yet
+* `app.js` 
+   * requiring `postman-request` npm package for easier API processing
+   * requiring `config.js` to access WeatherStack API key
+   * calling WeatherStack API key, using the `request({url:url}, (error, response) => {}) function
 
 ### Task App 
 * No files related yet
@@ -68,6 +71,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
+* `npm init -y` initializes npm without asking all the questions
 * `npm -i package@version` use for installing packages locally
 * `sudo npm -i package@version -g` use for installing packages globally (installing on operating system itself) - don't need to require it, gives access to new command in the terminal, in case of nodemon package you can now have nodemon command.
 * `npm install` recreates node_modules folder in case its overwritten/deleted for some reason
@@ -77,7 +81,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `chalk` - let's us customize how things are printed in the terminal
 * `nodemon` - gives more information about what's happening when you run it. You should just use `nodemon app.js` to execute a file using the nodemon package. If you apply changes it does display them automatically. use ctrl+c to exit
 * `yargs` - application that helps to parse command line arguments. Provides hash object instead and parses it. Allows to create specific commands and execute the code you want.
+* `postman-request` request is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default.
 
+ 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
 * `node debugger` - works with browsers, needs to be added.       
@@ -100,7 +106,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `main()` - first function (node.js created function)
       * then other functions, e.g. `console.log()` - when it's done, it gets removed from the stack
       * then moving on to the next function. When done, also main function gets removed.
-   * Aynchronous example
+   * Asynchronous example
       * starts with `main()` as in synchronous
       * goes one by one functions.
       * `setTimeout(() => {})` - it's a Node function, not JS. it gets initialized and move to the Node API events - it's not blocking the rest from the app to run.
@@ -116,3 +122,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * to get it executed, you still need to push it back in the Call Stack. 
       * this is `Event Loop` - it will add the function back to the Call Stack only once it's empty.
 * None of the asynchronous events are going to run UNTIL the `main()` function is done.
+
+#### API Notes
+* In order to hide your API keys with JS - create a file `config.js`, run command `touch .env` to create a `.env` file, run `echo '.env*' >> .gitignore` to add it to the gitignore and add `config.js` to the .gitignore file as well.
+* Create a variable in your `config.js` to be an object that stores keys, export it and import it in your file where you wish to use.
+* API modules used: 
+   * `weatherstack` - Real-Time & Historical World Weather Data API - Retrieve instant, accurate weather information for any location in the world in lightweight JSON format
