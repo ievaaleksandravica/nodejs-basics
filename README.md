@@ -92,8 +92,6 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
 #### Asynchronous Node.js
 * `setTimeout` - one of the most common async methods -> Write some code after specific time has passed.
-      * Takes two params
-         * function
-         * time in miliseconds to wait
-      * It initializes the method, but moves on to the next one before this one is finished - that's asynnchronous model.
-      * Even if you set timer to 0 seconds, it will be run after the other methods.
+   * Takes two params: function and time in miliseconds to wait.
+   * It initializes the method, but moves on to the next one before this one is finished - that's asynnchronous model.
+   * Even if you set timer to 0 seconds, it will be run after the other methods.
