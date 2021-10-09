@@ -95,3 +95,24 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Takes two params: function and time in miliseconds to wait.
    * It initializes the method, but moves on to the next one before this one is finished - that's asynnchronous model.
    * Even if you set timer to 0 seconds, it will be run after the other methods.
+* `Call Stack` - data structure provided by V8 JS. Purpose to track the execution of the program. Keeps track of all the functions that are currently running.
+   * Synchronous example
+      * `main()` - first function (node.js created function)
+      * then other functions, e.g. `console.log()` - when it's done, it gets removed from the stack
+      * then moving on to the next function. When done, also main function gets removed.
+   * Aynchronous example
+      * starts with `main()` as in synchronous
+      * goes one by one functions.
+      * `setTimeout(() => {})` - it's a Node function, not JS. it gets initialized and move to the Node API events - it's not blocking the rest from the app to run.
+      * In case of synchronous js program is finished when `main` function is finished, but with async it's done only when all the methods that are in the Callback Queue.
+* `Node APIs`
+   * Synchronous example - no actions.
+   * Aynchronous example
+      * when we call `setTimeout()` we are registering an event with Node.js API - this is an event callback pair, where the event is wait 2 seconds and the callback is the function to run.
+* `Callback Queue`
+   * Synchronous example - no actions.
+   * Aynchronous example
+      * maintains the list of all of the callback functions that are ready to get executed / is done. (from the Node.js API events)
+      * to get it executed, you still need to push it back in the Call Stack. 
+      * this is `Event Loop` - it will add the function back to the Call Stack only once it's empty.
+* None of the asynchronous events are going to run UNTIL the `main()` function is done.
