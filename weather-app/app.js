@@ -28,7 +28,6 @@ request({ url: mapboxUrl, json: true }, (error, response) => {
 
 })
 
-
 // console.log('Starting..');
 // setTimeout(() => {
 //     console.log('2 second timer')
