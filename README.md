@@ -64,6 +64,8 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * requiring `postman-request` npm package for easier API processing
    * requiring `config.js` to access WeatherStack API key
    * calling WeatherStack API key, using the `request({url:url}, (error, response) => {}) function
+   * printing a small forecast to the user.
+
 
 ### Task App 
 * No files related yet
