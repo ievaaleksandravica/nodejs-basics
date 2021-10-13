@@ -30,6 +30,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * 3. do not work with objects, need to use the ES6 syntax of `name() {}`
    * 4. they are not binded by their own `this` keywords therefore great to use with standard functions
 * `4-arrow-challenge.js` challenge to create method where you need to use the filter method. `getTasksToDo` uses ES6 syntax, `filter` method uses arrow function shortcut.
+* `5-callbacks.js` - callback function examples with `setTimeout` (async), `filter` (sync). Includes example of `geocode` callback function written by as and challenge of `add` callback function.
 
 ### Notes App
 * `app.js` 
@@ -131,6 +132,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * to get it executed, you still need to push it back in the Call Stack. 
       * this is `Event Loop` - it will add the function back to the Call Stack only once it's empty.
 * None of the asynchronous events are going to run UNTIL the `main()` function is done.
+* `Callback functions`
+   * callback function is a function that we provide as an argument of another function with intention of having it called later on.
+   * using a callback function does not mean it will always be asynchronous, e.g. forEach is actually synchronous
+   * asynchronous functions are interacting with node.js API, whereas synchronous ones are based on plain JS
+   * `return` pattern is not gonna work if we start to use asynchronous things within our function, that's where `callback` pattern comes in.
+
+
 
 #### API Notes
 * In order to hide your API keys with JS - create a file `config.js`, run command `touch .env` to create a `.env` file, run `echo '.env*' >> .gitignore` to add it to the gitignore and add `config.js` to the .gitignore file as well.
