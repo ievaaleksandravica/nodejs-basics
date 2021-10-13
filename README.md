@@ -64,8 +64,14 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * requiring `postman-request` npm package for easier API processing
    * requiring `config.js` to access WeatherStack API key
    * calling WeatherStack API key, using the `request({url:url}, (error, response) => {}) function
+      * one of `error` or `response` is always going to be undefined.
    * printing a small forecast to the user (using `WeatherStack` API)
    * printing longitude and latitude for Los Angeles (using `MapBox` API)
+   * Error handling 
+      * low level errors, where error argument exists and response is not defined
+      * no matching results - there is a response but with error code
+
+
 
 
 ### Task App 
@@ -131,3 +137,4 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * Create a variable in your `config.js` to be an object that stores keys, export it and import it in your file where you wish to use.
 * API modules used: 
    * `weatherstack` - Real-Time & Historical World Weather Data API - Retrieve instant, accurate weather information for any location in the world in lightweight JSON format
+   * `mapbox` - Mapbox is the location data platform for mobile and web applications. 
