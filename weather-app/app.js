@@ -5,16 +5,30 @@ const { features } = require('process');
 const geocode = require('./utils/geocode.js')
 const forecast = require('./utils/forecast.js')
 
+const location = process.argv[2]
 
-geocode('Berlin', (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
+if (!location) {
+    return console.log(chalk.red('Please provide location!'))
+}
+geocode(location, (error, data) => {
+    if (error) {
+        return console.log('Error: ', error)
+    }
+    forecast(data.longitude, data.latitude, (error, forecastData) => {
+        if (error) {
+            return console.log('Error: ', error)
+        }
+        console.log('Location: ', chalk.green(data.place))
+        console.log('Forecast: ', forecastData)
+    })
+
 })
 
-forecast(13.38333, 52.51667, (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
-})
+
+
+
+
+
 
 // console.log('Starting..');
 // setTimeout(() => {
@@ -44,6 +58,9 @@ forecast(13.38333, 52.51667, (error, data) => {
 //         console.log('Latitude: ' + chalk.bold.yellow(data[0].center[1]));
 //     }
 // })
+
+
+
 
 
 // printing a small forecast to the user 
