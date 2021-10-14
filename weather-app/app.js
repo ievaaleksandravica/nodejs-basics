@@ -3,33 +3,18 @@ const config = require('../config.js');
 const chalk = require('chalk');
 const { features } = require('process');
 const geocode = require('./utils/geocode.js')
-
-// Weather API
-const weatherAPI = config.keys.WEATHERSTACK_KEY;
-const weatherUrl = `http://api.weatherstack.com/current?access_key=${weatherAPI}&query=37.8267,-122.4233`;
-// printing a small forecast to the user 
-request({ url: weatherUrl, json: true }, (error, response) => {
-    if (error) {
-        console.log(chalk.red('Unable to connect to weather service'))
-    } else if (response.body.error) {
-        console.log('The following error have been found:')
-        console.log(chalk.red.bold(response.body.error.info))
-    } else {
-        data = response.body.current;
-        console.log('It is currently ' + chalk.green.bold(data.temperature) + ' degrees out! It feels like ' + chalk.yellow.bold(data.feelslike) + ' degrees out. It is ' + chalk.green(data.weather_descriptions[0].toLowerCase()) + '.'
-        )
-    }
-});
+const forecast = require('./utils/forecast.js')
 
 
-geocode('Boston', (error, data) => {
-    if (error) {
-        console.log(chalk.red.bold(error))
-    } else {
-        console.log(data)
-    }
+geocode('Berlin', (error, data) => {
+    console.log('Error', error)
+    console.log('Data', data)
 })
 
+forecast(13.38333, 52.51667, (error, data) => {
+    console.log('Error', error)
+    console.log('Data', data)
+})
 
 // console.log('Starting..');
 // setTimeout(() => {
@@ -39,6 +24,9 @@ geocode('Boston', (error, data) => {
 //     console.log('0 second timer')
 // }, 0);
 // console.log('Stopping..');
+
+
+
 
 // printing longitude and latitude for Los Angeles
 // request({ url: mapboxUrl, json: true }, (error, response) => {
@@ -56,3 +44,18 @@ geocode('Boston', (error, data) => {
 //         console.log('Latitude: ' + chalk.bold.yellow(data[0].center[1]));
 //     }
 // })
+
+
+// printing a small forecast to the user 
+// request({ url: weatherUrl, json: true }, (error, response) => {
+//     if (error) {
+//         console.log(chalk.red('Unable to connect to weather service'))
+//     } else if (response.body.error) {
+//         console.log('The following error have been found:')
+//         console.log(chalk.red.bold(response.body.error.info))
+//     } else {
+//         data = response.body.current;
+//         console.log('It is currently ' + chalk.green.bold(data.temperature) + ' degrees out! It feels like ' + chalk.yellow.bold(data.feelslike) + ' degrees out. It is ' + chalk.green(data.weather_descriptions[0].toLowerCase()) + '.'
+//         )
+//     }
+// });
