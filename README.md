@@ -69,20 +69,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * printing a small forecast to the user (using `WeatherStack` API)
    * calling & returning geocode using a callback function `utils/geocode.js`
    * calling & returning forecast using a callback function `utils/geocode.js`
-   * callback chaining - calling forecast callback within geocoding function.
+   * callback chaining - calling forecast callback within geocoding function.   
+   * adding `process.argv` to get location from the terminal
 * `utils/geocode.js` 
    * geocode callback function using `mapbox` api
    * Error handling 
       * low level errors, where error argument exists and response is not defined
       * no matching results - there is a response but with error code
    * returning respective data in callback
-   * adding `process.argv` to get location from the terminal
 * `utils/forecast.js` 
    * forecast callback function using `weatherStack` api
    * Error handling 
       * low level errors, where error argument exists and response is not defined
       * no matching results - there is a response but with error code
    * returning respective data in callback
+![image](https://user-images.githubusercontent.com/79845207/137351073-db37d833-c063-47f6-809e-84b7d225c1f9.png)
+
 
 ### Task App 
 * No files related yet
