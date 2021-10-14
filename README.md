@@ -67,13 +67,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * calling WeatherStack API key, using the `request({url:url}, (error, response) => {}) function
       * one of `error` or `response` is always going to be undefined.
    * printing a small forecast to the user (using `WeatherStack` API)
-   * printing longitude and latitude for Los Angeles (using `MapBox` API)
+   * calling geocode function from `utils/geocode.js`
+* `utils/geocode.js` 
+   * geocode callback function using `mapbox` api
    * Error handling 
       * low level errors, where error argument exists and response is not defined
       * no matching results - there is a response but with error code
-
-
-
+   * returning respective data in callback
 
 ### Task App 
 * No files related yet
