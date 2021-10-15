@@ -31,6 +31,14 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * 4. they are not binded by their own `this` keywords therefore great to use with standard functions
 * `4-arrow-challenge.js` challenge to create method where you need to use the filter method. `getTasksToDo` uses ES6 syntax, `filter` method uses arrow function shortcut.
 * `5-callbacks.js` - callback function examples with `setTimeout` (async), `filter` (sync). Includes example of `geocode` callback function written by as and challenge of `add` callback function.
+* `6-es6.objectsjs` 
+   * object property shorthand - if property name is the same as variable name, you can use the shorthand to define it in objects.
+   * object destructuring - syntax `const {property1: newName, property2, property3 = default} = object` -> allows you to access variables with less code
+
+
+
+
+
 
 ### Notes App
 * `app.js` 
