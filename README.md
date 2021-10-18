@@ -45,6 +45,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ### Web Server
    *  `src`
       * `app.js` - everything that is needed to manage express server (See more details in the comments section)
+   * `public` store all the assets as part of the express server
+      * `index.html`
+      * `about.html`
+      * `help.html`
 
 ### Notes App
 * `app.js` 
@@ -122,6 +126,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `yargs` - application that helps to parse command line arguments. Provides hash object instead and parses it. Allows to create specific commands and execute the code you want.
 * `postman-request` request is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default.
 * `express` minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+* `path` defauly node module, does not need to be installed, helps to work with file path.
 
  
 #### Debugging tools:
@@ -194,5 +199,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * sending back html or json as a response
          * html can be provided as a string
          * json can be provided using object(hash) or array the server is automatically gonna detect in and stringify
+      * to link it to other html file it has to be absolute path `__dirname` and `__filename` - gives you absolute path
+         * `path` module to manipulate string paths
+         * `path.join()` will let you combine your current path using `_dirname` and navigate where you want to go with eg. `../src` to go to src folder
+         * you can now put content directly in the html files of the above mentioned directory, e.g. `public` and then access it via `/about.html` this is done with a help of `app.use(express.static(publicDirectory))` function
+         * in that case you also do not need the routes set up using `app.get` 
+* new subdirectory `public` thats gonna store all the assets as part of the express server
+   * `index.html` - by naming convention this means that it is gonna be served by default (will show up for the root of the website)
+      
 
 
