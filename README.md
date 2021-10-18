@@ -5,6 +5,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
  * Code-along exercises 
  * Playground
+ * Web Server
  * Notes App
  * Weather App 
  * Task App 
@@ -41,13 +42,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * you actually need to fire up the event.
    * `request.on('', () => {})` is basically an event listener
 
-
-
-
-
-
-
-
+### Web Server
+   *  `src`
+      * `app.js` - everything that is needed to manage express server (See more details in the comments section)
 
 ### Notes App
 * `app.js` 
@@ -124,6 +121,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `nodemon` - gives more information about what's happening when you run it. You should just use `nodemon app.js` to execute a file using the nodemon package. If you apply changes it does display them automatically. use ctrl+c to exit
 * `yargs` - application that helps to parse command line arguments. Provides hash object instead and parses it. Allows to create specific commands and execute the code you want.
 * `postman-request` request is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default.
+* `express` minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
  
 #### Debugging tools:
@@ -178,3 +176,20 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * API modules used: 
    * `weatherstack` - Real-Time & Historical World Weather Data API - Retrieve instant, accurate weather information for any location in the world in lightweight JSON format
    * `mapbox` - Mapbox is the location data platform for mobile and web applications. 
+
+
+#### Web servers - Express
+* new folder `web-server`
+* initializing npm with `npm init`, created the `package.json`
+* `npm i express` to install the package
+* subdirectory `src` - all node.js scripts will be stored here.
+   * `app.js` - load express, configure it to serve something up and start the server.
+      * get the express library with single function `express` called to create new express application
+      * all you need is to call `express()` function with no arguments
+      * app.com, app.com/help, app.com/about - different routes
+      * `app.get(route, function (req, res)` what to do when someone visits)
+      * `req` - request - info about the requestor
+      * `res` - response - info we will send back to the requester
+      * start the server on local host `localhost:3000` (port) and callback function (asynchronous) using `app.listen(port, callback function)`
+
+
