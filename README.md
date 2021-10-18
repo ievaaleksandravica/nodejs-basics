@@ -191,5 +191,8 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `req` - request - info about the requestor
       * `res` - response - info we will send back to the requester
       * start the server on local host `localhost:3000` (port) and callback function (asynchronous) using `app.listen(port, callback function)`
+      * sending back html or json as a response
+         * html can be provided as a string
+         * json can be provided using object(hash) or array the server is automatically gonna detect in and stringify
 
 
