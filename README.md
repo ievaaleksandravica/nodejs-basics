@@ -49,6 +49,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `index.html`
       * `about.html`
       * `help.html`
+      * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
+      * `js` client side js  related docs, e.g `app.js` linked in `index.html` using  `<script src="js/app.js"></script>` path
+      * `img` img related docs, e.g `profile_photo.png` linked in `index.html` using  `    <img src="img/profile_photo.png" alt="">` path
 
 ### Notes App
 * `app.js` 
