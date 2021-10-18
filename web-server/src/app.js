@@ -12,15 +12,19 @@ const app = express()
 
 app.get('', (req, res) => {
     // allows to send something back to the requestor
-    res.send('Hello, express!')
+    res.send('<h1>Hello, express!</h1>')
 })
 
 app.get('/about', (req, res) => {
-    res.send('This is ABOUT YOU page')
+    res.send('<h1 style="color:purple">ABOUT US </h1>')
 })
 
 app.get('/weather', (req, res) => {
-    res.send('This is the WEATHER page')
+    res.send({
+        location: 'Berlin',
+        forecast: "It's sunny. Temperature is 12 degrees out.",
+    },
+    )
 })
 
 app.get('/help', (req, res) => {
@@ -31,3 +35,4 @@ app.listen(3000, () => {
     console.log('Server is up on port 3000.')
 })
 // access it using localhost:3000
+
