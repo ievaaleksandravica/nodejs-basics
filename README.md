@@ -50,6 +50,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
       * `js` client side js  related docs, e.g `app.js` linked in `index.html` using  `<script src="js/app.js"></script>` path
       * `img` img related docs, e.g `profile_photo.png` linked in `index.html` using  `    <img src="img/profile_photo.png" alt="">` path
+   * `templates` stores all handlebars assets
+      * `views` storing main hbs views
+      * `partials` storing hbs partials
 
 ### Notes App
 * `app.js` 
@@ -212,7 +215,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * new subdirectory `public` thats gonna store all the assets as part of the express server
    * `index.html` - by naming convention this means that it is gonna be served by default (will show up for the root of the website)
 * `hanldebars` template engine to render dynamic webpages, using express
-   * render dynamic documents as opposed to static ones and easily create code that we can use across pages (like `partials` in Ruby on Rails)
+   * render dynamic documents as opposed to static ones and easily create code that we can use across pages
    * using two npm modules `handlebars.js` and `hbs` - you only need to install hbs as it already is based on handlebars
    * to use handlebars, you need to
       * `app.set('view engine', 'hbs')` - need this function to allow handlebars to work
@@ -221,6 +224,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * use `res.render(view, {key: value})` in the route
       * use dynamic variables with `{{key}}` syntax in the `.hbs` file
    * use `app.set('views', viewsDirectory)` to customize the name or the path of all your hbs templates
+   * setup partials
+      * you need to load it first with require
+      * `hbs.registerPartials(partialsDirectory)` to associate the right directory with your partials
+      * then create a file in your partials folder with `.hbs` extension
+      * add your partial in the view with `{{>partialName}}` syntax
 
 
 
