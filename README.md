@@ -45,10 +45,8 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ### Web Server
    *  `src`
       * `app.js` - everything that is needed to manage express server (See more details in the comments section)
+      * `views` - storing all `.hbs` assets to be used by handlebar (such as about.hbs, help.hbs, index.hbs)
    * `public` store all the assets as part of the express server
-      * `index.html`
-      * `about.html`
-      * `help.html`
       * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
       * `js` client side js  related docs, e.g `app.js` linked in `index.html` using  `<script src="js/app.js"></script>` path
       * `img` img related docs, e.g `profile_photo.png` linked in `index.html` using  `    <img src="img/profile_photo.png" alt="">` path
@@ -130,6 +128,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `postman-request` request is designed to be the simplest way possible to make http calls. It supports HTTPS and follows redirects by default.
 * `express` minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 * `path` defauly node module, does not need to be installed, helps to work with file path.
+* `handlebars.js` Handlebars.js and Mustache are both logicless templating languages that keep the view and the code separated like we all know they should be.
+* `hbs` Express.js view engine for handlebars.js
+
+ 
 
  
 #### Debugging tools:
@@ -209,6 +211,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * in that case you also do not need the routes set up using `app.get` 
 * new subdirectory `public` thats gonna store all the assets as part of the express server
    * `index.html` - by naming convention this means that it is gonna be served by default (will show up for the root of the website)
-      
+* `hanldebars` template engine to render dynamic webpages, using express
+   * render dynamic documents as opposed to static ones and easily create code that we can use across pages (like `partials` in Ruby on Rails)
+   * using two npm modules `handlebars.js` and `hbs` - you only need to install hbs as it already is based on handlebars
+   * to use handlebars, you need to
+      * `app.set('view engine', 'hbs')` - need this function to allow handlebars to work
+      * setup the `.hbs` template in `src/views` folder
+      * setup route in `src/app.js` using `app.get` method
+      * use `res.render(view, {key: value})` in the route
+      * use dynamic variables with `{{key}}` syntax in the `.hbs` file
+
 
 
