@@ -220,6 +220,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * setup route in `src/app.js` using `app.get` method
       * use `res.render(view, {key: value})` in the route
       * use dynamic variables with `{{key}}` syntax in the `.hbs` file
+   * use `app.set('views', viewsDirectory)` to customize the name or the path of all your hbs templates
 
 
 
