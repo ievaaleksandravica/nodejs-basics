@@ -48,6 +48,22 @@ app.get('/weather', (req, res) => {
     )
 })
 
+// CATCH ALL
+// match based on specific character
+app.get('/help/*', (req, res) => {
+    res.render('help-error', {
+        title: "NO ARTICLE FOUND",
+        name: "Jessica Moll"
+    })
+})
+// use wildcard to match anything that hasn't been matched so far, that is why it has to be at the end
+app.get('*', (req, res) => {
+    res.render('generic-error', {
+        title: "NO PAGE FOUND",
+        name: "Jessica Moll"
+    })
+})
+
 app.listen(3000, () => {
     console.log('Server is up on port 3000.')
 })
