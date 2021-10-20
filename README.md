@@ -45,7 +45,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ### Web Server
    *  `src`
       * `app.js` - everything that is needed to manage express server (See more details in the comments section)
-      * `views` - storing all `.hbs` assets to be used by handlebar (such as about.hbs, help.hbs, index.hbs)
+      * `views` 
+         * storing all `.hbs` assets to be used by handlebar (such as about.hbs, help.hbs, index.hbs)
+         * storing also the 404 error views, like `generic-error.hbs` and `help-error.hbs`
    * `public` store all the assets as part of the express server
       * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
       * `js` client side js  related docs, e.g `app.js` linked in `index.html` using  `<script src="js/app.js"></script>` path
@@ -229,6 +231,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `hbs.registerPartials(partialsDirectory)` to associate the right directory with your partials
       * then create a file in your partials folder with `.hbs` extension
       * add your partial in the view with `{{>partialName}}` syntax
-
+* `404 errors` when page could not be found
+   * `*` wildcard character to be used to idenfity the pages that could not be found yet.
+   * `help/*` to specify more specific paths
+   * the above mentioned routes have to be listed last as express looks for the routes starting from top to bottom in the doc. 
 
 
