@@ -41,12 +41,31 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: "Address must be provided"
+        })
+    }
     res.send({
         location: 'Berlin',
         forecast: "It's sunny. Temperature is 12 degrees out.",
+        address: req.query.address
     },
     )
 })
+
+app.get('/products', (req, res) => {
+    if (!req.query.search) {
+        return res.send({
+            error: 'Search param has to be provided.'
+        })
+    }
+    console.log(req.query.search)
+    res.send({
+        products: []
+    })
+})
+
 
 // CATCH ALL
 // match based on specific character
