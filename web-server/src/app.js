@@ -1,6 +1,13 @@
 const path = require('path')
 const express = require('express');
 const hbs = require('hbs');
+const request = require('postman-request');
+const chalk = require('chalk');
+
+
+const geocode = require('./utils/geocode.js')
+const forecast = require('./utils/forecast.js')
+
 
 const app = express()
 
@@ -46,12 +53,31 @@ app.get('/weather', (req, res) => {
             error: "Address must be provided"
         })
     }
-    res.send({
-        location: 'Berlin',
-        forecast: "It's sunny. Temperature is 12 degrees out.",
-        address: req.query.address
-    },
-    )
+
+    geocode(req.query.address, (error, { longitude, latitude, place } = {}) => {
+        if (error) {
+            return res.send({
+                error: error
+            })
+        }
+        forecast(longitude, latitude, (error, forecastData) => {
+            if (error) {
+                return res.send({
+                    error: error
+                })
+            }
+
+            res.send({
+                location: place,
+                address: req.query.address,
+                forecast: forecastData
+
+            })
+
+        })
+
+    })
+
 })
 
 app.get('/products', (req, res) => {
@@ -65,7 +91,6 @@ app.get('/products', (req, res) => {
         products: []
     })
 })
-
 
 // CATCH ALL
 // match based on specific character

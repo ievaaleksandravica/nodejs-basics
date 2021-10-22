@@ -45,9 +45,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ### Web Server
    *  `src`
       * `app.js` - everything that is needed to manage express server (See more details in the comments section)
-      * `views` 
-         * storing all `.hbs` assets to be used by handlebar (such as about.hbs, help.hbs, index.hbs)
-         * storing also the 404 error views, like `generic-error.hbs` and `help-error.hbs`
+         * setting up routes
+         * using geocode and forecast methods to get results
+      * `utils` - both `geocode` and `forecast` methods, same as wheather app.
    * `public` store all the assets as part of the express server
       * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
       * `js` client side js  related docs, e.g `app.js` linked in `index.html` using  `<script src="js/app.js"></script>` path
@@ -243,3 +243,4 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * you can access it in the routes, using 'req.query' method.
    * use `if/else` to send back error messages.
    * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
+   * You can use the callback function as usual but as a result you will want to use `res.send` and params will be based on `req.query...`
