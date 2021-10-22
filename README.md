@@ -237,3 +237,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * the above mentioned routes have to be listed last as express looks for the routes starting from top to bottom in the doc. 
 
 
+#### Accessing APIs via browser
+* 'Query String'
+   * using the following format '?key=value', e.g. 'http://localhost:3000/products?search=games&rating=5'
+   * you can access it in the routes, using 'req.query' method.
+   * use `if/else` to send back error messages.
+   * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
