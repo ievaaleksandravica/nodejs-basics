@@ -7,23 +7,35 @@ console.log('Client side javascript file is loaded!');
 //     })
 // })
 
+const weatherform = document.querySelector('form')
+const search = document.querySelector('input')
+const image = document.querySelector('.weather-img')
+const data1 = document.querySelector('#data1')
+const data2 = document.querySelector('#data2')
+
 const getLocation = (search) => {
     fetch(`/weather?address=${search}`).then((response) => {
         response.json().then((data) => {
             if (data.error) {
-                return console.log(data.error)
+                data1.textContent = ''
+                data2.textContent = 'Sorry but no results are matching: ' + data.error
             }
-            console.log('Weather forecast for ' + data.location + ' is here: ' + data.forecast)
+            else {
+                data1.textContent = 'You searched for: ' + search
+                data2.textContent = 'Weather forecast for ' + data.location + ' is here: ' + data.forecast
+            }
+
         })
     })
 }
 
-const weatherform = document.querySelector('form')
-const search = document.querySelector('input')
 
 weatherform.addEventListener('submit', (event) => {
+    data1.textContent = 'LOADING....'
+    data2.textContent = ''
     event.preventDefault()
     const location = search.value
     getLocation(location)
+    image.remove()
     search.value = ''
 })
