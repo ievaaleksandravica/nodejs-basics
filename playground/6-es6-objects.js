@@ -32,10 +32,10 @@ console.log(stock);
 console.log(rating)
 
 
-const transaction = (type, { label, stock } = myProduct) => {
+const transaction = (type, { label = 'Apple', stock = 0 } = {}) => {
     console.log(type);
     console.log(label);
-    console.log(label);
+    console.log(stock);
 
 
 }
