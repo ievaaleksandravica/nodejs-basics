@@ -235,11 +235,19 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `Version control` - allows you to manage different code versions of your application over time. You can always revert to a previous state.
 * Install git tools: https://git-scm.com/
 * `git --version` should give you a version if everything is installed properly.
-* You need initialize `git` for each project you wanna use it on. 
+* You need initialize `git init` for each project you wanna use it on (from the root folder)
+   * everything gets stored in `.git` directory (but it is hidden) and gets altered when you use different git commands. If you want to see it in VS Code, you can change it in Code -> Settings -> Exclude section.
+   * `repository` - place where things related to git are stored. there is a local repositories (computer) and remote repositories (such as github or heroku)
+* Different git processes
    * `Untracked Files` - by default all the new files you add to your project will show up as untracked files.
    * `Unstaged Changes` - if file has already been included in the previous commit, but the changes have not been commited yet.
    * `Staged Changes` - everything you want to save from all the untracked files. (using `git add .`)
    * `Commits` - takes all of the files from stages changes, bundles them up and saves them (using `git commit -m`)
+* Git commands
+   * `git status` prints the current status of git.
+   * `git add .` all untracked or unstaged files are added to changes ready to be committed.
+   * `git commit -m "meaningful message"` committing the changes that were ready.
+* To ignore certain files, create a file in the root `.gitignore` and simply add the files and directories, e.g. `node_modules/`
 
 #### Github
 
