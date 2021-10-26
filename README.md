@@ -3,19 +3,11 @@
 This repository is based on the Udemy course  [The Complete Node.js Developer Course](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content)
  and follows all the sections and excercises
 
- * Code-along exercises 
  * Playground
- * Web Server
  * Notes App
  * Weather App 
  * Task App 
  * Comments
-
-### Code-along exercises 
-* `first-node-script.js` This file is the very first code along to create a Javascript file and test all the integrations. Very basic and nothing fancy.
-* `app-write-file.js` Script to write files - works as overwrite. If file exists it will overwrite, if doesn't it creates it and pushes the content.
-* `append-file-content.js` Script to append files. 
-* `utils.js` Script to require functions in app.js
 
 ### Playground
 * `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
@@ -42,22 +34,6 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * you actually need to fire up the event.
    * `request.on('', () => {})` is basically an event listener
 * `8-default-params.js` - examples on how to assign default values to prevent the app from crashing or displaying  `undefined`: it's very simple. Assign a value to the params in your function, both for strings (string value) or objects (provide an empty object)
-
-### Web Server
-   *  `src`
-      * `app.js` - everything that is needed to manage express server (See more details in the comments section)
-         * setting up routes
-         * using geocode and forecast methods to get results
-      * `utils` - both `geocode` and `forecast` methods, same as wheather app.
-   * `public` store all the assets as part of the express server
-      * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
-      * `js` client side js  related docs, e.g `app.js` linked in `index.hbs` using  `<script src="js/app.js"></script>` path
-         * use `fetch` and`then` method to replicate behaviour of async js and retrieve API data for the weather forecast
-         * use `addEventListener` to get the users input
-      * `img` img related docs, e.g `profile_photo.png` linked in `index.html` using  `    <img src="img/profile_photo.png" alt="">` path
-   * `templates` stores all handlebars assets
-      * `views` storing main hbs views
-      * `partials` storing hbs partials
 
 ### Notes App
 * `app.js` 
@@ -113,9 +89,69 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * low level errors, where error argument exists and response is not defined
       * no matching results - there is a response but with error code
    * returning respective data in callback
-   * refactored using destructuring and es6 object shorthand   
-![image](https://user-images.githubusercontent.com/79845207/137351073-db37d833-c063-47f6-809e-84b7d225c1f9.png)
-
+   * refactored using destructuring and es6 object shorthand
+* new folder `web-server`
+* initializing npm with `npm init`, created the `package.json`
+* `npm i express` to install the package
+* subdirectory `src` - all node.js scripts will be stored here.
+   * `app.js` - load express, configure it to serve something up and start the server.
+      * get the express library with single function `express` called to create new express application
+      * all you need is to call `express()` function with no arguments
+      * app.com, app.com/help, app.com/about - different routes
+      * `app.get(route, function (req, res)` what to do when someone visits)
+      * `req` - request - info about the requestor
+      * `res` - response - info we will send back to the requester
+      * start the server on local host `localhost:3000` (port) and callback function (asynchronous) using `app.listen(port, callback function)`
+      * sending back html or json as a response
+         * html can be provided as a string
+         * json can be provided using object(hash) or array the server is automatically gonna detect in and stringify
+      * to link it to other html file it has to be absolute path `__dirname` and `__filename` - gives you absolute path
+         * `path` module to manipulate string paths
+         * `path.join()` will let you combine your current path using `_dirname` and navigate where you want to go with eg. `../src` to go to src folder
+         * you can now put content directly in the html files of the above mentioned directory, e.g. `public` and then access it via `/about.html` this is done with a help of `app.use(express.static(publicDirectory))` function
+         * in that case you also do not need the routes set up using `app.get` 
+* new subdirectory `public` thats gonna store all the assets as part of the express server
+   * `index.html` - by naming convention this means that it is gonna be served by default (will show up for the root of the website)
+* `hanldebars` template engine to render dynamic webpages, using express
+   * render dynamic documents as opposed to static ones and easily create code that we can use across pages
+   * using two npm modules `handlebars.js` and `hbs` - you only need to install hbs as it already is based on handlebars
+   * to use handlebars, you need to
+      * `app.set('view engine', 'hbs')` - need this function to allow handlebars to work
+      * setup the `.hbs` template in `src/views` folder
+      * setup route in `src/app.js` using `app.get` method
+      * use `res.render(view, {key: value})` in the route
+      * use dynamic variables with `{{key}}` syntax in the `.hbs` file
+   * use `app.set('views', viewsDirectory)` to customize the name or the path of all your hbs templates
+   * setup partials
+      * you need to load it first with require
+      * `hbs.registerPartials(partialsDirectory)` to associate the right directory with your partials
+      * then create a file in your partials folder with `.hbs` extension
+      * add your partial in the view with `{{>partialName}}` syntax
+* `404 errors` when page could not be found
+   * `*` wildcard character to be used to idenfity the pages that could not be found yet.
+   * `help/*` to specify more specific paths
+   * the above mentioned routes have to be listed last as express looks for the routes starting from top to bottom in the doc. 
+   *  `src`
+      * `app.js` - everything that is needed to manage express server (See more details in the comments section)
+         * setting up routes
+         * using geocode and forecast methods to get results
+      * `utils` - both `geocode` and `forecast` methods, same as wheather app.
+   * `public` store all the assets as part of the express server
+      * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
+      * `js` client side js  related docs, e.g `app.js` linked in `index.hbs` using  `<script src="js/app.js"></script>` path
+         * use `fetch` and`then` method to replicate behaviour of async js and retrieve API data for the weather forecast
+         * use `addEventListener` to get the users input
+      * `img` img related docs, e.g `profile_photo.png` linked in `index.html` using  `    <img src="img/profile_photo.png" alt="">` path
+   * `templates` stores all handlebars assets
+      * `views` storing main hbs views
+      * `partials` storing hbs partials
+* 'Query String'
+   * using the following format '?key=value', e.g. 'http://localhost:3000/products?search=games&rating=5'
+   * you can access it in the routes, using 'req.query' method.
+   * use `if/else` to send back error messages.
+   * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
+   * You can use the callback function as usual but as a result you will want to use `res.send` and params will be based on `req.query...`
+![image](https://user-images.githubusercontent.com/79845207/137351073-db37d833-c063-47f6-809e-84b7d225c1f9.png
 
 ### Task App 
 * No files related yet
@@ -195,55 +231,19 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * `weatherstack` - Real-Time & Historical World Weather Data API - Retrieve instant, accurate weather information for any location in the world in lightweight JSON format
    * `mapbox` - Mapbox is the location data platform for mobile and web applications. 
 
+#### Git
+* `Version control` - allows you to manage different code versions of your application over time. You can always revert to a previous state.
+* Install git tools: https://git-scm.com/
+* `git --version` should give you a version if everything is installed properly.
+* You need initialize `git` for each project you wanna use it on. 
+   * `Untracked Files` - by default all the new files you add to your project will show up as untracked files.
+   * `Unstaged Changes` - if file has already been included in the previous commit, but the changes have not been commited yet.
+   * `Staged Changes` - everything you want to save from all the untracked files. (using `git add .`)
+   * `Commits` - takes all of the files from stages changes, bundles them up and saves them (using `git commit -m`)
 
-#### Web servers - Express
-* new folder `web-server`
-* initializing npm with `npm init`, created the `package.json`
-* `npm i express` to install the package
-* subdirectory `src` - all node.js scripts will be stored here.
-   * `app.js` - load express, configure it to serve something up and start the server.
-      * get the express library with single function `express` called to create new express application
-      * all you need is to call `express()` function with no arguments
-      * app.com, app.com/help, app.com/about - different routes
-      * `app.get(route, function (req, res)` what to do when someone visits)
-      * `req` - request - info about the requestor
-      * `res` - response - info we will send back to the requester
-      * start the server on local host `localhost:3000` (port) and callback function (asynchronous) using `app.listen(port, callback function)`
-      * sending back html or json as a response
-         * html can be provided as a string
-         * json can be provided using object(hash) or array the server is automatically gonna detect in and stringify
-      * to link it to other html file it has to be absolute path `__dirname` and `__filename` - gives you absolute path
-         * `path` module to manipulate string paths
-         * `path.join()` will let you combine your current path using `_dirname` and navigate where you want to go with eg. `../src` to go to src folder
-         * you can now put content directly in the html files of the above mentioned directory, e.g. `public` and then access it via `/about.html` this is done with a help of `app.use(express.static(publicDirectory))` function
-         * in that case you also do not need the routes set up using `app.get` 
-* new subdirectory `public` thats gonna store all the assets as part of the express server
-   * `index.html` - by naming convention this means that it is gonna be served by default (will show up for the root of the website)
-* `hanldebars` template engine to render dynamic webpages, using express
-   * render dynamic documents as opposed to static ones and easily create code that we can use across pages
-   * using two npm modules `handlebars.js` and `hbs` - you only need to install hbs as it already is based on handlebars
-   * to use handlebars, you need to
-      * `app.set('view engine', 'hbs')` - need this function to allow handlebars to work
-      * setup the `.hbs` template in `src/views` folder
-      * setup route in `src/app.js` using `app.get` method
-      * use `res.render(view, {key: value})` in the route
-      * use dynamic variables with `{{key}}` syntax in the `.hbs` file
-   * use `app.set('views', viewsDirectory)` to customize the name or the path of all your hbs templates
-   * setup partials
-      * you need to load it first with require
-      * `hbs.registerPartials(partialsDirectory)` to associate the right directory with your partials
-      * then create a file in your partials folder with `.hbs` extension
-      * add your partial in the view with `{{>partialName}}` syntax
-* `404 errors` when page could not be found
-   * `*` wildcard character to be used to idenfity the pages that could not be found yet.
-   * `help/*` to specify more specific paths
-   * the above mentioned routes have to be listed last as express looks for the routes starting from top to bottom in the doc. 
+#### Github
 
-
-#### Accessing APIs via browser
-* 'Query String'
-   * using the following format '?key=value', e.g. 'http://localhost:3000/products?search=games&rating=5'
-   * you can access it in the routes, using 'req.query' method.
-   * use `if/else` to send back error messages.
-   * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
-   * You can use the callback function as usual but as a result you will want to use `res.send` and params will be based on `req.query...`
+#### Heroku
+* Install Heroku command line tools for your machine: https://devcenter.heroku.com/articles/heroku-cli: `brew tap heroku/brew && brew install heroku`
+* `heroku -v` should give you a version if everything is installed properly.
+* `heroku login` links the commands from terminal with your heroku account.
