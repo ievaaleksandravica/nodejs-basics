@@ -3,11 +3,18 @@
 This repository is based on the Udemy course  [The Complete Node.js Developer Course](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content)
  and follows all the sections and excercises
 
- * Playground
- * Notes App
- * Weather App 
- * Task App 
- * Comments
+ #### Notes App
+![image](https://user-images.githubusercontent.com/79845207/136558092-ba03c9bf-0e72-4c2a-8f79-1974e5ad61af.png)
+![image](https://user-images.githubusercontent.com/79845207/136558387-8f001bca-a67d-4ec4-a379-5284dc6444c2.png)
+![image](https://user-images.githubusercontent.com/79845207/136558302-852fd029-d291-4166-b9fa-9a467e781eb7.png)
+![image](https://user-images.githubusercontent.com/79845207/136558206-6d74dc8a-f7a0-432f-8293-6c399d124b3c.png)
+
+ #### Weather App 
+![image](https://user-images.githubusercontent.com/79845207/138916648-e59cd68a-8fd6-4a58-878c-73d2e959b343.png)
+
+ #### Task App 
+ 
+ 
 
 ### Playground
 * `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
@@ -46,21 +53,12 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Replacing `console.log(yargs.argv)` with `yargs.parse` to skip the duplicate printing, but still allow to parse the options.
    * Configuring `add` and `remove` commands by defining yargs commands and calling the related functions in the handler.
    * File is refactored to use ES6 and Arrow Function Syntax
-
 * `notes.json` File storing all the notes.
 * `notes.js` Functions to be called in app.js file
    * `addNote` function that loads existing notes, checks if a note exists, if not, then adds a note to notes array & updates the json file. Run with help of `loadNotes` and `saveNotes` helper functions. Refactored with `find` instead of `filter` function.
-   ![image](https://user-images.githubusercontent.com/79845207/136558092-ba03c9bf-0e72-4c2a-8f79-1974e5ad61af.png)
    * `removeNote` function that loads, existing notes, checks if a note is found, if yes, removes it and updated the json file.  Run with help of `loadNotes` and `saveNotes` helper functions.
-![image](https://user-images.githubusercontent.com/79845207/136558387-8f001bca-a67d-4ec4-a379-5284dc6444c2.png)
-
-   * file is refactored to use ES6 and Arrow Function Syntax
    * `listNotes` function that loads all notes and displays them.
-   ![image](https://user-images.githubusercontent.com/79845207/136558302-852fd029-d291-4166-b9fa-9a467e781eb7.png)
-
    * `readNotes` function that finds a note by title and displays the body of the note.
-![image](https://user-images.githubusercontent.com/79845207/136558206-6d74dc8a-f7a0-432f-8293-6c399d124b3c.png)
-
 
 
 ### Weather App 
@@ -68,19 +66,17 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * requiring `postman-request` npm package for easier API processing
    * requiring `config.js` to access WeatherStack API key
    * calling WeatherStack API key, using the `request({url:url}, (error, response) => {}) function
-      * one of `error` or `response` is always going to be undefined.
+   * one of `error` or `response` is always going to be undefined.
    * printing a small forecast to the user (using `WeatherStack` API)
    * calling & returning geocode using a callback function `utils/geocode.js`
    * calling & returning forecast using a callback function `utils/geocode.js`
    * callback chaining - calling forecast callback within geocoding function.   
    * adding `process.argv` to get location from the terminal
-   * refactored using destructuring and es6 object shorthand   
-
 * `utils/geocode.js` 
    * geocode callback function using `mapbox` api
    * Error handling 
-      * low level errors, where error argument exists and response is not defined
-      * no matching results - there is a response but with error code
+     * low level errors, where error argument exists and response is not defined
+     * no matching results - there is a response but with error code
    * returning respective data in callback
    * refactored using destructuring and es6 object shorthand   
 * `utils/forecast.js` 
@@ -88,12 +84,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Error handling 
       * low level errors, where error argument exists and response is not defined
       * no matching results - there is a response but with error code
-   * returning respective data in callback
-   * refactored using destructuring and es6 object shorthand
 * new folder `web-server`
-* initializing npm with `npm init`, created the `package.json`
-* `npm i express` to install the package
-* subdirectory `src` - all node.js scripts will be stored here.
+   * initializing npm with `npm init`, created the `package.json`
+   * `npm i express` to install the package
+   * subdirectory `src` - all node.js scripts will be stored here.
    * `app.js` - load express, configure it to serve something up and start the server.
       * get the express library with single function `express` called to create new express application
       * all you need is to call `express()` function with no arguments
@@ -103,18 +97,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `res` - response - info we will send back to the requester
       * start the server on local host `localhost:3000` (port) and callback function (asynchronous) using `app.listen(port, callback function)`
       * sending back html or json as a response
-         * html can be provided as a string
-         * json can be provided using object(hash) or array the server is automatically gonna detect in and stringify
       * to link it to other html file it has to be absolute path `__dirname` and `__filename` - gives you absolute path
          * `path` module to manipulate string paths
          * `path.join()` will let you combine your current path using `_dirname` and navigate where you want to go with eg. `../src` to go to src folder
          * you can now put content directly in the html files of the above mentioned directory, e.g. `public` and then access it via `/about.html` this is done with a help of `app.use(express.static(publicDirectory))` function
          * in that case you also do not need the routes set up using `app.get` 
-* new subdirectory `public` thats gonna store all the assets as part of the express server
+   * new subdirectory `public` thats gonna store all the assets as part of the express server
    * `index.html` - by naming convention this means that it is gonna be served by default (will show up for the root of the website)
-* `hanldebars` template engine to render dynamic webpages, using express
-   * render dynamic documents as opposed to static ones and easily create code that we can use across pages
-   * using two npm modules `handlebars.js` and `hbs` - you only need to install hbs as it already is based on handlebars
+   * `hanldebars` template engine to render dynamic webpages, using express
+     * render dynamic documents as opposed to static ones and easily create code that we can use across pages
+     * using two npm modules `handlebars.js` and `hbs` - you only need to install hbs as it already is based on handlebars
    * to use handlebars, you need to
       * `app.set('view engine', 'hbs')` - need this function to allow handlebars to work
       * setup the `.hbs` template in `src/views` folder
@@ -127,10 +119,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `hbs.registerPartials(partialsDirectory)` to associate the right directory with your partials
       * then create a file in your partials folder with `.hbs` extension
       * add your partial in the view with `{{>partialName}}` syntax
-* `404 errors` when page could not be found
-   * `*` wildcard character to be used to idenfity the pages that could not be found yet.
-   * `help/*` to specify more specific paths
-   * the above mentioned routes have to be listed last as express looks for the routes starting from top to bottom in the doc. 
+   * `404 errors` when page could not be found
+     * `*` wildcard character to be used to idenfity the pages that could not be found yet.
+     * `help/*` to specify more specific paths
+     * the above mentioned routes have to be listed last as express looks for the routes starting from top to bottom in the doc. 
    *  `src`
       * `app.js` - everything that is needed to manage express server (See more details in the comments section)
          * setting up routes
@@ -139,19 +131,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * `public` store all the assets as part of the express server
       * `css` css related docs, e.g `style.css` linked in `index.html` using  `<link rel="stylesheet" href="/css/styles.css">` path
       * `js` client side js  related docs, e.g `app.js` linked in `index.hbs` using  `<script src="js/app.js"></script>` path
-         * use `fetch` and`then` method to replicate behaviour of async js and retrieve API data for the weather forecast
-         * use `addEventListener` to get the users input
-      * `img` img related docs, e.g `profile_photo.png` linked in `index.html` using  `    <img src="img/profile_photo.png" alt="">` path
-   * `templates` stores all handlebars assets
-      * `views` storing main hbs views
-      * `partials` storing hbs partials
-* 'Query String'
-   * using the following format '?key=value', e.g. 'http://localhost:3000/products?search=games&rating=5'
-   * you can access it in the routes, using 'req.query' method.
-   * use `if/else` to send back error messages.
-   * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
-   * You can use the callback function as usual but as a result you will want to use `res.send` and params will be based on `req.query...`
-![image](https://user-images.githubusercontent.com/79845207/137351073-db37d833-c063-47f6-809e-84b7d225c1f9.png
+       * use `fetch` and`then` method to replicate behaviour of async js and retrieve API data for the weather forecast
+       * use `addEventListener` to get the users input
+   * `templates` stores all handlebars assets - views and partials
+   * `Query String`
+     * using the following format '?key=value', e.g. 'http://localhost:3000/products?search=games&rating=5'
+     * you can access it in the routes, using 'req.query' method.
+     * use `if/else` to send back error messages.
+     * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
+     * You can use the callback function as usual but as a result you will want to use `res.send` and params will be based on `req.query...`
+
 
 ### Task App 
 * No files related yet
