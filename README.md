@@ -41,6 +41,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * register the event data end
    * you actually need to fire up the event.
    * `request.on('', () => {})` is basically an event listener
+* `8-default-params.js` - examples on how to assign default values to prevent the app from crashing or displaying  `undefined`: it's very simple. Assign a value to the params in your function, both for strings (string value) or objects (provide an empty object)
 
 ### Web Server
    *  `src`
