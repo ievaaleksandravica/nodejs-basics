@@ -237,6 +237,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * To ignore certain files, create a file in the root `.gitignore` and simply add the files and directories, e.g. `node_modules/`
 
 #### Github
+##### SSH
 * `SSH` - Secure Shell, gives means of securely communicating with another machine. 
 * `SSH Key Pair` - Set of two files to facilitate the secure connection.
 * `ls -a -l ~/.ssh` allows to check about existing ssh keys. if you have two files in a pattern like `id_....` and `id.....pub` that means you already have the SSH keys setup.
@@ -253,6 +254,24 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `id.....pub` will be shared with github and heroku
    * `eval "$(ssh-agent -s)"` - try to start an ssh agent. if it is already running it will print the id (Agent pid 24558)
    * `ssh-add -K ~/.ssh/id_rsa` setting up the connection.
+##### Pushing to Github
+* Create a new repository directly in Github (under the `+` sign), give whatever name you want to it.
+* You will get instructions on how to deal with it. If you initiated `git` already you need to push an existing repository
+   * `git remote add origin git@github.com:....` you basically set up the contact so you can use it in the future.
+      * `remote` is a version of your project stored somewhere else. 
+      * `add` adds, creates a new remote.
+      * `origin` you can name the remotes how you want it, but by convension its always origin.
+      * `git@...` address of the user.
+   * `git push -u origin master` 
+      * `-u` allows to set the upstream default (origin)
+      * `master` main branch
+* Finalize your SSH key setup by giving it to Github.
+   * under your name, go to settings -> SSH and GPG keys
+   * new SSH key -> name (best based of the device)
+   * key - contents of the public SSH file, get it by running this command: `cat ~/.ssh/id_ed25519.pub`
+   *`ssh -T git@github.com` test your github connection. - (Hi ievaaleksandravica! You've successfully authenticated, but GitHub does not provide shell access.) this is a good message.
+* Now you can push all git commits and push it to main.
+
 
 #### Heroku
 * Install Heroku command line tools for your machine: https://devcenter.heroku.com/articles/heroku-cli: `brew tap heroku/brew && brew install heroku`
