@@ -14,8 +14,6 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
  #### Task App 
  
- 
-
 ### Playground
 * `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
 * `1-json.json` JSON object storing data
@@ -239,6 +237,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * To ignore certain files, create a file in the root `.gitignore` and simply add the files and directories, e.g. `node_modules/`
 
 #### Github
+* `SSH` - Secure Shell, gives means of securely communicating with another machine. 
+* `SSH Key Pair` - Set of two files to facilitate the secure connection.
+* `ls -a -l ~/.ssh` allows to check about existing ssh keys. if you have two files in a pattern like `id_....` and `id.....pub` that means you already have the SSH keys setup.
+* to create SSH keys:
+   * `ssh-keygen -t rsa -b 4096 -C "ieva..@gmail.com"` allows to generate the key pair
+      * `-t rsa` type rsa
+      * `-b 4096` how many bits you want for your key, most common 4096
+      * `-C "ieva..@gmail.com"` - comment for the key
+   * wizard will open upp and ask for:
+      * enter file where to save the key, default is ok.
+      * enter passhphrase - can also enter none
+   * key was now created.
+      * `id_....` private file to never be shared
+      * `id.....pub` will be shared with github and heroku
+   * `eval "$(ssh-agent -s)"` - try to start an ssh agent. if it is already running it will print the id (Agent pid 24558)
+   * `ssh-add -K ~/.ssh/id_rsa` setting up the connection.
 
 #### Heroku
 * Install Heroku command line tools for your machine: https://devcenter.heroku.com/articles/heroku-cli: `brew tap heroku/brew && brew install heroku`
