@@ -277,3 +277,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * Install Heroku command line tools for your machine: https://devcenter.heroku.com/articles/heroku-cli: `brew tap heroku/brew && brew install heroku`
 * `heroku -v` should give you a version if everything is installed properly.
 * `heroku login` links the commands from terminal with your heroku account.
+* set up SSH key file to heroku: `heroku keys:add` - it will look for which keys you want to upload.
+* `heroku create app-name` creates a location where you can view the application and second url for git repository.
+* `heroku git:remote -a aleksandrav-weather-app` add Heroku app as a Git Remote.
+* We need to tell which file we need to run in `package.json` file :  `"scripts": {"start": "node src/app.js" },`
+* In `app.js`:
+   * `const port = process.env.PORT || 3000` - sets the port to the environment variable value with default port.
+   * change app.listen with the port variable `app.listen(3000, () => { console.log('Server is up on port.' + port) })`
+* Push to heroku.
+   * go to your `main` branch and make sure that the changes are there.'
+   * `heroku buildpacks:set heroku/nodejs` specify language
+   * `git push heroku 
+
