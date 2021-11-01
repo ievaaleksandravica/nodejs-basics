@@ -23,6 +23,9 @@ const getLocation = (search) => {
             else {
                 data1.textContent = 'You searched for: ' + search
                 data2.textContent = 'Weather forecast for ' + data.location + ' is here: ' + data.forecast
+                var image = new Image();
+                image.src = data.image;
+                document.getElementById('weather-outcome').appendChild(image)
             }
 
         })
