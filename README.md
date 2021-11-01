@@ -150,6 +150,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `npm -i package@version` use for installing packages locally
 * `sudo npm -i package@version -g` use for installing packages globally (installing on operating system itself) - don't need to require it, gives access to new command in the terminal, in case of nodemon package you can now have nodemon command.
 * `npm install` recreates node_modules folder in case its overwritten/deleted for some reason
+* Avoid global modules (especially for running scripts)
+   * you can set up your own script using terminal commands, e.g.  `package.json - scripts` object, e.g. `"dev": "nodemon src/app.js -e js, hbs"`
+   * issue here is that `nodemon` is a terminal command and needs to be installed locally.
+   * to prevent that you have to
+      * uninstall it locally `npm uninstall -g nodemon` 
+      * install it in your dependencies using `npm install nodemon --save-dev`.
+      * now you can run your script with npm install, e.g. `npm run dev`
 
 #### Useful npm modules
 * `validator` - validates the content of a string
