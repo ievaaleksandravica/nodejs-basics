@@ -24,6 +24,14 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * Stored in collection (similar to js objects).
       * Each entry is a document.
       * Each data type is a field.
+   * Installation
+      * Go to the website and download `MongoDB Community Server` under `On Premises` section.
+      * Open download folder and double click to extract the contents. Copy the folder and move it somewhere out of downloads (e.g. your user folder)
+      * In the same folder create a new directory for actually storing the databases and call it e.g. `mongodb-data`
+      * start the database by running `/Users/ievaaleksandravica/mongodb/bin/mongod --dbpath=/Users/ievaaleksandravica/mongodb-data` in your terminal
+      * this will create multiple files in `mongodb-data` and set up the server.
+      * if you see a message: `"Waiting for connections","attr":{"port":27017,"ssl":"off"}}` means your server was indeed setup up and running.
+      
 
  
 ### Playground
