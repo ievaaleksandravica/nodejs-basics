@@ -3,16 +3,28 @@
 This repository is based on the Udemy course  [The Complete Node.js Developer Course](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/learn/lecture/13728836?start=0#content)
  and follows all the sections and excercises
 
- #### Notes App
+#### Notes App
 ![image](https://user-images.githubusercontent.com/79845207/136558092-ba03c9bf-0e72-4c2a-8f79-1974e5ad61af.png)
 ![image](https://user-images.githubusercontent.com/79845207/136558387-8f001bca-a67d-4ec4-a379-5284dc6444c2.png)
 ![image](https://user-images.githubusercontent.com/79845207/136558302-852fd029-d291-4166-b9fa-9a467e781eb7.png)
 ![image](https://user-images.githubusercontent.com/79845207/136558206-6d74dc8a-f7a0-432f-8293-6c399d124b3c.png)
 
- #### Weather App 
+#### Weather App 
 ![image](https://user-images.githubusercontent.com/79845207/138916648-e59cd68a-8fd6-4a58-878c-73d2e959b343.png)
 
- #### Task App 
+#### Task App 
+##### Databases
+* `MongoDB` 
+   * https://www.mongodb.com/ open source database available for all operating systems. Launched in the same year as NodeJS - works very well together.
+   * SQL database
+      * Data is stored in tables.
+      * Each entry is row/record
+      * Each data type is a column.
+   * NoSQL database (not only SQL)
+      * Stored in collection (similar to js objects).
+      * Each entry is a document.
+      * Each data type is a field.
+
  
 ### Playground
 * `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
