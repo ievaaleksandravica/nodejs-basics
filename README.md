@@ -31,6 +31,12 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * start the database by running `/Users/ievaaleksandravica/mongodb/bin/mongod --dbpath=/Users/ievaaleksandravica/mongodb-data` in your terminal
       * this will create multiple files in `mongodb-data` and set up the server.
       * if you see a message: `"Waiting for connections","attr":{"port":27017,"ssl":"off"}}` means your server was indeed setup up and running.
+   * Installing Mongo GUI - visualization / admin interface
+      * `Robo 3T` https://robomongo.org/ - install it from the internet and run through the installation wizard. 
+      * Once you will be done with it, under the `MongoDB Connections` section `Create` a new one.
+      * The default port used will be `27017`
+      * Once you created it, you can 
+      * 1.`Test` the connection and if everything is green (note: you have to have the server running in your terminal) and * 2. `Save` and check that connection was properly build by right clicking on the DB in the RoboT3 tool, choosing `New Shell` and writing `db.version()`. Execute it by clicking the green play button and if you get a version, setup is successful.
       
 
  
