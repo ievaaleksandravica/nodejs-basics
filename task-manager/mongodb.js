@@ -22,15 +22,13 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     }
     const db = client.db(databaseName)
 
-    db.collection('tasks').updateMany(
-        { completed: false },
-        { $set: { completed: true } }
-    ).then((response) => {
+    db.collection('tasks').deleteOne({ description: "Read a good book." }).then((response) => {
         console.log(response)
     }).catch((error) => {
         console.log(error)
     })
 })
+//
 
 //     db.collection('users').updateOne(
 //         { _id: ObjectId("61825f52b43242ea11f17018") },
@@ -118,3 +116,20 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     console.log('--- PRINTING DOCUMENT FOUND BY COMPLETION ---')
     //     console.log(response)
     // })
+
+
+    // db.collection('tasks').updateMany(
+    //     { completed: false },
+    //     { $set: { completed: true } }
+    // ).then((response) => {
+    //     console.log(response)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+
+    // db.collection('users').deleteMany({ name: 'Ieva' }).then((response) => {
+        //         console.log(response)
+        //     }).catch((error) => {
+        //         console.log(error)
+        //     })
+        // })
