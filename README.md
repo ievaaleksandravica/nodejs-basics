@@ -191,7 +191,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `findOne` function to find one record, matching something. Takes two params ({searchparams}, (error, response) => {}). If no matching records, you get `null`. If multiple matches, you will get the first one.
       * if you wanna search by `_id` you have to provide the object id `ObjectID('')`
       * using `find` to find multiple documents. It does not take a callback as the second argument. It will return a `cursor` instead. To work with that use `toArray` method which then takes a callback with error and response as before, e.g. `(error, response) => {console.log(response)}. Instead of using `toArray` you can also use `count` for the cursor with a callback.
-
+* `Promises`
+   * Promises are built on a callback pattern.
+   * Prmoises is an enhancement of callbacks.
+   * You will normally never create promises yourself, they will be provided to you in the libraries that you are using. 
+   * If you need to create one you can do it by calling `new Promise((resolve, reject) => {})`
+   * e.g. `new Promise((resolve, reject) => {
+    setTimeout(() => { resolve([2, 3, 4, 5])
+    }, 2000)})`
+   * Promise is an object with new methods.
+      *`.then` - function when things go well.
+      * `.catch` - function when things go wrong.
+   * Vocabularly:
+      * `pending` when we first create the promise.
+      * `fulfilled` if resolve is called
+      * `rejected` if reject is called
+   
      
 ### Comments
 #### NPM modules
