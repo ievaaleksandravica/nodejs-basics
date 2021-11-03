@@ -13,32 +13,6 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ![image](https://user-images.githubusercontent.com/79845207/138916648-e59cd68a-8fd6-4a58-878c-73d2e959b343.png)
 
 #### Task App 
-##### Databases
-* `MongoDB` 
-   * https://www.mongodb.com/ open source database available for all operating systems. Launched in the same year as NodeJS - works very well together.
-   * SQL database
-      * Data is stored in tables.
-      * Each entry is row/record
-      * Each data type is a column.
-   * NoSQL database (not only SQL)
-      * Stored in collection (similar to js objects).
-      * Each entry is a document.
-      * Each data type is a field.
-   * Installation
-      * Go to the website and download `MongoDB Community Server` under `On Premises` section.
-      * Open download folder and double click to extract the contents. Copy the folder and move it somewhere out of downloads (e.g. your user folder)
-      * In the same folder create a new directory for actually storing the databases and call it e.g. `mongodb-data`
-      * start the database by running `/Users/ievaaleksandravica/mongodb/bin/mongod --dbpath=/Users/ievaaleksandravica/mongodb-data` in your terminal
-      * this will create multiple files in `mongodb-data` and set up the server.
-      * if you see a message: `"Waiting for connections","attr":{"port":27017,"ssl":"off"}}` means your server was indeed setup up and running.
-   * Installing Mongo GUI - visualization / admin interface
-      * `Robo 3T` https://robomongo.org/ - install it from the internet and run through the installation wizard. 
-      * Once you will be done with it, under the `MongoDB Connections` section `Create` a new one.
-      * The default port used will be `27017`
-      * Once you created it, you can 
-      * 1.`Test` the connection and if everything is green (note: you have to have the server running in your terminal) and * 2. `Save` and check that connection was properly build by right clicking on the DB in the RoboT3 tool, choosing `New Shell` and writing `db.version()`. Execute it by clicking the green play button and if you get a version, setup is successful.
-      
-
  
 ### Playground
 * `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
@@ -167,8 +141,44 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 
 
 ### Task App 
-* No files related yet
+##### Databases
+* `MongoDB` 
+   * https://www.mongodb.com/ open source database available for all operating systems. Launched in the same year as NodeJS - works very well together.
+   * SQL database
+      * Data is stored in tables.
+      * Each entry is row/record
+      * Each data type is a column.
+   * NoSQL database (not only SQL)
+      * Stored in collection (similar to js objects).
+      * Each entry is a document.
+      * Each data type is a field.
+   * Installation
+      * Go to the website and download `MongoDB Community Server` under `On Premises` section.
+      * Open download folder and double click to extract the contents. Copy the folder and move it somewhere out of downloads (e.g. your user folder)
+      * In the same folder create a new directory for actually storing the databases and call it e.g. `mongodb-data`
+      * start the database by running `/Users/ievaaleksandravica/mongodb/bin/mongod --dbpath=/Users/ievaaleksandravica/mongodb-data` in your terminal
+      * this will create multiple files in `mongodb-data` and set up the server.
+      * if you see a message: `"Waiting for connections","attr":{"port":27017,"ssl":"off"}}` means your server was indeed setup up and running.
+   * Installing Mongo GUI - visualization / admin interface
+      * `Robo 3T` https://robomongo.org/ - install it from the internet and run through the installation wizard. 
+      * Once you will be done with it, under the `MongoDB Connections` section `Create` a new one.
+      * The default port used will be `27017`
+      * Once you created it, you can 
+      * 1.`Test` the connection and if everything is green (note: you have to have the server running in your terminal) and * 2. `Save` and check that connection was properly build by right clicking on the DB in the RoboT3 tool, choosing `New Shell` and writing `db.version()`. Execute it by clicking the green play button and if you get a version, setup is successful.
+   * Connecting and Inserting Documents
+      * Install `mongodb` npm package `npm i mongodb@4.1.3`
+      * Require the installed package as usual
+      * call `mongoDB.MongoClient` function that will give you access to connect.
+      * store local host url `mongodb://127.0.0.1:27017`
+      * give your database any name
+      * call `MongoClient.connect(url, { useNewUrlParser: true }, (error, client) => {callback})`
+      * in the callback to interact with the db, you can use `client.db(databaseName)` to retrieve the database instance
+      * then you can  create a collection (table) and insert one record (document) using  `db.collection(collectionName).insertOne({yourDataObject})`.
 
+
+
+
+     
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
@@ -194,8 +204,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `path` defauly node module, does not need to be installed, helps to work with file path.
 * `handlebars.js` Handlebars.js and Mustache are both logicless templating languages that keep the view and the code separated like we all know they should be.
 * `hbs` Express.js view engine for handlebars.js
-
- 
+* `mongodb` The official MongoDB driver for Node.js.
 
  
 #### Debugging tools:
