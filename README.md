@@ -174,8 +174,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * call `MongoClient.connect(url, { useNewUrlParser: true }, (error, client) => {callback})`
       * in the callback to interact with the db, you can use `client.db(databaseName)` to retrieve the database instance
       * then you can  create a collection (table) and insert one record (document) using  `db.collection(collectionName).insertOne({yourDataObject})`.
-
-
+   * Inserting documents
+      * `insertOne` for one document insertion. You can provide callback to get information back about the process. `(error, result => {error or result.insertedId}`
+      * `insertMany` for many document insertion. Works very similary to insertOne, just provide array of objects.
+      * you can always look up for documentation on MongoDB to get familiar with the setup: https://docs.mongodb.com/drivers/node/current/usage-examples/insertMany/
 
 
      
