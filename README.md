@@ -178,8 +178,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `insertOne` for one document insertion. You can provide callback to get information back about the process. `(error, result => {error or result.insertedId}`
       * `insertMany` for many document insertion. Works very similary to insertOne, just provide array of objects.
       * you can always look up for documentation on MongoDB to get familiar with the setup: https://docs.mongodb.com/drivers/node/current/usage-examples/insertMany/
-
-
+   * The ObjectID
+      * `_id` automatically created unique id of a document.
+      * `ObjectId("61826b5c4ad78a85c4caf341")` - different pattern than standard SQL database. These are `GUI` - Globally Unique Identifiers - unique using an algorithm without having to determine what will be the next id (so no auto-incrementation). This gives ability to scale well in a distributed server system. 
+      * Can generate ids for documents before inserting them into the database. 
+      * Get the ObjectID property `const ObjectID = mongodb.ObjectId`
+      * Generate newID `const id = new ObjectId()`
+      * Access the timestamp when GUI was generated `id.getTimestamp()`
+      * You can then assign this id manually if you want in your collection document insert function.
+      * Ids are stored as binary data `ObjectId(_id)`, because it reduces the storage - this has 12 bytes. If you convert it with `toHexString` to actual string it wil double in size.
+   * Querying Documents
      
 ### Comments
 #### NPM modules
