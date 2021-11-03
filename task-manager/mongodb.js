@@ -10,12 +10,10 @@ const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
 
 const id = new ObjectId()
-console.log(id)
-console.log(id.id.length)
-
-console.log(id.toHexString())
-console.log(id.toHexString().length)
-
+// console.log(id)
+// console.log(id.id.length)
+// console.log(id.toHexString())
+// console.log(id.toHexString().length)
 // console.log(id.getTimestamp())
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
@@ -23,7 +21,29 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
         return console.log('Unable to connect to database!')
     }
     const db = client.db(databaseName)
-    // db.collection('users').insertOne({
+
+    db.collection('tasks').findOne({
+        _id: ObjectId("61826b5c4ad78a85c4caf341")
+    }, (error, response) => {
+        if (error) {
+            return console.log('Unable to find matching records!')
+        }
+        console.log('--- PRINTING DOCUMENT FOUND BY ID ---')
+        console.log(response)
+    })
+
+    db.collection('tasks').find({ completed: false }).toArray((error, response) => {
+        if (error) {
+            return console.log('Unable to find matching records!')
+        }
+        console.log('--- PRINTING DOCUMENT FOUND BY COMPLETION ---')
+        console.log(response)
+    })
+})
+
+
+
+// db.collection('users').insertOne({
     //     name: 'Vicrum',
     //     age: 36,
     // }, (error, result) => {
@@ -67,4 +87,17 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     }
     //     console.log(`${result.insertedCount} documents were inserted.`)
     // })
-})
+
+    // db.collection('users').find({ name: 'Marc' }).toArray((error, response) => {
+    //     if (error) {
+    //         return console.log('Unable to connect to database!')
+    //     }
+    //     console.log(response)
+    // })
+
+    // db.collection('users').find({ name: 'Marc' }).count((error, response) => {
+    //     if (error) {
+    //         return console.log('Unable to connect to database!')
+    //     }
+    //     console.log(response)
+    // })
