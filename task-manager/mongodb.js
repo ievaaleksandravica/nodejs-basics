@@ -22,26 +22,25 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     }
     const db = client.db(databaseName)
 
-    db.collection('tasks').findOne({
-        _id: ObjectId("61826b5c4ad78a85c4caf341")
-    }, (error, response) => {
-        if (error) {
-            return console.log('Unable to find matching records!')
-        }
-        console.log('--- PRINTING DOCUMENT FOUND BY ID ---')
+    db.collection('tasks').updateMany(
+        { completed: false },
+        { $set: { completed: true } }
+    ).then((response) => {
         console.log(response)
-    })
-
-    db.collection('tasks').find({ completed: false }).toArray((error, response) => {
-        if (error) {
-            return console.log('Unable to find matching records!')
-        }
-        console.log('--- PRINTING DOCUMENT FOUND BY COMPLETION ---')
-        console.log(response)
+    }).catch((error) => {
+        console.log(error)
     })
 })
 
-
+//     db.collection('users').updateOne(
+//         { _id: ObjectId("61825f52b43242ea11f17018") },
+//         { $inc: { age: 5 } }
+//     ).then((response) => {
+//         console.log(response.modifiedCount)
+//     }).catch((error) => {
+//         console.log(error)
+//     })
+// })
 
 // db.collection('users').insertOne({
     //     name: 'Vicrum',
@@ -99,5 +98,23 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     if (error) {
     //         return console.log('Unable to connect to database!')
     //     }
+    //     console.log(response)
+    // })
+
+    // db.collection('tasks').findOne({
+    //     _id: ObjectId("61826b5c4ad78a85c4caf341")
+    // }, (error, response) => {
+    //     if (error) {
+    //         return console.log('Unable to find matching records!')
+    //     }
+    //     console.log('--- PRINTING DOCUMENT FOUND BY ID ---')
+    //     console.log(response)
+    // })
+
+    // db.collection('tasks').find({ completed: false }).toArray((error, response) => {
+    //     if (error) {
+    //         return console.log('Unable to find matching records!')
+    //     }
+    //     console.log('--- PRINTING DOCUMENT FOUND BY COMPLETION ---')
     //     console.log(response)
     // })
