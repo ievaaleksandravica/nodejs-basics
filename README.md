@@ -188,6 +188,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * You can then assign this id manually if you want in your collection document insert function.
       * Ids are stored as binary data `ObjectId(_id)`, because it reduces the storage - this has 12 bytes. If you convert it with `toHexString` to actual string it wil double in size.
    * Querying Documents
+      * `findOne` function to find one record, matching something. Takes two params ({searchparams}, (error, response) => {}). If no matching records, you get `null`. If multiple matches, you will get the first one.
+      * if you wanna search by `_id` you have to provide the object id `ObjectID('')`
+      * using `find` to find multiple documents. It does not take a callback as the second argument. It will return a `cursor` instead. To work with that use `toArray` method which then takes a callback with error and response as before, e.g. `(error, response) => {console.log(response)}. Instead of using `toArray` you can also use `count` for the cursor with a callback.
+
      
 ### Comments
 #### NPM modules
