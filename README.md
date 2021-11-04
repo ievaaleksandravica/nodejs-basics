@@ -228,9 +228,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * Create a new model: `const Model = mongoose.model('ModelName', { field { properties}})`
       * Create instance: `new Model({ properties })`
       * Save data `instance.save().then(() => {}).catch(()) => {}`
-
-   
-     
+   * Data validation and sanitization
+      * `required: true` - make a field required
+      * `trim: true` - remove spaces before or afters
+      * `lowercase: true` - change all letters to lowercase
+      * `default: xx` - setup default value.
+      * `validate(value) { if (value < 0) { throw new Error('Age must be a positive number.') }}` - set up custom validation
+      * `npm i validator@13.7.0` for more complex validations you can use some libraries   
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
@@ -257,8 +261,8 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `handlebars.js` Handlebars.js and Mustache are both logicless templating languages that keep the view and the code separated like we all know they should be.
 * `hbs` Express.js view engine for handlebars.js
 * `mongodb` The official MongoDB driver for Node.js.
+* `mongoose` Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 
- 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
 * `node debugger` - works with browsers, needs to be added.       
