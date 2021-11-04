@@ -235,7 +235,26 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `default: xx` - setup default value.
       * `validate(value) { if (value < 0) { throw new Error('Age must be a positive number.') }}` - set up custom validation
       * `npm i validator@13.7.0` for more complex validations you can use some libraries   
-
+* `Rest API`
+   * Structuring Rest API
+      * `REST API` - Representational State Transfer - Application Programming Interface.
+      * `API` set of tools that allows you to build software applications. 
+      * `REST` allows clients access and manipulate resources using predefined operations. 
+         * `RE` - representation of data
+         * `ST` - state is being transfered from a client to server
+      * Requests are made via `HTTP requests`
+         * `GET /tasks/a7eaa` - make request to a server, find the data, send back http response (e.g. 200 JSON response)
+         * `POST /tasks` - JSON request with details, create data and send back http response (e.g. 201 JSON response)
+      * The Task Resource
+         * `C`reate     `POST /tasks`
+         * `R`ead many  `GET /tasks`
+         * `R`ead one   `GET /tasks/:id`
+         * `U`pdate     `PATCH /tasks/:id`
+         * `D`elete     `DELETE /tasks/:id`   
+      * `HTTP Request` structure is text based
+         * Request line `POST /tasks HTTP/1.1` (method, path, http protocol)
+         * Headers: key/value pairs `Accept: application/json, Authorization: ....` - as many as we need.
+         * Request body: JSON `description: 'Order new drill bits'`
 
 ### Comments
 #### NPM modules
