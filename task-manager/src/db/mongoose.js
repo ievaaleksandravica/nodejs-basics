@@ -15,10 +15,27 @@ const User = mongoose.model('User', {
     }
 })
 
-const me = new User({ name: 'Ieva', age: 'sss31' })
+// const me = new User({ name: 'Ieva', age: 'sss31' })
+// me.save().then((response) => {
+//     console.log(`User created: ${response}`)
+// }).catch((error) => {
+//     console.log(`Error: ${error}`)
+// })
 
-me.save().then((response) => {
-    console.log(`User created: ${response}`)
+const Task = mongoose.model('Task', {
+    description: {
+        type: String
+    },
+    completed: {
+        type: Boolean
+    }
+})
+
+const arbeitsamt = new Task({
+    description: 'Go to Arbeitsamt',
+    completed: 'apple'
+}).save().then((response) => {
+    console.log(`New task was created: ${response}`)
 }).catch((error) => {
-    console.log(`Error: ${error}`)
+    console.log(`Task could not be created: ${error}`)
 })
