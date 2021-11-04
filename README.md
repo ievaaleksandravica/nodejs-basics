@@ -213,6 +213,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `pending` when we first create the promise.
       * `fulfilled` if resolve is called
       * `rejected` if reject is called
+##### Rest APIs and Mongoose
+* `Mongoose`
+   * Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
+      * https://mongoosejs.com/
+      * `npm i mongoose@6.0.12` to install
+      * Field validation
+      * Authentication
+      * Create and customize models
+      * `ODM` - object document mapper - map your objects to documents in the database.
+   * Connecting to Mongoose:
+      * `mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', { useNewUrlParser: true, useCreateIndex: true })`
+   * Creating models and creating instance
+      * Create a new model: `const Model = mongoose.model('ModelName', { field { properties}})`
+      * Create instance: `new Model({ properties })`
+      * Save data `instance.save().then(() => {}).catch(()) => {}`
+
    
      
 ### Comments
