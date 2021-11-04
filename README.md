@@ -235,6 +235,8 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `default: xx` - setup default value.
       * `validate(value) { if (value < 0) { throw new Error('Age must be a positive number.') }}` - set up custom validation
       * `npm i validator@13.7.0` for more complex validations you can use some libraries   
+
+
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
