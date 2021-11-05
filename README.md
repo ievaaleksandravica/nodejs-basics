@@ -293,12 +293,21 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `app.get("/users", (req, res) => { User.find({}).then((response) => { res.send(response)}).then((error) => { res.send(error)})})` for all users.
       * `app.get("/users/:id", (req, res) => { User.findOne({_id : req.params.id}).then((response) => { res.send(response)}).then((error) => { res.send(error)})})` for one user.
       * if empty response is given, that is considered a success, so you have to handle it manually (with if else)
-   * Promise Chaining
-      * if you try to perform more promises, you could technically integrate the second callback in the `then` promise of the first one. However, it has an issue with a lot of nesting and complexity, also duplicate code.
-      * with Promise Chaining we can simplify the code, by executing the first callback as usual, call the second callback within the `then` call with `return` and then stop the first `then` promise and create a second one: `function(a, b).then((response) => {return function(response, c)}).then((response) => {}).catch((error) => {})` * this gives a benefit of no nesting.
-      * `promise-chaining.js`
-         * require mongoose
-         * require model
+* Promise Chaining
+   * if you try to perform more promises, you could technically integrate the second callback in the `then` promise of the first one. However, it has an issue with a lot of nesting and complexity, also duplicate code.
+   * with Promise Chaining we can simplify the code, by executing the first callback as usual, call the second callback within the `then` call with `return` and then stop the first `then` promise and create a second one: `function(a, b).then((response) => {return function(response, c)}).then((response) => {}).catch((error) => {})` * this gives a benefit of no nesting.
+   * `promise-chaining.js`
+* Async/Await
+   * for promise based code that looks more synchronous than asynchronous. small set of tools to work with promises.
+   * `async` function in which you can use `await` feature.
+      * first created an empty callback and console.log. By default it will return `undefined`
+      * mark function as `async` before the params. this will no longer return undefined, but `Promise { undefined }` - returns a promise with value undefined.
+      * `async` functions will always return promise.
+      * as it returns a promise, you can immediately use promise with `then` and `error`. This will then return the actual result.
+      * you can get `catch` with throwing an error.
+   * `await` - function inside the async callback which allows you to not write promise outputs for every promise but only once for the await. It will still execute the promises as defined but without each promise `then` and `catch`
+   * if one promise is rejected, the remaining promises will not run.
+
 
 ### Comments
 #### NPM modules
