@@ -255,6 +255,41 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * Request line `POST /tasks HTTP/1.1` (method, path, http protocol)
          * Headers: key/value pairs `Accept: application/json, Authorization: ....` - as many as we need.
          * Request body: JSON `description: 'Order new drill bits'`
+   * Installing Postman
+      * https://www.postman.com/
+      * `New -> Request`
+      * `Collection` like a folder
+* Resource Creation
+   * Basic setup
+      * `npm i nodemon@2.0.14 --save-dev` nodemon as dev dependency.
+      * `npm i express@4.17.` installing express.
+      * `index.js` starting point for our application where we initialize the express server. 
+         * require express: `require('express')`
+         * call express function: `express()`
+         * listen to the server: `app.listen(port, () => {})`
+      * `package.json` scripts to start the application
+         * `"start": "node src/index.js", "dev": "nodemon src/index.js"`
+      * Run the script: `npm run dev`
+   * Resource creation (POST)
+      * Setup routes in `index.js`
+         * `app.post('', (req, res) => { res.send() })`
+         * `app.use(express.json())` to automatically parse json (set it up in your index.js)
+         * use `req.body` to get the incoming body data (JSON)
+      * Execute the API call in `postman`
+         * new collection on Postman `Task App`, then `Add Request`
+         * execute a `POST` request to `localhost:3000/users`
+         * send data back from Postman by going to `body` - `JSON` - here will be everything you need to create the user.
+      * Use your created `models`
+         * have your models stored under `src/models` that store only model definitions and export them `module.exports = User`
+         * then you can `require` the `mongoose.js` (which connects to the server) and the `user.js` (which is the model definition.)
+         * then you can finally create a new user with the `res.body` params and use the promises for error handling. 
+         * `const user = new User(req.body)`
+         * `user.save().then((res) => {..}).catch((error) => {..})
+      * Handle `error` codes: 
+         * if error occured, you still get a `200 OK` status because the API call could happen, even if it returns an error. To fix that, use `4**` status codes for wrong data and `5**` for server error.
+         * https://httpstatuses.com/
+         * before sending baack the response, you can assign the error code `res.status('400')`
+
 
 ### Comments
 #### NPM modules
