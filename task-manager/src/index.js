@@ -42,7 +42,6 @@ app.get('/users/:id', (req, res) => {
     })
 })
 
-
 app.post('/tasks', (req, res) => {
     const task = new Task(req.body)
     task.save().then((response) => {
