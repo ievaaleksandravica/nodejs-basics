@@ -289,7 +289,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * if error occured, you still get a `200 OK` status because the API call could happen, even if it returns an error. To fix that, use `4**` status codes for wrong data and `5**` for server error.
          * https://httpstatuses.com/
          * before sending baack the response, you can assign the error code `res.status('400')`
-
+   * Resource reading (GET)
+      * `app.get("/users", (req, res) => { User.find({}).then((response) => { res.send(response)}).then((error) => { res.send(error)})})` for all users.
+      * `app.get("/users/:id", (req, res) => { User.findOne({_id : req.params.id}).then((response) => { res.send(response)}).then((error) => { res.send(error)})})` for one user.
+      * if empty response is given, that is considered a success, so you have to handle it manually (with if else)
 
 ### Comments
 #### NPM modules
