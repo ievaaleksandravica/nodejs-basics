@@ -13,17 +13,6 @@ mongoose.connect(
 //     console.log(`Error: ${error}`)
 // })
 
-const Task = mongoose.model('Task', {
-    description: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    completed: {
-        type: Boolean,
-        default: false
-    }
-})
 
 // const arbeitsamt = new Task({
 //     description: 'This is fun   '
