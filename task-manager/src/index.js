@@ -9,70 +9,103 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 
-app.post('/users', (req, res) => {
+app.post('/users', async (req, res) => {
     const user = new User(req.body)
-    user.save().then((response) => {
-        console.log(response)
-        res.status("201").send(response)
-    }).catch((error) => {
+    try {
+        await user.save()
+        console.log(user)
+        res.status("201").send(user)
+    } catch (error) {
         console.log(error)
         res.status('400').send(error)
-    })
+    }
 })
 
-app.get('/users', (req, res) => {
-    User.find({}).then((response) => {
-        res.status('202').send(response)
-    }).catch((error) => {
+app.get('/users', async (req, res) => {
+    try {
+        const users = await User.find({})
+        res.status('202').send(users)
+    } catch (error) {
         res.status('500').send(error)
-    })
+    }
 })
 
-app.get('/users/:id', (req, res) => {
-    console.log(req.params.id)
+app.get('/users/:id', async (req, res) => {
     const param = ObjectID(req.params.id)
-    User.findOne({ _id: param }).then((response) => {
-        if (!response) {
-            res.status('404').send(response)
+    try {
+        const user = await User.findOne({ _id: param })
+        if (!user) {
+            return res.status('404').send(response)
         }
-        res.status('202').send(response)
-        console.log(response)
-    }).catch((error) => {
+        res.status('202').send(user)
+    } catch (error) {
         res.status('500').send(error)
-    })
+    }
+    // User.findOne({ _id: param }).then((response) => {
+    //     if (!response) {
+    //         res.status('404').send(response)
+    //     }
+    //     res.status('202').send(response)
+    //     console.log(response)
+    // }).catch((error) => {
+    //     res.status('500').send(error)
+    // })
 })
 
-app.post('/tasks', (req, res) => {
+app.post('/tasks', async (req, res) => {
     const task = new Task(req.body)
-    task.save().then((response) => {
-        res.status("201").send(response)
-    }).catch((error) => {
+    try {
+        const taskNew = await task.save()
+        res.status("201").send(taskNew)
+    } catch (error) {
         res.status("400").send(error)
-    })
+    }
+    // task.save().then((response) => {
+    //     res.status("201").send(response)
+    // }).catch((error) => {
+    //     res.status("400").send(error)
+    // })
 })
 
-app.get('/tasks', (req, res) => {
-    Task.find({ completed: false }).then((response) => {
-        if (response.length === 0) {
-            return res.status('404').send(response)
+app.get('/tasks', async (req, res) => {
+    try {
+        const tasks = await Task.find({ completed: false })
+        if (tasks.length === 0) {
+            return res.status('404').send(tasks)
         }
-        res.status('202').send(response)
-    }).catch((error) => {
+        res.status('202').send(tasks)
+    } catch {
         res.send(error)
-    })
+    }
+    // Task.find({ completed: false }).then((response) => {
+    //     if (response.length === 0) {
+    //         return res.status('404').send(response)
+    //     }
+    //     res.status('202').send(response)
+    // }).catch((error) => {
+    //     res.send(error)
+    // })
 })
 
-app.get("/tasks/:id", (req, res) => {
+app.get("/tasks/:id", async (req, res) => {
     _id = req.params.id
-    console.log(_id)
-    Task.findById(_id).then((response) => {
-        if (!response) {
-            return res.status('404').send(response)
+    try {
+        task = await Task.findById(_id)
+        if (!task) {
+            return res.status('404').send(task)
         }
-        res.send(response)
-    }).catch((error) => {
+        res.send(task)
+    } catch (error) {
         res.status('500').send(error)
-    })
+    }
+    // Task.findById(_id).then((response) => {
+    //     if (!response) {
+    //         return res.status('404').send(response)
+    //     }
+    //     res.send(response)
+    // }).catch((error) => {
+    //     res.status('500').send(error)
+    // })
 
 })
 
