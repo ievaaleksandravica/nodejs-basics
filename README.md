@@ -301,7 +301,8 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * `new: true` returns the updated document
          * `runValidators: true` validations will be run on the new value.
       * set up `error` handling for: invalid parameters, empty ids, validation errors and server errors.
-
+   * Resource deletion (DELETE)
+      * `app.delete('/users/:id', async (req, res) => {try { } catch (error) { })`
 * Promise Chaining
    * if you try to perform more promises, you could technically integrate the second callback in the `then` promise of the first one. However, it has an issue with a lot of nesting and complexity, also duplicate code.
    * with Promise Chaining we can simplify the code, by executing the first callback as usual, call the second callback within the `then` call with `return` and then stop the first `then` promise and create a second one: `function(a, b).then((response) => {return function(response, c)}).then((response) => {}).catch((error) => {})` * this gives a benefit of no nesting.
