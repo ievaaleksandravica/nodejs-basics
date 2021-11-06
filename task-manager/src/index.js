@@ -52,6 +52,30 @@ app.get('/users/:id', async (req, res) => {
     // })
 })
 
+app.patch('/users/:id', async (req, res) => {
+    const allowedUpdates = ['name', 'email', 'password', 'age']
+    const updates = Object.keys(req.body)
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+    if (!isValidOperation) {
+        return res.status('400').send({ error: `invalid updates` })
+    }
+    try {
+        const user_id = req.params.id
+
+        const user = await User.findByIdAndUpdate(user_id, req.body, { new: true, runValidators: true })
+        if (!user) {
+            return res.status('404').send(user)
+        }
+        res.send(user)
+    } catch (error) {
+        console.log(error)
+        if (error.name === 'ValidationError') {
+            return res.status('400').send(error)
+        }
+        res.status('505').send(error)
+    }
+})
+
 app.post('/tasks', async (req, res) => {
     const task = new Task(req.body)
     try {
@@ -106,6 +130,30 @@ app.get("/tasks/:id", async (req, res) => {
     // }).catch((error) => {
     //     res.status('500').send(error)
     // })
+
+})
+
+app.patch('/tasks/:id', async (req, res) => {
+    const task_id = req.params.id
+    const allowedTaskUpdates = ['description', 'completed']
+    const providedUpdates = Object.keys(req.body)
+    const allowed = providedUpdates.every((update) => allowedTaskUpdates.includes(update))
+    if (!allowed) {
+        return res.status('400').send({ error: "wrong update key" })
+    }
+    try {
+        const task = await Task.findByIdAndUpdate(task_id, req.body, { new: true, runValidators: true })
+        if (!task) {
+            return res.status('404').send({ error: 'no task found' })
+        }
+        res.send(task)
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            return res.status('400').send({ error: 'validation error' })
+        }
+        res.status('500').send(error)
+    }
+
 
 })
 
