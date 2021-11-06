@@ -317,6 +317,12 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * you can get `catch` with throwing an error.
    * `await` - function inside the async callback which allows you to not write promise outputs for every promise but only once for the await. It will still execute the promises as defined but without each promise `then` and `catch`
    * if one promise is rejected, the remaining promises will not run.
+* Seperate route files
+   * create new router using `const router = new express.Router()` (in a new file)
+   * move all your routes to the new file - you will need to replace `app` with your new routers name. (do not forget to require everything you need.)
+   * export via `module.exports = router`
+   * import in `index.js`
+   * use `app.use(router)` to connect your index.js file to the new routers.
 
 
 ### Comments
