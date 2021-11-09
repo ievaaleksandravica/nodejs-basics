@@ -323,6 +323,20 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * export via `module.exports = router`
    * import in `index.js`
    * use `app.use(router)` to connect your index.js file to the new routers.
+##### API Authentication and Security
+* Securily storing passwords.
+   * No passwords should be stored as plain text to avoid any problems with hacking etc.
+   * We will store `hashed passwords` with algorithm that is not reversable - `bCrypt`
+      * `npm i bcrypt@5.0.1`
+      * `const bcrypt = require('bcrypt')`
+      * `bcrypt('PlainPassword', numberOfHashRounds)` 
+      * it has to be a part of async / await function as it uses promises.
+      * number of hash rounds - 8 is an optimal number for hashing.
+      * `bcrypt.compare('red123456', hashedPassword)` compare the plain text password with hashed one that we are storing.
+   * Hashing is different than encryption
+      * Encryption can be reversed (two way algorithm)
+      * Hashing can not be reversed (one way algorithm)
+
 
 
 ### Comments
@@ -352,6 +366,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `hbs` Express.js view engine for handlebars.js
 * `mongodb` The official MongoDB driver for Node.js.
 * `mongoose` Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
+* `bcrypt` A library to help you hash passwords.
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
@@ -364,6 +379,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 #### Error Messages
 * `ReferenceError` gives an explicit message of why things fail. It's still up to us to work through it.
 * `Stack trace` - after the error message - all functions that are running until it gets to the error. First line usually has the most important message, e.g. at saveNotes (/Users/ievaaleksandravica/code/ievaaleksandravica/nodejs-course/notes-app/notes.js:60:27)
+* `Error: listen EADDRINUSE: address already in use :::3000 mongo` - to kill the background service:
+   * `lsof -i tcp:3000` get your PID
+   * `kill -9 PIDNUMBER` kill the service
+   * `npm run dev` restart the services
 
 #### Asynchronous Node.js
 * `setTimeout` - one of the most common async methods -> Write some code after specific time has passed.
