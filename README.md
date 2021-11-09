@@ -396,7 +396,20 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * if not verified throws an error.
    * Set token to expire
       * `{ expiresIn: '30 seconds' }` add an option as the third argument when creating the token with `sign`
-
+   * Generate JWT for User Login and Sign Up routes and send it back to the user.
+      * in the user model, generate a new instance (model) method `userSchema.methods.generateAuthToken = async function ()` 
+      * access the user using `this`
+      * use the `jwt.sign` method to generate the token
+      * take `_id` as identifier and value `user._id.toString()` - you have to convert it.
+      * in your route call the method on the user instance `const token = await user.generateAuthToken()`
+      * then you can pass this token in the response.
+   * Track tokens in the user model
+      * Allows to login in multiple devices.
+      * Create a new field on the user model - it's gonna be an array of objects `tokens: [{ token: type:string}]`
+      * Then in your generate token method, you need to push the tokens to the array everytime you generate them:
+         * `user.tokens = user.tokens.concat({ token: token })`
+         * `await user.save()`
+   
    
 
 
