@@ -363,6 +363,18 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * Now you can start the `hashing` process
          * First need to check if it is already hashed. `if (user.isModified('password'))`
          * `user.password = await bcrypt.hash(user.password, 8)`
+* Logging in users
+   * setting up a new route `router.post('/users/login', async (req, res) {})`
+   * define a new function `findByCredentials(email, password)` in the model file.
+      * you need a seperate schema as a function for this and pass that to the model `userSchema.statics.findByCredentials`
+      * First you use `findOne` based on the email address.
+      * If no matches, you want to `throw new Error ('')`
+      * If a match is found, you want to verify it using `bcrypt.compare(password, user.password)`
+      * If passwords do not match, throw an error again.
+      * If everything matched, you want to `return user`
+   * call this function `const user = await User.findByCredentials(req.body.email, req.body.password)`
+   * with error messages for login, is best to not be too specific to not expose too much information.
+   * you had to set that `email` is unique, however, that means that you also need to drop the database and recreate it by just running the terminal again.
 
 
 ### Comments
