@@ -336,7 +336,33 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Hashing is different than encryption
       * Encryption can be reversed (two way algorithm)
       * Hashing can not be reversed (one way algorithm)
-
+   * In our task app, passwords are using in two places:
+      * When creating a user
+      * When updating a user
+      * Customizations will be done not in the router, but in the model instead
+   * Mongoose supports `middleware` 
+      * Way to customize a behavior of your mongoose model.
+      * https://mongoosejs.com/docs/middleware.html
+      * We want to run some code, before we `save` the user - check if there is a plain text password and if yes, hash it
+      * To take advantage of the middleware, we first have to create the schema and then pass the model:
+         * `const userSchema = new mongoose.Schema({here goes all your attributes})`
+         * `const User = mongoose.model('User', userSchema)` - now here you can simply use the schema created already.
+         * this restructuring will allow us to take advantage of the mongoose middleware
+      * Now the middleware gives you two options to work with your model's schema
+         * `userSchema.pre` - before action
+         * `userSchema.post` - after action
+      * `userSchema.pre('save', async function(next) { const user = this next })`
+         * `this` gives you access to the current instance
+         * `next` informs when you are done running the function
+      * It will work for `create`, but `update` queries bypass this middleware. In order to make it work:
+         * Go to your routes
+         * `findByIdAndUpdate` this operation bypasses the middleware and therefore does not work.
+         * change your method to first just identify the user, using `findByID`. 
+         * then use the `loop` to find the matching updates.
+         * finally, use `user.save()` to actually save the user - at this moment the middleware can work again.
+      * Now you can start the `hashing` process
+         * First need to check if it is already hashed. `if (user.isModified('password'))`
+         * `user.password = await bcrypt.hash(user.password, 8)`
 
 
 ### Comments
