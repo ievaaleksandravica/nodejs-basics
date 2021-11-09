@@ -86,11 +86,11 @@ router.patch('/tasks/:id', async (req, res) => {
 router.delete('/tasks/:id', async (req, res) => {
     id = req.params.id
     try {
-        task = await Task.findByIdAndDelete(id)
+        const task = await Task.findByIdAndDelete(id)
         if (!task) {
             return res.status('404').send({ error: 'no task id found' })
         }
-        res.setDefaultEncoding(task)
+        res.send(task)
     } catch (error) {
         res.status('505').send(error)
     }

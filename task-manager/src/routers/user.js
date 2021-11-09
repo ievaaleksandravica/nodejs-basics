@@ -24,9 +24,9 @@ router.get('/users', async (req, res) => {
 })
 
 router.get('/users/:id', async (req, res) => {
-    const param = ObjectID(req.params.id)
+    const param = req.params.id
     try {
-        const user = await User.findOne({ _id: param })
+        const user = await User.findById(param)
         if (!user) {
             return res.status('404').send(response)
         }
