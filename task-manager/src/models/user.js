@@ -45,6 +45,7 @@ const userSchema = new mongoose.Schema(
     }
 )
 
+// verify login data
 userSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({ email: email })
     if (!user) {
