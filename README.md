@@ -375,6 +375,29 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * call this function `const user = await User.findByCredentials(req.body.email, req.body.password)`
    * with error messages for login, is best to not be too specific to not expose too much information.
    * you had to set that `email` is unique, however, that means that you also need to drop the database and recreate it by just running the terminal again.
+* JSON Web Tokens
+   * We will have two kind of routes: 
+      * `public` visible to everybody (sign up and login)
+      * `private` based on authentication (everything else)
+   * Login route needs to send back an authentication token to be used in all the other routes.
+   * `JWT` - JSON Web Token Standard
+      * tokens can expire after x time
+      * npm module `npm i jsonwebtoken@8.5.1`
+      * Token consists of three parts (seperated by `.`) - 3 base64 encoded JSON strings
+         1. header with meta information
+         2. payload (body)
+         3. signature to verify the token.
+   * Creating token
+      * `const jwt = require('jsonwebtoken')`
+      * `const token = jwt.sign({ _id: uniqueIdentifier }, 'anyprivatekey')` - generates the token
+   * Verifying token
+      * `const data = jwt.verify(token, 'thisismynewcourse')`
+      * returns an object with the data if verified.
+      * if not verified throws an error.
+   * Set token to expire
+      * `{ expiresIn: '30 seconds' }` add an option as the third argument when creating the token with `sign`
+
+   
 
 
 ### Comments
@@ -405,6 +428,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `mongodb` The official MongoDB driver for Node.js.
 * `mongoose` Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 * `bcrypt` A library to help you hash passwords.
+* `jsonwebtoken` JSON Web Token (JWT) is an open standard that defines a compact and self-contained way of securely transmitting information between parties as a JSON object.
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
