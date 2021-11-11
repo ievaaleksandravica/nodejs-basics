@@ -409,6 +409,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * Then in your generate token method, you need to push the tokens to the array everytime you generate them:
          * `user.tokens = user.tokens.concat({ token: token })`
          * `await user.save()`
+* Express Middleware
+   * Without middleware: new request -> new route handler
+   * With middleware: new request -> do something -> run route handler.
+   * Set up a new middleware function:
+      * `app.use((req, res, next) => { res.status(503).send({ error: "Currently site is under maintenaince! We will be back soon." })`
+      * you have access to the same `req` and `res` arguments.
+      * `next` is an argument to use if you want to proceed with running the routes after receiving request.
+      * if you do not specify the `next` the route handlers will not be executed.
+})
    
    
 
@@ -456,7 +465,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `Stack trace` - after the error message - all functions that are running until it gets to the error. First line usually has the most important message, e.g. at saveNotes (/Users/ievaaleksandravica/code/ievaaleksandravica/nodejs-course/notes-app/notes.js:60:27)
 * `Error: listen EADDRINUSE: address already in use :::3000 mongo` - to kill the background service:
    * `lsof -i tcp:3000` get your PID
-   * `kill -9 PIDNUMBER` kill the service
+   * `kill -9 10387` kill the service
    * `npm run dev` restart the services
 
 #### Asynchronous Node.js
