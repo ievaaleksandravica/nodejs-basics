@@ -417,7 +417,30 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * you have access to the same `req` and `res` arguments.
       * `next` is an argument to use if you want to proceed with running the routes after receiving request.
       * if you do not specify the `next` the route handlers will not be executed.
-})
+* Accepting Authentication Tokens
+   * new directory `middleware` will store a new file for each middleware that we are trying to define. Let's create one `auth.js`
+      1. create a new function `auth`
+      2. export the function `auth`
+      3. import(`require`) it in your `model` file
+      4. add it to individual routes as the second parameter `router.get('/users', auth, async (req, res) => {})`
+   * in `postman` work in the headers section 
+      1. Key `Authorization`
+      2. Value `Bearer token_value`
+   * `auth` function itself
+      1. require `jsonwebtoken`
+      2. require `user` model
+      3. `try/catch` block to try and autenticate the user.
+      4. `req.header('Authorization')` access your token that was provided in the header and get rid of the Bearer by usin `replace()` method.
+      5. verify and decode the token `jwt.verify(token, 'thisismynewcourse')`
+      6. find the user, using `findOne` with two queries: `_id` and `tokens.token`
+      7. If no users, then throw an error
+   * Limit what you can see
+      1. route `get /users` is becoming useless because noone should see all user data.
+      2. refactor it to `get /users/me` to be able to read user profile.
+      3. in your `auth function` send back `req.user = user` to be able to get it.
+* Advanced Postman
+
+
    
    
 
