@@ -439,6 +439,29 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       2. refactor it to `get /users/me` to be able to read user profile.
       3. in your `auth function` send back `req.user = user` to be able to get it.
 * Advanced Postman
+   * Environment and environment variables
+      1. Create new environment `Task Manager API (dev)`
+      2. Create key/value pairs for environment variables
+         * variable `url`: key `localhost:3000`
+      3. Assign the environment
+      4. Replace the link manually with `{{url}}` in all your API calls.
+      5. Now you can easily replace the URLs
+   * Authentication
+      1. Multiple requests to use the same authentication pattern.
+      2. Grab the token.
+      3. Navigate to the  `Authorization` tab, choose `Bearer Token` - it works but still only for this request.
+      4. Change the type to `Inherit auth from parent` - define the auth scheme one.
+      5. `Edit` your collection, go to the  `Authorization` tab & update the token there.
+      6. For the paths were you don't need authentication, simply select `No Auth`
+   * Automate updating the auth token
+      1. in the API call section, `Tests` section.
+      2. change the token in the collection to environment variable `{{authToken}}`
+      3. in your create user and login user path section `test` use this JavaScript:
+         * `if (pm.response.code === 200) {pm.environment.set('authToken', pm.response.json().token)}` 
+         * 200 for logging in, 201 for creating
+         * it will set the `authToken` to the current one when logging in.
+      
+
 
 
    
