@@ -65,6 +65,15 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user
 }
 
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+    delete userObject.password
+    delete userObject.tokens
+    return userObject
+}
+
+
 // generate JWT for user
 userSchema.methods.generateAuthToken = async function () {
     const user = this
