@@ -470,6 +470,18 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Logout all sessions.
        * `router.post('/users/logoutAll', auth, async (req, res) => {})` - in the User router
        * `req.user.tokens = []`
+* Hiding private data
+   * what data to hide:
+      * `password` should definitely be protected and never visible. 
+      * `tokens` no need to display this either.
+   * in models, create instance method `userSchema.methods.getPublicProfile`
+      * in this method return `user.toObject()` - just like this it would actually return what you already have.
+      * to customize it only with the data that you want: `delete userObject.password` and `delete userObject.tokens`
+   * the above mentioned solution is still manual as it still requires you to call this function manually. To automate this:
+      * you dont need to call the method created if you name it `userSchema.methods.toJSON`
+      * it will now always work when you want to retreive `user`
+      * it works because `toJSON` is what the system would already do behind the scenes with `JSON.stringify(user)`, but forcing it with toJSON method allows us to customize it and still return it as a `user`
+
 
 ### Comments
 #### NPM modules

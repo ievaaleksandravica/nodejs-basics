@@ -9,6 +9,25 @@ const taskRouter = require('./routers/task')
 const app = express()
 const port = process.env.PORT || 3000
 
+app.use(express.json())
+app.use(userRouter)
+app.use(taskRouter)
+
+app.listen(port, () => {
+    console.log(`Server is up on port: ${port}.`)
+})
+
+// const pet = {
+//     name: 'Hal'
+// }
+
+// pet.toJSON = function () {
+//     return {}
+// }
+
+// console.log(JSON.stringify(pet))
+
+
 // app.use((req, res, next) => {
 //     if (req.method === "GET") {
 //         res.send({ error: "Get requests are disabled!" })
@@ -20,18 +39,6 @@ const port = process.env.PORT || 3000
 // app.use((req, res, next) => {
 //     res.status(503).send({ error: "Currently site is under maintenaince! We will be back soon." })
 // })
-
-app.use(express.json())
-app.use(userRouter)
-app.use(taskRouter)
-
-
-
-
-app.listen(port, () => {
-    console.log(`Server is up on port: ${port}.`)
-})
-
 
 // const jwt = require('jsonwebtoken')
 
