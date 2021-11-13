@@ -460,13 +460,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * `if (pm.response.code === 200) {pm.environment.set('authToken', pm.response.json().token)}` 
          * 200 for logging in, 201 for creating
          * it will set the `authToken` to the current one when logging in.
-      
-
-
-
-   
-   
-
+* Logging out
+   * Logout of one session.
+      * New route to allow users to log out.
+      * `req.token = token` - in the Auth middleware. Will give access to the used token.
+      * `router.post('/users/logout', auth, async (req, res) => {})` - in the User router
+      * `req.user.tokens = req.user.tokens.filter((token) => { return token.token !== req.token })` - only return the tokens that are not currently used.
+      * create new api request in Postman with inherited authorization.
+   * Logout all sessions.
+       * `router.post('/users/logoutAll', auth, async (req, res) => {})` - in the User router
+       * `req.user.tokens = []`
 
 ### Comments
 #### NPM modules
