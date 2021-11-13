@@ -14,6 +14,39 @@ router.post('/users', async (req, res) => {
     }
 })
 
+router.post('/users/login', async (req, res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password)
+        const token = await user.generateAuthToken()
+        res.send({ user, token })
+    } catch (error) {
+        res.status('404').send(error)
+    }
+})
+
+router.post('/users/logout', auth, async (req, res) => {
+    try {
+        console.log(req.token)
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+        await req.user.save()
+        res.send({ status: "logout successful." })
+    } catch (error) {
+        res.status(500).send({ error: "unknown error occured." })
+    }
+})
+
+router.post('/users/logoutAll', auth, async (req, res) => {
+    try {
+        req.user.tokens = []
+        await req.user.save()
+        res.send({ status: "successful logout of all active sessions" })
+    } catch (error) {
+        res.status(500).send({ error: "unknown error occured" })
+    }
+})
+
 router.get('/users/me', auth, async (req, res) => {
     res.status('202').send(req.user)
 })
@@ -81,14 +114,6 @@ router.delete('/users/:id', async (req, res) => {
     }
 })
 
-router.post('/users/login', async (req, res) => {
-    try {
-        const user = await User.findByCredentials(req.body.email, req.body.password)
-        const token = await user.generateAuthToken()
-        res.send({ user, token })
-    } catch (error) {
-        res.status('404').send(error)
-    }
-})
+
 
 module.exports = router
