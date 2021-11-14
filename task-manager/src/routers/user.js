@@ -53,29 +53,29 @@ router.get('/users/me', auth, async (req, res) => {
     res.status('202').send(req.user)
 })
 
-router.get('/users/:id', async (req, res) => {
-    const param = req.params.id
-    try {
-        const user = await User.findById(param)
-        if (!user) {
-            return res.status('404').send(response)
-        }
-        res.status('202').send(user)
-    } catch (error) {
-        res.status('500').send(error)
-    }
-    // User.findOne({ _id: param }).then((response) => {
-    //     if (!response) {
-    //         res.status('404').send(response)
-    //     }
-    //     res.status('202').send(response)
-    //     console.log(response)
-    // }).catch((error) => {
-    //     res.status('500').send(error)
-    // })
-})
+// router.get('/users/:id', async (req, res) => {
+//     const param = req.params.id
+//     try {
+//         const user = await User.findById(param)
+//         if (!user) {
+//             return res.status('404').send(response)
+//         }
+//         res.status('202').send(user)
+//     } catch (error) {
+//         res.status('500').send(error)
+//     }
+//     // User.findOne({ _id: param }).then((response) => {
+//     //     if (!response) {
+//     //         res.status('404').send(response)
+//     //     }
+//     //     res.status('202').send(response)
+//     //     console.log(response)
+//     // }).catch((error) => {
+//     //     res.status('500').send(error)
+//     // })
+// })
 
-router.patch('/users/:id', async (req, res) => {
+router.patch('/users/me', auth, async (req, res) => {
     const allowedUpdates = ['name', 'email', 'password', 'age']
     const updates = Object.keys(req.body)
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -83,17 +83,16 @@ router.patch('/users/:id', async (req, res) => {
         return res.status('400').send({ error: `invalid updates` })
     }
     try {
-        const user = await User.findById(req.params.id)
         updates.forEach((update) => {
-            user[update] = req.body[update]
+            req.user[update] = req.body[update]
         })
-        await user.save()
+        await req.user.save()
         // const user_id = req.params.id
         // const user = await User.findByIdAndUpdate(user_id, req.body, { new: true, runValidators: true })
-        if (!user) {
-            return res.status('404').send(user)
-        }
-        res.send(user)
+        // if (!user) {
+        //     return res.status('404').send(user)
+        // }
+        res.send(req.user)
     } catch (error) {
         console.log(error)
         if (error.name === 'ValidationError') {
@@ -103,14 +102,16 @@ router.patch('/users/:id', async (req, res) => {
     }
 })
 
-router.delete('/users/:id', async (req, res) => {
-    const id = req.params.id
+router.delete('/users/me', auth, async (req, res) => {
+    // const id = req.user._id
     try {
-        const user = await User.findByIdAndDelete(id)
-        if (!user) {
-            return res.status('404').send({ error: "no id found" })
-        }
-        return res.send(user)
+        // const user = await User.findByIdAndDelete(id)
+        // if (!user) {
+        //     return res.status('404').send({ error: "no id found" })
+        // }
+        // return res.send(user)
+        await req.user.remove()
+        res.send(req.user)
     } catch (error) {
         res.status('500').send(error)
     }
