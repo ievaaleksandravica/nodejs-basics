@@ -513,7 +513,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * `ref: 'Task'` object we are referring to
          * `localField: '_id'` related field in this model
          * `foreignField: 'owner'` related field in the other model
-})
+* Authenticating Task Endpoints (`routers/task.js`)
+   * add `auth` as second parameter
+   * change the way to identify the task to `await Task.findOne({ _id, owner: req.user._id })`
 
 ### Comments
 #### NPM modules
