@@ -493,8 +493,27 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * customize url from `users/:id` to `users/me` 
       * refactor your code using `req.user` where needed and remove any id lookups.
       * no need to check if user anymore exists as the method by default requires auth and hence user.
-
-
+* The User/Task Relationship
+   * `models/task.js` 
+      * add a new field `owner` with `type: mongoose.Schema.Types.ObjectId` and `required: true`
+      * another field: `ref: 'User' - creates a relationship
+      * drop the database in `Robo 3T` because you created new required field.
+   * `routers/task.js` 
+      * require `middleware/auth`
+      * adjust a route to include `auth` as second param
+      * adjust the Task object
+         * `...req.body` - ES6 dynamic shorthand to take all the fields from the body,
+         * `owner: req.user._id` - take the id from the user from the req as this is passed on via `auth`
+   * `index.js`
+      * 
+   * `models/user.js`
+      * create a virtual model - relationship between two entities
+      * `userSchema.virtual('tasks', {})` - sets up many to one relationship between two models without storing it in the database
+      * object params:
+         * `ref: 'Task'` object we are referring to
+         * `localField: '_id'` related field in this model
+         * `foreignField: 'owner'` related field in the other model
+})
 
 ### Comments
 #### NPM modules
