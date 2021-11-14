@@ -481,6 +481,19 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * you dont need to call the method created if you name it `userSchema.methods.toJSON`
       * it will now always work when you want to retreive `user`
       * it works because `toJSON` is what the system would already do behind the scenes with `JSON.stringify(user)`, but forcing it with toJSON method allows us to customize it and still return it as a `user`
+* Authenticating User Endpoints
+   * Removing `GET users/:id` route as this should not be possible anymore.
+   * Customize `DELETE users/:id` route
+      * add `auth` as the second parameter
+      * customize url from `users/:id` to `users/me` 
+      * customize id from `req.params.id` to `req.user._id` (we have access to the user from our `auth` metod set in the auth middleware)
+      * refactor the `findByIdAndDelete` process with `await req.user.remove()` 
+   * Customize `PATCH users/:id` route
+      * add `auth` as the second parameter
+      * customize url from `users/:id` to `users/me` 
+      * refactor your code using `req.user` where needed and remove any id lookups.
+      * no need to check if user anymore exists as the method by default requires auth and hence user.
+
 
 
 ### Comments
