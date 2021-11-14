@@ -22,9 +22,9 @@ router.post('/tasks', auth, async (req, res) => {
     // })
 })
 
-router.get('/tasks', async (req, res) => {
+router.get('/tasks', auth, async (req, res) => {
     try {
-        const tasks = await Task.find({ completed: false })
+        const tasks = await Task.find({ completed: false, owner: req.user._id })
         if (tasks.length === 0) {
             return res.status('404').send(tasks)
         }
@@ -42,10 +42,11 @@ router.get('/tasks', async (req, res) => {
     // })
 })
 
-router.get("/tasks/:id", async (req, res) => {
+router.get("/tasks/:id", auth, async (req, res) => {
     _id = req.params.id
     try {
-        task = await Task.findById(_id)
+        //task = await Task.findById(_id)
+        const task = await Task.findOne({ _id, owner: req.user._id })
         if (!task) {
             return res.status('404').send(task)
         }
@@ -64,16 +65,16 @@ router.get("/tasks/:id", async (req, res) => {
 
 })
 
-router.patch('/tasks/:id', async (req, res) => {
+router.patch('/tasks/:id', auth, async (req, res) => {
     const task_id = req.params.id
     const allowedTaskUpdates = ['description', 'completed']
     const providedUpdates = Object.keys(req.body)
-    const allowed = providedUpdates.every((update) => allowedTaskUpdates.includes(update))
-    if (!allowed) {
-        return res.status('400').send({ error: "wrong update key" })
-    }
     try {
-        const task = await Task.findById(task_id)
+        const task = await Task.findOne({ _id: task_id, owner: req.user._id })
+        const allowed = providedUpdates.every((update) => allowedTaskUpdates.includes(update))
+        if (!allowed) {
+            return res.status('400').send({ error: "wrong update key" })
+        }
         providedUpdates.forEach((update) => {
             task[update] = req.body[update]
         })
@@ -89,14 +90,12 @@ router.patch('/tasks/:id', async (req, res) => {
         }
         res.status('500').send(error)
     }
-
-
 })
 
-router.delete('/tasks/:id', async (req, res) => {
+router.delete('/tasks/:id', auth, async (req, res) => {
     id = req.params.id
     try {
-        const task = await Task.findByIdAndDelete(id)
+        const task = await Task.findOneAndDelete({ _id: id, owner: req.user._id })
         if (!task) {
             return res.status('404').send({ error: 'no task id found' })
         }

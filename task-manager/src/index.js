@@ -18,15 +18,15 @@ app.listen(port, () => {
 })
 
 
-const main = async () => {
-    // const task = await Task.findById('619121adc50ec7a479ca6749')
-    // await task.populate('owner')
-    // console.log(task.owner)
-    const user = await User.findById('6191204eccb2029f7dbe5b2e')
-    await user.populate('tasks')
-    console.log(user.tasks)
-}
-main()
+// const main = async () => {
+//     // const task = await Task.findById('619121adc50ec7a479ca6749')
+//     // await task.populate('owner')
+//     // console.log(task.owner)
+//     const user = await User.findById('6191204eccb2029f7dbe5b2e')
+//     await user.populate('tasks')
+//     console.log(user.tasks)
+// }
+// main()
 // const pet = {
 //     name: 'Hal'
 // }
