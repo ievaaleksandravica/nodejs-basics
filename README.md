@@ -516,6 +516,13 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * Authenticating Task Endpoints (`routers/task.js`)
    * add `auth` as second parameter
    * change the way to identify the task to `await Task.findOne({ _id, owner: req.user._id })`
+* Cascade Delete Tasks
+   * when user chooses to delete himself
+   * we can do it using middleware
+   * `userSchema.pre('remove`', async function (next) {})`
+   * `const user = this`
+   * `await Task.deleteMany({ owner: user._id })`
+   * `next()`
 
 ### Comments
 #### NPM modules
