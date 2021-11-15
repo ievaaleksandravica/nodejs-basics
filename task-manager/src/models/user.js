@@ -49,7 +49,9 @@ const userSchema = new mongoose.Schema(
                 required: true
             }
         }]
-    }
+    }, {
+    timestamps: true
+}
 )
 
 // verify login data
