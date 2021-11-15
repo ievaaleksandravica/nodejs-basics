@@ -139,7 +139,6 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
      * `Cannot set headers after they are sent to the client` error message in terminal if you try to send back the response twice.
      * You can use the callback function as usual but as a result you will want to use `res.send` and params will be based on `req.query...`
 
-
 ### Task App 
 ##### Databases
 * `MongoDB` 
@@ -523,6 +522,23 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * `const user = this`
    * `await Task.deleteMany({ owner: user._id })`
    * `next()`
+##### Sorting, Pagination and Filtering
+* Working with Timestamps
+   * creating fields `createdAt` and `updatedAt`
+   * to enable timestamps, need to customize the schema
+   * `models/user.js`
+      * `const userSchema` - here we need to provide a second argument that is also an object
+      * `timestamps: true` should be the value of this object
+      * as usual, when modifying schema, you need to wipe your database
+      * now, create a new user and now you will see the two new fields.
+   * `models/tasks.js`
+      * here we need to first refactor the way how we define the model/schema.
+      * `const taskSchema = new mongoose.Schema()`
+      * `const Task = mongoose.model('Task', taskSchema)`
+      * then do the same we did for user model with the second argument object with `timestamps: true`
+
+
+
 
 ### Comments
 #### NPM modules
