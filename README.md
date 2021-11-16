@@ -536,6 +536,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `const taskSchema = new mongoose.Schema()`
       * `const Task = mongoose.model('Task', taskSchema)`
       * then do the same we did for user model with the second argument object with `timestamps: true`
+* Filtering data
+   * options for the user
+   * focus on `GET /tasks` route, because this is the only one that sends back an array of data
+   * if you have a lot of data, it will be slow and outdated / unused data
+   * will achieve it by using the `query parameters`
 
 
 
