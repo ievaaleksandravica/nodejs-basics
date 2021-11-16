@@ -35,7 +35,7 @@ router.get('/tasks', auth, async (req, res) => {
         if (tasks.length === 0) {
             return res.status('404').send(req.user)
         }
-        res.status('202').send(req.user)
+        res.status('202').send(req.user.tasks)
     } catch (error) {
         res.send(error)
     }
