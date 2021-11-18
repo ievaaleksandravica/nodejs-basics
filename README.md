@@ -541,7 +541,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * focus on `GET /tasks` route, because this is the only one that sends back an array of data
    * if you have a lot of data, it will be slow and outdated / unused data
    * will achieve it by using the `query parameters`
-
+   * best to use `await req.user.populate({ path: 'tasks', match: { "completed": "false"} }).execPopulate()` function to populate the tasks with a certain criteria, but does not work for me, so I am sticking to `find`.
+   * query params can be added to the API call `{{url}}/tasks?completed=true` and Postman automatically sees it as a `key`
+   * to make it dependent on the query params, do the following:
+      1. use your `find` or `populate` method with object `match` => `find(match)`
+      2. create a new `const` for that object with the basic criteria with id lookup => `const match = { owner: req.user._id }`
+      3. do an if lookup to assign the `completed` value if any `if (req.query.completed) {match.completed = req.query.completed === "true"}`
+   * with this setup you can now easily make three requests:
+      1. all tasks
+      2. completed tasks
+      3. incompleted tasks
 
 
 
