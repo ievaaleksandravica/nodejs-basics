@@ -551,6 +551,17 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       1. all tasks
       2. completed tasks
       3. incompleted tasks
+* Paginating data
+   * Pagination, also known as paging, is the process of dividing a document into discrete pages, either electronic pages or printed pages. 
+   * e.g. Google Search results are using `pagination` - even if it finds a lot of results, it does not show them all on the same page, you have many pages.
+   * e.g. Instagram is fetching the next 'pages' behind the scenes as you are scrolling (here usually you don't need to manually request data)
+   * not fetching all the data all at once.
+   * `limit` and `skip`
+      * `GET /tasks?limit=10&skip=0` get 10 results and do not skip any of them (means first page)
+      * `GET /tasks?limit=10&skip=20` get 10 results and skip 20 (means third page)
+      * you could use it with the `populate` approach by adding a new key/value pair `options: {limit: parseInt(req.query.limit)}`
+      * if you use `find`, then you can use a method for limit `const tasks = await Task.find(match).limit(parseInt(req.query.limit))`
+      * same logic as for `limit` can be applied to `skip`
 
 
 
