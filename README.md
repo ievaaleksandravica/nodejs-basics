@@ -562,6 +562,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * you could use it with the `populate` approach by adding a new key/value pair `options: {limit: parseInt(req.query.limit)}`
       * if you use `find`, then you can use a method for limit `const tasks = await Task.find(match).limit(parseInt(req.query.limit))`
       * same logic as for `limit` can be applied to `skip`
+* Sorting Data
+   * sort data in a specific order, e.g. 
+      1. when the task was last created 
+      2. when the task was last updated
+      3. completed tasks first
+      4. incomplete tasks first
+   * `GET /tasks?sortBy=createdAt_asc` sample format.
+   * to achieve this, you need to use `.sort({ createdAt: 1 })` method where you have an object with the field you wanna base the sorting on and 
+      1. `1` for ascending
+      2. `-1` for descending
+   * to set this up dynamically:
+      1. replace the object you use in the `sort` function with `const sort = {}`
+      2. set up an `if` statement
+      3. split the result of `sortBy` query string
+      4. convert the value of `asc` or `desc` to `-1` or `1` using ternary operator
+      5. `sort(parts[0]) = parts[1] === "desc" ? -1 : 1`
 
 
 
