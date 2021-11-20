@@ -24,19 +24,20 @@ router.post('/tasks', auth, async (req, res) => {
 
 // GET /tasks?completed=true
 // GET /tasks?limit=10&skip=0
+// GET /tasks?sortBy=createdAt_asc
 router.get('/tasks', auth, async (req, res) => {
     const match = { owner: req.user._id }
+    const sorting = {}
     if (req.query.completed) {
         match.completed = req.query.completed === "true"
     }
+    if (req.query.sortBy) {
+        const parts = req.query.sortBy.split('_')
+        sorting[parts[0]] = parts[1] === "desc" ? -1 : 1
+    }
+
     try {
-        // await req.user.populate({
-        //     path: 'tasks',
-        //     match: {
-        //         "completed": "false"
-        //     }
-        // }).execPopulate()
-        const tasks = await Task.find(match).limit(parseInt(req.query.limit)).skip(parseInt(req.query.skip))
+        const tasks = await Task.find(match).limit(parseInt(req.query.limit)).skip(parseInt(req.query.skip)).sort(sorting)
         if (tasks.length === 0) {
             return res.status('404').send(req.user.tasks)
         }
@@ -44,14 +45,6 @@ router.get('/tasks', auth, async (req, res) => {
     } catch (error) {
         res.send(error)
     }
-    // Task.find({ completed: false }).then((response) => {
-    //     if (response.length === 0) {
-    //         return res.status('404').send(response)
-    //     }
-    //     res.status('202').send(response)
-    // }).catch((error) => {
-    //     res.send(error)
-    // })
 })
 
 router.get("/tasks/:id", auth, async (req, res) => {
