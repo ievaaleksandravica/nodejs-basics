@@ -2,6 +2,10 @@ const express = require('express')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 const User = require('../models/user')
+const multer = require('multer')
+const avatar = multer({
+    dest: 'avatar'
+})
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body)
@@ -53,28 +57,6 @@ router.get('/users/me', auth, async (req, res) => {
     res.status('202').send(req.user)
 })
 
-// router.get('/users/:id', async (req, res) => {
-//     const param = req.params.id
-//     try {
-//         const user = await User.findById(param)
-//         if (!user) {
-//             return res.status('404').send(response)
-//         }
-//         res.status('202').send(user)
-//     } catch (error) {
-//         res.status('500').send(error)
-//     }
-//     // User.findOne({ _id: param }).then((response) => {
-//     //     if (!response) {
-//     //         res.status('404').send(response)
-//     //     }
-//     //     res.status('202').send(response)
-//     //     console.log(response)
-//     // }).catch((error) => {
-//     //     res.status('500').send(error)
-//     // })
-// })
-
 router.patch('/users/me', auth, async (req, res) => {
     const allowedUpdates = ['name', 'email', 'password', 'age']
     const updates = Object.keys(req.body)
@@ -87,11 +69,6 @@ router.patch('/users/me', auth, async (req, res) => {
             req.user[update] = req.body[update]
         })
         await req.user.save()
-        // const user_id = req.params.id
-        // const user = await User.findByIdAndUpdate(user_id, req.body, { new: true, runValidators: true })
-        // if (!user) {
-        //     return res.status('404').send(user)
-        // }
         res.send(req.user)
     } catch (error) {
         console.log(error)
@@ -102,14 +79,12 @@ router.patch('/users/me', auth, async (req, res) => {
     }
 })
 
+router.post('/users/me/avatar', avatar.single('avatar'), (req, res) => {
+    res.send()
+})
+
 router.delete('/users/me', auth, async (req, res) => {
-    // const id = req.user._id
     try {
-        // const user = await User.findByIdAndDelete(id)
-        // if (!user) {
-        //     return res.status('404').send({ error: "no id found" })
-        // }
-        // return res.send(user)
         await req.user.remove()
         res.send(req.user)
     } catch (error) {

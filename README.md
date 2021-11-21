@@ -578,9 +578,34 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       3. split the result of `sortBy` query string
       4. convert the value of `asc` or `desc` to `-1` or `1` using ternary operator
       5. `sort(parts[0]) = parts[1] === "desc" ? -1 : 1`
-
-
-
+##### File Uploads
+* How to upload images, store in the database and make it accessible via the server.
+* Allow users to upload profile images in our task app.
+* Adding Support for File Uploads
+   * Express by default does not support file uploads, but there is an `npm multer` package. Multer is short form from multi-part.
+   * We won't be using JSON data anymore, but `multipart/form-data` using binary data.
+   * `npm i multer@1.4.3` to install the package.
+   * First, exploring it with basic example in `index.js`
+      1. start the server via `npm run dev`
+      2. `const multer = require('multer')`
+      3. you will need to setup multiple instances of `multer` if you want to use it for different types of files (e.g. pdf, jpg)
+      4. in this case, we will not setup any validation and allow any type of files to be uploaded.
+      5. `const upload = multer({})` new instance of multer with all the options for the configuration.
+      6. `dest: images` destination (folder, where the files should be stored.
+      7. `app.post('/upload', (req, res) => {()})` set up a route where to upload the images.
+      8. with `multer` you get access to middleware `upload.single('upload')`
+   * All files used in this section can be found here: `https://files.mead.io/5c64e8f75ffe`
+   * In Postman:
+      1. create a new request `POST /localhost:3000/upload`
+      2. instead of using `raw json`, we need to use `form-data` - here we can specify the binary data of a file.
+      3. we need to work with the `key-value` pairs. the key needs to match with what we provided in the middleware `single` option (`upload` in our case) and change the type to `file` - this will autofil the value field automatically and allow you to upload files.
+   * When you execute the request:
+      1. postman will look for value `upload` (as defined in the middleware function) and take the image that is there.
+      2. it will store the image in `images` folder as specified in the `dest` key.
+   * If you try to open the image in VS Code, it will not work, because it has binary data and VS is not able to open it.
+      * If you want to see that it works properly, add the correct file extension, e.g. `jpg` to see that it works.
+   * Similary setup a route `POST ('/users/me/avatar`)` in User router to setup a profile picture upload.
+      
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
@@ -610,6 +635,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `mongoose` Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 * `bcrypt` A library to help you hash passwords.
 * `jsonwebtoken` JSON Web Token (JWT) is an open standard that defines a compact and self-contained way of securely transmitting information between parties as a JSON object.
+* `multer` Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.
+
+
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.

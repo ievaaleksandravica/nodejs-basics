@@ -17,6 +17,15 @@ app.listen(port, () => {
     console.log(`Server is up on port: ${port}.`)
 })
 
+const multer = require('multer')
+const upload = multer({
+    dest: 'images'
+})
+
+app.post('/upload', upload.single('upload'), (req, res) => {
+    res.send()
+})
+
 
 // const main = async () => {
 //     // const task = await Task.findById('619121adc50ec7a479ca6749')
