@@ -605,7 +605,26 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * If you try to open the image in VS Code, it will not work, because it has binary data and VS is not able to open it.
       * If you want to see that it works properly, add the correct file extension, e.g. `jpg` to see that it works.
    * Similary setup a route `POST ('/users/me/avatar`)` in User router to setup a profile picture upload.
-      
+* Validating file uploads
+   1. File size (to certain capacity)
+   2. File type (e.g. only pdf or image)
+   * everything needs to be configured in the options object that is passed to multer method 
+      * `limits: {fileSize: 1000000}` where size refers to bytes, so if you want 1MB it is gonna be 1 million bytes - if you upload bigger files, you will get `500` error.
+      * `fileFilter(req, file, cb) {}` function to filter out certain file formats
+         1. `req` contains information about the request being made, 
+         2. `file` contains information about the file being uploaded, 
+         3. `cb` callback to tell multer when we are done filtering the file.
+      * configure the function
+         1. `if (!file.originalname.endsWith('.pdf'))`
+         2. `cb(undefined, true)`
+         3. `cb(new Error('File must be a PDF'))`
+      * use regex for filename patterns in the if statement: regex101.com
+         1. regex for ends with doc or docx: `\.(doc|docx)$`
+         2. include it in the if statement: `if (!file.originalname.match(/\.(doc|docx)$/))`
+
+
+
+
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
