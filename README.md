@@ -621,7 +621,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * use regex for filename patterns in the if statement: regex101.com
          1. regex for ends with doc or docx: `\.(doc|docx)$`
          2. include it in the if statement: `if (!file.originalname.match(/\.(doc|docx)$/))`
-
+* Validation challenges
+   * setting up profile picture validation
+   * adding `png, jpg, jpeg` as allowed formats
+   * limiting file size to 1000000
 
 
 
