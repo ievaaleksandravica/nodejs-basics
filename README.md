@@ -631,7 +631,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       1. add another function `, (error, req, res, next) => { }` if things fail in your route - the arguments tells express that this is a function to handle uncought errors.
       2. in the above mentioned function, send back the error message: `res.status(400).send({ error: error.message })`
    * to summarize, function with arguments `(req, res)` will be used to manage success or cought errors, whereas `(error, req, res, next)` handles uncought errors. These two functions are both added to the route - take it as the last argument of the route function.
-
+* Adding images to User Profile
+   * link between the image uploaded and the user who actually uploaded the image.
+   1. add authentication: add it as second argument before multer: `auth, avatar.single('avatar')`
+   2. store the image (not on your file system, because it would get wiped, everytime you deploy your code)
+      * field on the user model, to store the binary data of the image.
+      * adjust user model with: `avatar: {type: Buffer}` - will allow to store the binary data along side with the user.
+      * remove `dest: avatar` property from the multer properties object, so that it does not store the image in the directory and instead passed the data via the function that you can use.
+      * assign the image to the user: `req.user.avatar = req.file.buffer`
+      * save the image to the profile (use async) `await req.user.save()`
+   3. access the binary data stored in the database
+      * copy all the binary data from the object
+      * use jsbin.com to transfer the image in html
+      * use img tag `<img src="data:image/jpg;base64,BINARYDATA">`
+   4. route to delete the avatar they have uploaded
+      * set up if condition to send error if no image found
+      * set the avatar to undefined if exists, then send and save back response.
 
 ### Comments
 #### NPM modules

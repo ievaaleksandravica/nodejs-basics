@@ -4,7 +4,6 @@ const auth = require('../middleware/auth')
 const User = require('../models/user')
 const multer = require('multer')
 const avatar = multer({
-    dest: 'avatar',
     limits: {
         fileSize: 1000000
     },
@@ -88,12 +87,23 @@ router.patch('/users/me', auth, async (req, res) => {
     }
 })
 
-router.post('/users/me/avatar', avatar.single('avatar'), (req, res) => {
+router.post('/users/me/avatar', auth, avatar.single('avatar'), async (req, res) => {
+    req.user.avatar = req.file.buffer
+    await req.user.save()
     res.send()
 },
     (error, req, res, next) => {
         res.status(400).send({ error: error.message })
     })
+
+router.delete('/users/me/avatar', auth, async (req, res) => {
+    if (!req.user.avatar) {
+        return res.status(500).send({ error: "Image cannot be found" })
+    }
+    req.user.avatar = undefined
+    await req.user.save()
+    res.send({ message: "Image removed successfully" })
+})
 
 router.delete('/users/me', auth, async (req, res) => {
     try {
