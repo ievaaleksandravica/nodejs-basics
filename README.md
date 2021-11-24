@@ -660,7 +660,25 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       1. `<img src="" alt="">`
       2. `src: http://localhost:3000/users/6192bbfd2a3cbf111a88bffc/avatar`
 * Auto-Cropping and Image Formatting:
-   * 
+   * using npm module `sharp` to process the images processed by users before we save them.
+      * ability to resize images
+      * convert to unified image type (we will use png)
+   * first a little cleanup
+      * remove avatar and image folders
+      * in user model `toJSON` method add `delete userObject.avatar` as there is no need to send back the avatar here
+   * setup sharp
+      * install sharp `npm i sharp@0.29.3`
+      * require `const sharp = require('sharp')` in user model
+      * start the server again `npm run dev`
+   * adjust avatar post route
+      * work with `router.post('/users/me/avatar')` route
+      * remove `req.user.avatar = req.file.buffer`
+      * pass your file to sharp using new const `const buffer = await sharp(req.file.buffer).toBuffer()`
+      * use `resize({ width: 250, height: 250 }).png()` methods to resize and convert to png
+      * use the const asignment again `req.user.avatar = buffer`
+      * update `get avatar` route header to `res.set('Content-Type', 'image/png')`
+   
+
    
 
 ### Comments
@@ -693,7 +711,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `bcrypt` A library to help you hash passwords.
 * `jsonwebtoken` JSON Web Token (JWT) is an open standard that defines a compact and self-contained way of securely transmitting information between parties as a JSON object.
 * `multer` Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.
-
+* `sharp` The typical use case for this high speed Node.js module is to convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP and AVIF images of varying dimensions.
 
 
 #### Debugging tools:
