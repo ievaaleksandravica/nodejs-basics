@@ -621,11 +621,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * use regex for filename patterns in the if statement: regex101.com
          1. regex for ends with doc or docx: `\.(doc|docx)$`
          2. include it in the if statement: `if (!file.originalname.match(/\.(doc|docx)$/))`
-* Validation challenges
+* Validation challenge
    * setting up profile picture validation
    * adding `png, jpg, jpeg` as allowed formats
    * limiting file size to 1000000
-
+* Handling Express Errors
+   * customize the errors when file upload fails (whether file type or file size)
+   * take `multer` out of the route function:
+      1. add another function `, (error, req, res, next) => { }` if things fail in your route - the arguments tells express that this is a function to handle uncought errors.
+      2. in the above mentioned function, send back the error message: `res.status(400).send({ error: error.message })`
+   * to summarize, function with arguments `(req, res)` will be used to manage success or cought errors, whereas `(error, req, res, next)` handles uncought errors. These two functions are both added to the route - take it as the last argument of the route function.
 
 
 ### Comments
