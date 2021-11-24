@@ -647,6 +647,21 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    4. route to delete the avatar they have uploaded
       * set up if condition to send error if no image found
       * set the avatar to undefined if exists, then send and save back response.
+* Serving up files
+   * set up a URL that will show the image in the browser
+   * another route: `router.get('/users/:id/avatar', async (req, res) => {})` with using `try/catch`
+   * find the user using `User.findByID(req.params.id)`
+   * use if condition to throw an error if no user OR no user.avatar `throw new Error("Cannot find user or avatar.")`
+   * if user and avatar was found:
+      1. identify what file you are getting back using response headers: `res.set('Content-Type', 'image/jpg')`
+      2. `res.send(user.avatar)`
+   * go to the browser and open the route: `http://localhost:3000/users/:id/avatar` (in Postman you would only get binary data)
+   * jsbin.com to see how can you use this image:
+      1. `<img src="" alt="">`
+      2. `src: http://localhost:3000/users/6192bbfd2a3cbf111a88bffc/avatar`
+* Auto-Cropping and Image Formatting:
+   * 
+   
 
 ### Comments
 #### NPM modules
