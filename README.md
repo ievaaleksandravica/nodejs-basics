@@ -698,8 +698,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * verify 
       * whether in SendGrid interface, following the verification step or checking your inbox
       * might end up in spam, because it is supposably being sent from your account
-
-   
+* Sending Welcome and Cancellation Emails
+   * `account.js` will define functions that will be called when a certain route in e.g. `user model` is called.
+   * `const sendWelcomeEmail = (email, name) => {use the sgMail.send({}function here})`
+   * export the function (actually multiple functions): `module.exports = {sendWelcomeEmail}`
+   * require the function in the user model: `const { sendWelcomeEmail } = require('../emails/account')`
+   * integrate it in your route: `sendWelcomeEmail(user.email, user.name)`
+   * test it by executing `POST` request via Postman.
+   * `send` method returns a promise, so if you wanted to you could use `async/await` but it would simply mean that the system needs to wait before moving on and generating the token and sending the response. This is not required in our case though.
+   * You can also choose `html` variable in the send method if you want to configure one. 
+   * In SendGrid you have an option to register a new domain. You will need to change DNS records to prove that you own the domain.
 
 ### Comments
 #### NPM modules
