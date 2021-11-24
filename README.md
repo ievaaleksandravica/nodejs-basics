@@ -708,6 +708,23 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * `send` method returns a promise, so if you wanted to you could use `async/await` but it would simply mean that the system needs to wait before moving on and generating the token and sending the response. This is not required in our case though.
    * You can also choose `html` variable in the send method if you want to configure one. 
    * In SendGrid you have an option to register a new domain. You will need to change DNS records to prove that you own the domain.
+* Environment Variables
+   * currently our only `.env` variable is setup when we are defining `port` for heroku.
+   * now we will set it up to also work locally for:
+      * security
+      * customization
+   * `db/mongoose.js` 
+      * `mongodb://127.0.0.1:27017/task-manager-api` connects to our local database, won't work when deployed to heroku. One value for DEV, one for PROD.
+      * without env variables, we would not be able to customize it.
+   * `account.js`
+      * if we leave the api key here, it becomes publicly available.
+   * `index.js`
+      * setup own environment variable for PORT
+      * create a `config` folder and `dev.env` file in there
+         * this file consists of key/value pairs, one on each line `key=value` with no spaces, commas, etc.
+         * now you can remove the 3000 from `index.js`
+      * use `env-cmd` npm module to use env variables
+         * install `npm i env-cmd@10.1.0`
 
 ### Comments
 #### NPM modules
@@ -741,6 +758,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `multer` Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.
 * `sharp` The typical use case for this high speed Node.js module is to convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP and AVIF images of varying dimensions.
 * `@sendgrid/mail` This is a dedicated service for interaction with the mail endpoint of the SendGrid v3 API.
+* `env-cmd` A simple node program for executing commands using an environment from an env file.
+
+
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
