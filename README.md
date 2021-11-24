@@ -677,7 +677,27 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * use `resize({ width: 250, height: 250 }).png()` methods to resize and convert to png
       * use the const asignment again `req.user.avatar = buffer`
       * update `get avatar` route header to `res.set('Content-Type', 'image/png')`
-   
+##### Sending Emails
+* Set up email notifications using a function via SendGrid service (npm module). There are different providers. We will use Sendgrid.
+* Exploring Sendgrid
+   * sendgrid.com offers free version and does not require a custom domain.
+   * under Email API -> Integration Guid -> Web API -> Node.js
+      * provide API key (random name), then this will create a key, add it to your confid file.
+   * new directory `emails` and file `account.js`
+      * import the API key from the config file
+   * npm module
+      * install `npm i @sendgrid/mail@7.6.0`
+      * require `const sgMail = require('@sendgrid/mail')`
+      * pass API key `sgMail.setApiKey(sengridApiKey)`
+   * verification
+      * go to settings -> sender authentication -> single sender verification
+      * complete the setup and confirm the email
+   * send email
+      * use `sgMail.send({})` method
+      * pass `to:, from:, subject:, text:` information
+   * verify 
+      * whether in SendGrid interface, following the verification step or checking your inbox
+      * might end up in spam, because it is supposably being sent from your account
 
    
 
@@ -712,7 +732,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `jsonwebtoken` JSON Web Token (JWT) is an open standard that defines a compact and self-contained way of securely transmitting information between parties as a JSON object.
 * `multer` Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.
 * `sharp` The typical use case for this high speed Node.js module is to convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP and AVIF images of varying dimensions.
-
+* `@sendgrid/mail` This is a dedicated service for interaction with the mail endpoint of the SendGrid v3 API.
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
