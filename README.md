@@ -732,6 +732,14 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * if we leave the api key here, it becomes publicly available.
       * replace your `const config = require('../../../config')` and `const sengridApiKey = config.keys.SENDGRID_KEY` as the key for `sgMail.setApiKey()` and instead use `sgMail.setApiKey(process.env.SENDGRID_API_KEY)` (after you defined a `SENDGRID_API_KEY` in your `dev.env` file)
       * test it and see that the email sendout will still work.
+   * JWT token variable
+      * add JWT_SECRET to your env.dev file
+      * `models/user` replace the static value
+      * `middleware/auth` replace the static value
+   * Mongoose URL variable
+      * add MONGODB_URL to your env.dev file
+      * `db/mongoose` replace the static value with MONGODB_URL variable
+
 
 
 
@@ -897,7 +905,3 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * go to your `main` branch and make sure that the changes are there.'
    * `heroku buildpacks:set heroku/nodejs` specify language
    * `git push heroku 
-
-
-
-test
