@@ -716,15 +716,24 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * `db/mongoose.js` 
       * `mongodb://127.0.0.1:27017/task-manager-api` connects to our local database, won't work when deployed to heroku. One value for DEV, one for PROD.
       * without env variables, we would not be able to customize it.
-   * `account.js`
-      * if we leave the api key here, it becomes publicly available.
    * `index.js`
       * setup own environment variable for PORT
       * create a `config` folder and `dev.env` file in there
          * this file consists of key/value pairs, one on each line `key=value` with no spaces, commas, etc.
          * now you can remove the 3000 from `index.js`
       * use `env-cmd` npm module to use env variables
-         * install `npm i env-cmd@10.1.0`
+         * install `npm i env-cmd@10.1.0 --save-dev` because we only need it locally on our maschine and not on heroku
+         * you will see it in the `package.json` file under `devDependencies`
+      * adjust the script for `dev` in `package.json`
+         * `env-cmd -f ./config/dev.env nodemon src/index.js` 
+         * now when we run the dev command, `env-cmd` is going to grab all of the environment variables & then continue to run the node application with provided variables.
+         * now when you will run `npm run dev` it will retreive the right env variable. If you change it, you have to restart your server.
+   * `accounts.js`
+      * if we leave the api key here, it becomes publicly available.
+      * replace your `const config = require('../../../config')` and `const sengridApiKey = config.keys.SENDGRID_KEY` as the key for `sgMail.setApiKey()` and instead use `sgMail.setApiKey(process.env.SENDGRID_API_KEY)` (after you defined a `SENDGRID_API_KEY` in your `dev.env` file)
+      * test it and see that the email sendout will still work.
+
+
 
 ### Comments
 #### NPM modules
@@ -739,8 +748,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * to prevent that you have to
       * uninstall it locally `npm uninstall -g nodemon` 
       * install it in your dependencies using `npm install nodemon --save-dev`.
-      * now you can run your script with npm install, e.g. `npm run dev`
-
+      * now you can run your script with npm install, e.g. `npm run dev` 
 #### Useful npm modules
 * `validator` - validates the content of a string
 * `chalk` - let's us customize how things are printed in the terminal
