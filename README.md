@@ -768,6 +768,33 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * SRV records come from DNS records 
       * If you forgot the password, go to Database Access -> Edit -> Show Password.
 * Heroku Deployment
+   * remove playground directory
+   * initialize repository as git repository `git init`
+   * ignore `config` and `node_modules`
+      1. create `.gitignore`
+      2. add `node_modules`
+      3. add `config`
+   * `git add .` and `git commit`
+   * push to Github
+      1. create new repository `nodejs-task-manager-api`
+      2. push repository according to the guidelines
+   * push to Heroku
+      1. create heroku remote `heroku create aleksandravica-task-manager` 
+      2. check that heroku remote was added `heroku remote`
+      3. add the env variables: `heroku config:set key=value`
+      4. to remove env variable: `heroku config:unset key`
+      5. see all env variables: `heroku config`
+      6. set up `JWT_SECRET` (you can use different value here)
+      7. set up `SENDGRID_API_KEY` exactly what you had
+      8. set up `MONGODB_URL` using the connection link `Connect your application` and put the whole string in single quotes
+      9. `git push heroku main`
+   * check in Postman
+      1. Update your env variable to the link Heroku generated
+      2. need to make sure that your MongoDB Atlas password is escaped with percent characters again, you can change it directly in heroku
+   * connect to Production Database in MongoDB compass
+      * just double click on the database and you will see the records there
+
+
 
 ### Comments
 #### NPM modules
