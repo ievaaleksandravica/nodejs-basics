@@ -739,9 +739,35 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Mongoose URL variable
       * add MONGODB_URL to your env.dev file
       * `db/mongoose` replace the static value with MONGODB_URL variable
-
-
-
+* Creating a Production MongoDB Database
+   * Getting production ready database.
+   * Use MongoDB Hosting Server - Atlas (solution by MongoDB itself.): https://www.mongodb.com/cloud/atlas
+      * Create account
+      * Verify email
+      * Enter details about your project
+      * Select the free plan
+      * Create a Shared Cluster
+         1. AWS
+         2. Region: closest to you (e.g. Frankfurt)
+         3. M0 Plan - free plan with 0.5GB of storage
+         4. Create cluster
+         5. Click on `All Clusters` to see it's status. It will take some time.
+      * Connect to localhost database
+         1. Add IP addresss: `0.0.0.0/0` - will whitelist all IP addresses.
+         2. Create a database user, note down password
+         3. Choose connection method `MongoDB Compass` - MongoDB GUI
+            * Download MongoDB Compass
+            * Install it
+            * Paste connection string as what you had in the .env file for Mongo DB and click connect
+            * You will now see all the same data as in the Robo3t
+      * Connect to production database
+         1. Disconnect from your localhost
+         2. Use connections string that's under 'I already have Compass' and version under 1.11
+         3. Encode special characters in the password: https://en.wikipedia.org/wiki/Percent-encoding
+      * Robo 3T will no longer be needed
+      * SRV records come from DNS records 
+      * If you forgot the password, go to Database Access -> Edit -> Show Password.
+* Heroku Deployment
 
 ### Comments
 #### NPM modules
