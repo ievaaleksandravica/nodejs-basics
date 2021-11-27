@@ -815,7 +815,20 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          2. collaborating
          3. profiling
       4. peace of mind
-
+* Writing Tests and Assertions
+   * set up a dummy file `src/math.js`
+   * set up a dummy function `calculateTip`
+   * export the function
+   * load function in the test file `math.test.js`: `const { calculateTip } = require('../src/math')`
+   * call `test()` function
+   * write the test function with entering manual numbers for checking - `assertions`: a confident and forceful statement of fact or belief.
+      * `const total = calculateTip(10, 0.3)`
+      * `if (total !== 13)` - `throw new Error`
+   * Jest comes with an `expect` library to use assertions easier
+      * `expect(total).toBe(13)`
+      * explore the whole library: https://jestjs.io/docs/expect#expectvalue
+   * Now you can refactor things without having to change the tests
+   * You can add second call to test, for different expected outcomes, e.g. if you have default value
 
 ### Comments
 #### NPM modules
