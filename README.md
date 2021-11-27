@@ -793,7 +793,28 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       2. need to make sure that your MongoDB Atlas password is escaped with percent characters again, you can change it directly in heroku
    * connect to Production Database in MongoDB compass
       * just double click on the database and you will see the records there
-
+##### Testing Node.js
+* Jest Testing Framework
+   * Two major players - Jest (https://jestjs.io/) and Mocha (https://mochajs.org/), we will use Jest
+   * Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
+   * Setup
+      1. install `npm i jest@27.3.1 --save-dev`: only for dev environment
+      2. setup script in `package.json`: `"test": "jest"`
+      3. run the test command `npm test`: you will get info that no tests are found, how many files were checked.
+      4. create a test folder `tests` and file `math.test.js` - you have to have `.test.js` for Jest to check it
+      5. running `npm test` is now gonna find a file, but still fail.
+   * Writing test
+      1. call `test(name, function)` function (does not need to be required)
+      2. if the function does not throw an error, it is considered a `PASS`, else a `FAIL`
+      3. so, when writing tests, it is all related to throwing errors.
+   * Reasons for testing
+      1. testing saves time
+      2. creates reliable software
+      3. gives flexibility to developers
+         1. refactoring
+         2. collaborating
+         3. profiling
+      4. peace of mind
 
 
 ### Comments
@@ -828,8 +849,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `sharp` The typical use case for this high speed Node.js module is to convert large images in common formats to smaller, web-friendly JPEG, PNG, WebP and AVIF images of varying dimensions.
 * `@sendgrid/mail` This is a dedicated service for interaction with the mail endpoint of the SendGrid v3 API.
 * `env-cmd` A simple node program for executing commands using an environment from an env file.
-
-
+* `jest` Delightful JavaScript Testing
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
