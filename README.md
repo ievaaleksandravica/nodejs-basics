@@ -834,6 +834,24 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * export functions from js file
    * import functions in test file
    * write tests using `expect().toBe()`
+* Testing Asynchronous Code
+   * similar to testing synchronous code, just couple of adjustments
+   * adding command line argument to `package.json` `test` script for tests to automatically restart when test code changes `"test": "jest --watch"`
+   * now you don't need to rerun the tests manually
+   * Jest does not know that our code contains async code, so if there is no error thrown immediately it will consider the test as passed.
+   * to avoid messing with async, provide one argument `done` and this will let Jest know that it is an async function
+      * `test('Async test demo', (done) => {`
+      *    `setTimeout(() => {`
+      *    `expect(1).toBe(2)`
+      *    `done()`
+      *    `}, 2000)`
+      * `})`
+   * you can also simply call the test function using `async/await`
+      * `test('Should add two numbers async await', async () => {`
+      *    `const sum = await add(10, 22)`
+      *    `expect(sum).toBe(32)`
+      * `})`
+
 
 ### Comments
 #### NPM modules
