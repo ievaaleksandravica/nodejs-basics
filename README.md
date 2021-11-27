@@ -829,6 +829,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * explore the whole library: https://jestjs.io/docs/expect#expectvalue
    * Now you can refactor things without having to change the tests
    * You can add second call to test, for different expected outcomes, e.g. if you have default value
+* Writing your own tests
+   * functions to test https://gist.github.com/andrewjmead/85e30a13d838d2a6fc229f961b3ceb69
+   * export functions from js file
+   * import functions in test file
+   * write tests using `expect().toBe()`
 
 ### Comments
 #### NPM modules
