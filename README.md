@@ -851,6 +851,17 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       *    `const sum = await add(10, 22)`
       *    `expect(sum).toBe(32)`
       * `})`
+* Testing an Express Application
+   * We have to make sure that we are loading in our `config/dev.env` environment variables (currently they are only being loaded when we run the `npm run dev` script, but not `npm test`)
+      1. create a new file in the `config` directory: `test.env` because the database will change (it will have seed data only)
+      2. take the `dev.env` file content, copy it to `test.env`
+      3. adjust the database url string with adding `test` to it: `task-manager-api-test`
+      4. this will make sure we use seperate database for the test data
+      5. adjust the `package.json` script for `test`: add `env-cmd -f ./config/test.env` to the script
+   * Add a new root property in `package.json` to configure Jest for our application:
+      1. `"jest": {"testEnvironment": "node"}`
+      2. based on configuration docs: https://jestjs.io/docs/configuration#testenvironment-string
+
 
 
 ### Comments
