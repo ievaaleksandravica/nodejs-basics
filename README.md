@@ -861,9 +861,35 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * Add a new root property in `package.json` to configure Jest for our application:
       1. `"jest": {"testEnvironment": "node"}`
       2. based on configuration docs: https://jestjs.io/docs/configuration#testenvironment-string
-
-
-
+   * Get Supertest npm module
+      1. Use `Supertest` library https://www.npmjs.com/package/supertest  
+      2. Supertest actually does not need your server to be up and running, it's stand-alone application
+      3. `npm i supertest@6.1.6 --save-dev` install as dev dependency (only needed for local setup)
+   * Prepare testing setup
+      1. create new file in your `tests` directory: `user.test.js`
+      2. load in supertest `const request = require('supertest')`
+      3. get access to express
+         * create new file in the `src` directory `app.js`: this is where the express application will get set up and exported
+         * take everything from `index.js` and copy to `app.js`
+         * remove the `app.listen` function from `app.js` (as described above we do not need it here)
+         * export the application instead `module.exports = app`
+         * as we are not calling listen, we do not really need the `port`, so we can remove it from `app.js`
+         * load the newly configured `app` into `index.js`: `const app = require('./app')`
+         * remove all the `require`, `app` and `app.use` calls, only leaving `app, port, app.listen` in the `index.js` file
+         * Start your server
+            1. In `dev` you still start the `index.js` file, it takes care of everything.
+            2. For testing, we need to grab it only from `app.js` because it has everything that we need
+      4. grab the created `app` in `user.test.js`: `const app = require('../src/app')`
+   * Start writing tests:
+      1. call the test function as usual `test('Should sign up a new user', async () => {})`
+      2. call the request function passing the express app and route as variable and method `await request(app).post('/users')`
+      3. use `.send({})` to pass the body you want to send with the request
+      4. assert HTTP status code: `.expect(201)`
+      5. run the test, it will create the tests in your test database (you can check mongodb compass). If you rerun the test, the test will fail the second time because it will error (As the user already exists)
+      6. to prevent that, you need to reset the database before every test run.
+* Jest Setup and Teardown
+   * 
+            
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
@@ -897,6 +923,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `@sendgrid/mail` This is a dedicated service for interaction with the mail endpoint of the SendGrid v3 API.
 * `env-cmd` A simple node program for executing commands using an environment from an env file.
 * `jest` Delightful JavaScript Testing
+* `supertest` The motivation with this module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
