@@ -939,6 +939,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       4. check that plain text password is not stored in the database
          * `expect(user.password).not.toBe("testUser1232")`
    * Assertions should be grounded to what actually can go wrong
+* Mocking libraries
+   * https://jestjs.io/docs/manual-mocks
+   * mock (replacing real functions that run with functions that you create in test environment) npm modules, e.g. emails are being sent out.
+   * create a directory for mocks `tests/__mocks__`. Jest will lookup this naming convention
+   * create a file for the npm module you want to mock, following the naming convention, e.g. `require('@sendgrid/mail')` has to be stored as
+      1. directory `@sendgrid`
+      2. file `mail.js`
+   * provide all the details that are needed to work, in this case: `setApiKey` and `send`
+      1. setup an empty object with the necessary values `module.exports = {setAPIKey() {}, send() {}}`
+      2. with this the functions will still be called but they will now be empty, so the api key will be empty and the send method wont have any data so no actions will happen here
  
 ### Comments
 #### NPM modules
