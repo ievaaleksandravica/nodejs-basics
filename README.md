@@ -906,7 +906,28 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       1. `test('Should log in existing user', async () => {})`
       2. `await request(app).post('/users/login').send({})`
       3. `.expect(200)`
-    
+* Testing with Authentication
+   * we will need an authentication token here.
+   * start by modifying the way you create your test user to make sure they have an authentication token
+      1. load in `jwt` for token generation: `const jwt = require('jsonwebtoken')`
+      2. load in `mongoose` for ObjectID generation:`const mongoose = require("mongoose")`
+      3. create ObjectID by `const userOneID = new mongoose.Types.ObjectId`
+      4. add it to the user `_id: userOneID`
+      5. create a token `tokens: [{token: jwt.sign({ _id: userOneID }, process.env.JWT_SECRET)}]` with id and secret
+   * now you can setup tests for use cases that require authentication
+      1. `test('Should get profile for existing user', async () => {})`
+      2. `await request(app).get('/users/me').send().expect(200)`
+      3. the first two lines above was the same as for any other test, but the problem is that so far we do not set up the authentication header nowhere
+      4. add the `set` call to add the authorization header `.set('Authorization', Bearer ${userOne.tokens[0].token})`
+   * set up test cases for
+      1. 'Should delete account for user'
+      2. 'Should not delete account for unauthenticated user'
+      3. 'Should get profile for existing user'
+      4. 'Should not get profile for unauthenticated user'
+
+
+
+
 
             
 ### Comments
