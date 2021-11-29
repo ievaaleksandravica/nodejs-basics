@@ -888,7 +888,26 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       5. run the test, it will create the tests in your test database (you can check mongodb compass). If you rerun the test, the test will fail the second time because it will error (As the user already exists)
       6. to prevent that, you need to reset the database before every test run.
 * Jest Setup and Teardown
-   * 
+   * Using Jest lifecycle methods to use before or after running the test case: https://jestjs.io/docs/setup-teardown
+   * `beforeEach(() => {})` will run before each test case in the `user.test.js` is executed
+   * `afterEach(() => {})` will run after each test case in the `user.test.js` is executed
+   * `beforeEach(() => {})` - clean the database
+      1. load User model `const User = require('../src/models/user')`
+      2. remove all users with `User.deleteMany()`
+      3. make sure its asynchronous with setting the function to be `async` and use `await` for deletion
+      4. now you can run the tests as many times as you want as it will wipe the database before every run, meaning removing users and, hence, not violating the `unique` rule.
+   * `beforeEach(() => {})` - add a sample user for auth
+      1. create user object `const user = {name: "x"}`
+      2. use `await` to create and save the new user `await new User(userOne).save()`
+   * close mongoose connection to avoid errors with:
+      1. `const mongoose = require("mongoose")`
+      2. `afterAll(() => {mongoose.connection.close()}`)
+   * new test case for logging in
+      1. `test('Should log in existing user', async () => {})`
+      2. `await request(app).post('/users/login').send({})`
+      3. `.expect(200)`
+    
+
             
 ### Comments
 #### NPM modules
