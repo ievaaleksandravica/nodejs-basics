@@ -26,23 +26,36 @@ afterAll(() => {
 })
 
 test('Should sign up a new user', async () => {
-    await request(app).post('/users')
+    const response = await request(app).post('/users')
         .send({
             name: "Test User 23",
             email: "ieva.aleksandravica+test23Node@gmail.com",
             password: "testUser1232"
         })
         .expect(201)
-}
-)
+
+    const user = await User.findById(response.body.user._id)
+    expect(user).not.toBeNull()
+
+    expect(response.body.user.name).toBe('Test User 23')
+
+    expect(response.body).toMatchObject({
+        user: {
+            name: "Test User 23",
+            email: "ieva.aleksandravica+test23Node@gmail.com".toLowerCase()
+        },
+        token: user.tokens[0].token
+    })
+
+    expect(user.password).not.toBe("testUser1232")
+})
 
 test('Should log in existing user', async () => {
-    await request(app).post('/users/login')
+    const response = await request(app).post('/users/login')
         .send({
             email: userOne.email,
             password: userOne.password
-        }
-        )
+        })
         .expect(200)
 })
 

@@ -924,12 +924,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       2. 'Should not delete account for unauthenticated user'
       3. 'Should get profile for existing user'
       4. 'Should not get profile for unauthenticated user'
-
-
-
-
-
-            
+* Advanced Assertions
+   * Assert things about the response body or database related.
+   * Get access to the response 
+      1. put your await function call in a constant ` const response = await request(app)....` to await for the promise. This will store the response in the variable, including the body.
+   * Things you can test:
+      1. assert that the database was changed correctly(e.g. that there is a new user) 
+         * `const user = await User.findById(response.body.user._id)`
+         * `expect(user).not.toBeNull()`
+      2. assertions about the response, e.g. the body contains data about user `User One Ieva`
+         * `expect(response.body.user.name).toBe('Test User 23')`
+      3. if we are working with objects:
+         * `expect(response.body).toMatchObject({ user: {...}, token: user.tokens[0].token})`
+      4. check that plain text password is not stored in the database
+         * `expect(user.password).not.toBe("testUser1232")`
+   * Assertions should be grounded to what actually can go wrong
+ 
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
