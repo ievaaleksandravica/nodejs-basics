@@ -949,6 +949,25 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    * provide all the details that are needed to work, in this case: `setApiKey` and `send`
       1. setup an empty object with the necessary values `module.exports = {setAPIKey() {}, send() {}}`
       2. with this the functions will still be called but they will now be empty, so the api key will be empty and the send method wont have any data so no actions will happen here
+* Wrapping up user tests
+   * How to send a file using Supertest
+      1. `test('Should upload avatar image', async () =>{})`
+      2. new directory `tests/fixtures`. Fixtures are files that allow you to make an environment for your tests to run
+      3. put your image in that directory `profile-pic.jpg`
+      4. start writing your test function as usual: `await request(app).post('..').set('Authorization', '..')
+      5. use `.attach(formField, path)` for adding images (e.g. `('avatar', 'tests/fixtures/profile-pic.jpg')`) - this will properly upload everything
+      6. `.expect(200)`
+      7. now your test should be passing
+   * More assertions for file uploads
+      1. check that binary data was indeed saved
+         * `const user = await User.findById(userOneID)`
+         * `expect({}).toBe({})` would fail, because with the equality two objects are not the same.
+         * to compare objects, you should use `toEqual` instead
+         * to check for certain type use `expect.any(type)` as the paramater of the `toEqual()`
+         * `expect({user.avatar}).toEqual(expect.any(Buffer)})`
+      2. `test('Should update valid user fields'`
+      3. `test('Should not update invalid user fields'`
+
  
 ### Comments
 #### NPM modules
