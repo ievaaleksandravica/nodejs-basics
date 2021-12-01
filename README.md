@@ -967,6 +967,41 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * `expect({user.avatar}).toEqual(expect.any(Buffer)})`
       2. `test('Should update valid user fields'`
       3. `test('Should not update invalid user fields'`
+* Setup Task Test Suite
+   * create a seperate test suite for tasks to not have all test cases in one file
+   * remove `math` files as they were only used for testing purposes
+   * create a second tests suite `task.test.js`
+   * load in the test file:
+      1. load `const request = require('supertest')`
+      2. load `const Task = require('../src/models/task')`
+   * create a file for database `fixtures/db.js` to allow us to play with the database and the users
+      1. same user data as used in user test suite - move `userOneID` and `userOne` from user test suite to the db
+      2. load in `const mongoose = require('mongoose')` and remove it from user
+      3. load in `const jwt = require('jsonwebtoken')` and remove it from user
+      4. load in `const User = require('../../src/models/user')`
+      4. create a function in `db.js`: `const setupDatabase = async () => {})` 
+      5. move the contents from user.test `beforeEach` function to the db.js `setupDatabase` function
+      6. export the key value pairs so you can use them in your test suite `module.exports = { userOneID, userOne, setupDatabase }`
+      7. load the file into user.test.js `const {userOneID, userOne, setupDatabase } = require('./fixtures/db')`
+      8. call the `setupDatabase` in the beforeEach `beforeEach(setupDatabase)`
+      7. 
+   * prepare your test suite
+      1. import from `db.js` as before
+      2. import `const app = require('../src/app')`
+      3. use the same beforeEach function as in `user.test.js`
+   * avoid test suites interfering with each other
+      1. in `package.json` add an option `--runInBand` to run in series and avoid any overlaps
+   * create a test
+      1. `test('Should create task for user', () => {})`
+      2. `const response = await request(app)`
+      3. `.post('/tasks')`
+      4. `.set('Authorization', Bearer ${userOne.tokens[0].token})`
+      5. `.send({ description: "Have a good day"})`
+      6. `.expect(201)`
+      7. `const task = await Task.findById(response.body._id)`
+      8. `expect(task).not.toBeNull()`
+      9. `expect(task.completed).toBe(false)`
+
 
  
 ### Comments
