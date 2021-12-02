@@ -1001,8 +1001,18 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       7. `const task = await Task.findById(response.body._id)`
       8. `expect(task).not.toBeNull()`
       9. `expect(task.completed).toBe(false)`
-
-
+* Testing with Task Data
+   * `db.js` adjustments
+      1. load `const Task = require('../../src/models/task')`
+      2. create `userTwoID` and `userTwo` so we have two users to play with, save it in the `setupDatabase` function as well
+      3. create couple of tasks with `{_id, description, completed, owner}`
+      4. delete existing tasks from `setupDatabase`: `    await Task.deleteMany()`
+      5. save tasks to the database `await new Task(taskOne).save()`
+   * `task.test.js`
+      1. Should get tasks for authenticated user
+      2. Authenticated user cannot delete other user tasks
+* Bonus: extra test ideas
+   * https://gist.github.com/andrewjmead/988d5965c609a641202600b073e54266
  
 ### Comments
 #### NPM modules

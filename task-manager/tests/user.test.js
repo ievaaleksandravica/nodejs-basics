@@ -119,3 +119,88 @@ test('Should not update invalid user fields', async () => {
         .send({ "nameee": "Jana" })
         .expect(400)
 })
+
+test('Should not signup user with invalid name', async () => {
+    await request(app)
+        .post('/users')
+        .send({
+            email: 'ieva.aleksandravica@gmail.com',
+            password: 'validPPP'
+        })
+        .expect(400)
+})
+
+test('Should not signup user with invalid email', async () => {
+    await request(app)
+        .post('/users')
+        .send({
+            name: 'Dummy Name',
+            email: 'ieva.aleksandravica',
+            password: 'validPPP'
+        })
+        .expect(400)
+})
+
+test('Should not signup user with invalid password', async () => {
+    await request(app)
+        .post('/users')
+        .send({
+            name: 'Dummy Name',
+            email: 'ieva.aleksandravica@gmail.com',
+            password: 'password'
+        })
+        .expect(400)
+})
+
+test('Should not update user if unauthenticated', async () => {
+    await request(app)
+        .patch('/users/me')
+        .send({
+            name: "Ieva Aleksandravica"
+        })
+        .expect(401)
+
+})
+
+test('Should not update user with invalid email', async () => {
+    await request(app)
+        .patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            email: 'banana'
+        })
+        .expect(400)
+
+})
+
+test('Should not update user with invalid name', async () => {
+    await request(app)
+        .patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            name: ''
+        })
+        .expect(400)
+
+})
+
+
+test('Should not update user with invalid password', async () => {
+    await request(app)
+        .patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            password: 'password'
+        })
+        .expect(400)
+
+})
+
+
+test('Should not delete user if unauthenticated', async () => {
+    await request(app)
+        .delete('/users/me')
+        .send()
+        .expect(401)
+
+})
