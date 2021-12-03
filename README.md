@@ -13,7 +13,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 ![image](https://user-images.githubusercontent.com/79845207/138916648-e59cd68a-8fd6-4a58-878c-73d2e959b343.png)
 
 #### Task App 
- 
+![image](https://user-images.githubusercontent.com/79845207/144475875-5b7266d5-2c7a-4971-ad2e-2639cad5236e.png)
+
+#### Chat App
+
+
 ### Playground
 * `1-json.js` Examples of JSON `parse` and `stringify` functionality combinining it with `fs.writeFileSync` and `fs.readFileSync` functionality
 * `1-json.json` JSON object storing data
@@ -1014,6 +1018,40 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * Bonus: extra test ideas
    * https://gist.github.com/andrewjmead/988d5965c609a641202600b073e54266
  
+
+
+### Chat App 
+#### Creating the Chat App project
+* Chat App Introduction
+   1. real time data transfers
+   2. user one sends it, user two receives it with almost no delay.
+   3. using websockets and socket.io
+* Create the Chat App Project
+   1. `mkdir chat-app`, then navigate to it
+   2. `mkdir src`, then navigate to it
+   3. `touch index.js`
+* Create an Express Web Server
+   1. Initialize npm: `npm init`
+   2. install Express: `npm i express@4.17.1`
+   3. Set up new express server
+      * `const express = require('express')`
+      * `const app = express()`
+      * `app.get('/', function (req, res) {})`
+   4. Listen on port 3000 `app.listen(3000)`
+   5. Serve up the public directory 
+      * `const path = require('path')`
+      * `const publicDirectory = path.join(__dirname, '../public')`
+      * create `public/index.html` and put your content in there
+   6. run `node src/index.js`
+* Setup scripts in package.json
+   1. create start script `"start": "node src/index.js"` and test it with `npm start`
+   2. install nodemon as dev depencency `npm i nodemon@2.0.15 --save-dev `
+   4. create dev script `"dev": "nodemon src/index.js"` and test it with `npm run dev`
+#### Web Sockets and Socket.io
+* WebSockets 
+* Getting started with Socket.io
+* Socket.io Events
+
 ### Comments
 #### NPM modules
 * `npm init` initializes npm and creates package.json
