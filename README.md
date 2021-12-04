@@ -1048,8 +1048,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    2. install nodemon as dev depencency `npm i nodemon@2.0.15 --save-dev `
    4. create dev script `"dev": "nodemon src/index.js"` and test it with `npm run dev`
 #### Web Sockets and Socket.io
-* WebSockets 
-* Getting started with Socket.io
+* WebSocket Protocol
+   1. used to create real time applications for different programming languages, including Node.js
+   2. server (Node.js starts it)
+   3. different clients can connect to this server, using WebSockets
+   4. WebSockets allow for full-duplex communication (bi-directional communication), whereas in HTTPs protocol it was one directional: only client can initiate the communication with the server. With WebSockets:
+      - client can initiate communication with the server
+      - server can initiate communication with the client
+   5. WebSocket is a seperate protocol from HTTP
+   6. Persistent connection between client and server
 * Socket.io Events
 
 ### Comments
