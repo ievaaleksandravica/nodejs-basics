@@ -1094,7 +1094,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          - emit event from client `socket.emit('increment')`
          - receive event on server `socket.on('increment', count++})`
          - send it back to all clients `io.emit('countUpdated',count)`
-
+   3. Socket.io Event Challenge
+      - Goal: send a velcome message to new users
+         * Have server emit "message"  when new client connects: Send "Welcome" as the event data
+         * Have client listen for "message" event and print to console.
+         * Test your work!
+      - Goal: allow clients to sent messages
+         * Create a form with an input and button
+         * Setup event listener for form submisstion
+         * Have server listen for the SendMessage event
+         * Test your work
 
 ### Comments
 #### NPM modules
