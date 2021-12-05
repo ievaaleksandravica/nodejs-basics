@@ -1057,7 +1057,28 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - server can initiate communication with the client
    5. WebSocket is a seperate protocol from HTTP
    6. Persistent connection between client and server
+   7. Example with Chat App:
+      - First Client -> Server: posts "My new message"
+      - Server -> Other Clients: posts first users message
+* Introduction to Socket.io
+   1. Socket.io library https://socket.io/
+   2. Install `npm i socket.io@4.4.0`
+   3. Start the server `npm run dev`
+   4. Refactor your current Express setup which will allow us to use Socket.io easier
+      * load in http module `const http = require('http')`
+      * create a new webserver `const server = http.createServer(app)` 
+      * change your `app.listen` to `server.listen`
+   5. Configure Socket.io on the server side
+      * load in `const socketio = require('socket.io')`
+      * create new instance of socket.io `const io = socketio(server)` - when you require the library, you call the function and then you actually call it to configure socket.io with that server
+      * print a message, when given client connects `io.on('connection', () => {}`: will be fired off when a given client makes a new connection
+   6. Configure Socket.io on the client side
+      * `<script src="/socket.io/socket.io.js"></script>` client side version of the library
+      * create `public/js/chat.js` file and load it in your html file `<script src="js/chat.js"> </script>`
+      * in `chat.js` simply call the socket.io `io()`
+      * now your server message connected in point 5, you will receive the connection message.
 * Socket.io Events
+
 
 ### Comments
 #### NPM modules
@@ -1093,6 +1114,7 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `env-cmd` A simple node program for executing commands using an environment from an env file.
 * `jest` Delightful JavaScript Testing
 * `supertest` The motivation with this module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
+* `socket.io` Socket.IO enables real-time bidirectional event-based communication.
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
