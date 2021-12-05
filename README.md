@@ -1078,6 +1078,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * in `chat.js` simply call the socket.io `io()`
       * now your server message connected in point 5, you will receive the connection message.
 * Socket.io Events
+   1. How to transfer the data between the client and the server in real time.
+   2. Side project `Counter App`
+      * start with 0 count `let count = 0`
+      * adjust the `io.on` function in `index.js`:
+         - takes the param `(socket)` which is an object that contains information about the new connection
+         - `socket.emit('countUpdated', count)` send an event from a server to a client
+      * adjust the `io.on` function in `chat.js`
+         - `const socket = io()`
+         - `socket.on('countUpdated', () => {})`
+         - add a message to test it and check that it shows up in the browser
+      * allow user to increment the count
+         - create button in html `<button id="increment">+1</button>`
+         - add eventListener in chat.js `document.querySelector('#increment').addEventListener(('click', () => {}))`
+         - emit event from client `socket.emit('increment')`
+         - receive event on server `socket.on('increment', count++})`
+         - send it back to all clients `io.emit('countUpdated',count)`
 
 
 ### Comments
