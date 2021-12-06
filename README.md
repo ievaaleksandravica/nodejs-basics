@@ -1104,6 +1104,12 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          * Setup event listener for form submisstion
          * Have server listen for the SendMessage event
          * Test your work
+   4. Broadcasting Events
+      * When new user joins or leaves, there is a message to all users about that.
+      * Broadcasting: sending to everybody, except the current client.
+      * In `index.js` changes to `connection` event's callback function
+         - add ` socket.broadcast.emit('sendWelcomeMessage', 'A new user has joined.')`
+         - note, the event name here has to be the same as what your user is listening to in `chat.js`
 
 ### Comments
 #### NPM modules

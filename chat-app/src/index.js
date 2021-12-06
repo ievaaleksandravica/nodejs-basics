@@ -20,6 +20,9 @@ io.on('connection', (socket) => {
     console.log('New WebSocket Connection')
 
     socket.emit('sendWelcomeMessage', message)
+
+    socket.broadcast.emit('sendWelcomeMessage', 'A new user has joined.')
+
     socket.on('sendMessage', (message) => {
         io.emit('sendWelcomeMessage', message)
     })
