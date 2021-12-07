@@ -1123,6 +1123,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    3. Geolocation API https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
    4. Setup
       - Create seperate button ` <button id="send-location">Send location</button>`
+      - Add event listener to send-location `document.querySelector('#send-location').addEventListener('click',(event) => {})`
+      - Not all browsers support the Geolocation API, so factor that in `if (!navigator.geolocation)`
+      - If location available, use `navigator.geolocation.getCurrentPosition()` 
+      - Retreive the coordinates, e.g. `latitude: position.coords.latitude`
+      - Have a client emit "sendLocation" with an object as a data `socket.emit('sendLocation', coordinates)`
+      - Server should listen to the "sendLocation" event `socket.on('sendLocation', (coordinates) => {})`
+      - When fired, send a "message" to all connected clients `io.emit('message', Location: ${coordinates.latitude}, ${coordinates.longitude})`
+   5. Send a link to location instead of coordinates
+      - `https://www.google.com/maps?q=${coordinates.latitude},${coordinates.longitude})`
+* Event Acknowledgements
 
 ### Comments
 #### NPM modules
