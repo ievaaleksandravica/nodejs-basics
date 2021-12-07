@@ -10,6 +10,7 @@ document.querySelector('#message-form').addEventListener('submit', (event) => {
     socket.emit('sendMessage', response)
 })
 
+
 // socket.on('countUpdated', (count) => {
 //     console.log('The count has been updated: ' + count)
 // })
