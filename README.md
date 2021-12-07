@@ -1118,7 +1118,11 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
          - `io.emit('message', 'A user has left')`
          - test your work
 * Sharing your location
-   1. 
+   1. Allow users to share their location.
+   2. To get the location we will be running browser's geolocation on the client's side
+   3. Geolocation API https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+   4. Setup
+      - Create seperate button ` <button id="send-location">Send location</button>`
 
 ### Comments
 #### NPM modules
