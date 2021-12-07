@@ -19,12 +19,16 @@ const message = 'Welcome'
 io.on('connection', (socket) => {
     console.log('New WebSocket Connection')
 
-    socket.emit('sendWelcomeMessage', message)
+    socket.emit('message', message)
 
-    socket.broadcast.emit('sendWelcomeMessage', 'A new user has joined.')
+    socket.broadcast.emit('message', 'A new user has joined.')
 
     socket.on('sendMessage', (message) => {
-        io.emit('sendWelcomeMessage', message)
+        io.emit('message', message)
+    })
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left')
     })
 })
 
