@@ -1133,6 +1133,27 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    5. Send a link to location instead of coordinates
       - `https://www.google.com/maps?q=${coordinates.latitude},${coordinates.longitude})`
 * Event Acknowledgements
+   1. The receiver of the event to acknowledge that the event was received and process it afterwards, e.g. send location - client would receive a notification that the event was indeed received.
+      - server (emit) -> client (recieve) --acknowledgment--> server
+      - client (emit) -> server (receive) --acknowledgment--> client
+   2. Setup (sendMessage event)
+      - on the clients side: provide it as a function in your `emit` call for the event `socket.emit('sendMessage', response, () => {})`
+      - on the server side: provide another param as function for listneing `socket.on` for the event `(message, callback)`
+      - call it on the bottom of the function `callback()`. You can also provide arguments to this callback if you wish to.
+      - You can test it now.
+   3. Setup (reject messages with foul language)
+      - `npm i bad-words@3.0.4` https://www.npmjs.com/package/bad-words
+      - `const Filter = require('bad-words')`
+      - adjust your `socket.on('sendMessage)` event
+         * initialize new instance `const filter = new Filter()`
+         * `if (filter.isProfane)` check for profane words
+         * adjust the code in `chat.js` with if condition - if there was a message, i.e. error, console.log it, otherwise send message
+   4. Challenge (sendLocation)
+      * setup the client's acknowledgment function
+      * setup the server to send back the acknowledgment
+      * have the client print "Location shared"
+      
+
 
 ### Comments
 #### NPM modules
@@ -1169,6 +1190,9 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
 * `jest` Delightful JavaScript Testing
 * `supertest` The motivation with this module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
 * `socket.io` Socket.IO enables real-time bidirectional event-based communication.
+* `bad-words` As of version 2, requires you either have an environment that understands ES2016 and beyond or a transpiler like Babel.
+
+
 
 #### Debugging tools:
 * `console.log` - the most basic one, but helps to debug logic. Simply put `console.log(value)` and you will see the result in the console.
