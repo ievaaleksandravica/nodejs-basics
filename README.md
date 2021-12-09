@@ -1152,7 +1152,25 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * setup the client's acknowledgment function
       * setup the server to send back the acknowledgment
       * have the client print "Location shared"
-      
+* Form and Button States
+   1. Enable and disable the form during the period the message is being sent. 
+      *  `chat.js` event listener on `#message-form`: disable the button immediately once event is captured and disable it once you send back the response
+      * create variables for the elements we will be reusing
+         - `const $messageForm = document.querySelector('#message-form')`
+         - `const $messageFormInput = $messageForm.querySelector("input")`
+         - `const $messageFormButton = $messageForm.querySelector("button")`
+      * disable button using DOM
+         - `$messageFormButton.setAttribute("disabled", "disabled")`
+      * reenable button using DOM
+         - `$messageFormButton.removeAttribute("disabled")`
+   2. Clear the input after the message was sent
+      * after the message is being sent, clear the value of the input field `$messageFormInput.value = ''`
+      * set the focus to be on the input field `$messageFormInput.focus()`
+   3. Disable sendLocation button while we are sending it.  
+      * disable button     `$sendLocationButton.setAttribute('disabled', 'disabled')` 
+      * add notification text `    $locationStatus.innerHTML = 'Finding your location...'`
+      * enable button `        $sendLocationButton.removeAttribute('disabled')`
+      * remove notification text `$locationStatus.innerHTML = ''`
 
 
 ### Comments
