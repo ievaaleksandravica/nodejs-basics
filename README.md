@@ -1171,7 +1171,28 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * add notification text `    $locationStatus.innerHTML = 'Finding your location...'`
       * enable button `        $sendLocationButton.removeAttribute('disabled')`
       * remove notification text `$locationStatus.innerHTML = ''`
-
+* Rendering Messages
+   1. On the browser window instead of a terminal using `moustache` library
+   2. Setup the library
+      * all required libraries can be found here https://links.mead.io/chatlibs
+      * `index.html` new script tag `<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>` as the first one
+   3. Create first Mustache template in `index.js`
+      * you can create one template and then use it multiple times
+      * setup a script tag with id `<script id="message-template" type="text/html">html</script`
+      * inside of the script tag put some html
+      * create a div for all messages `<div id="messages"></div>`
+   4. Use Mustache library to render
+      * in `chat.js` render the message for the socket.on message listener
+      * select `messages` element using `document.querySelector`
+      * select `message-template` element using `document.querySelector.innerHTML`
+      * create which content Mustache should actually render `const html = Mustache.render(messageTemplate)`
+      *  `$messages.insertAdjacentHTML('beforeend', html)`
+   5. Render dynamic content
+      * `index.html` your scripts html `{{message}}`
+      * `chat.js` `{ message: message }` as the second parameter for your mustache.render function
+* Rendering Location Messages
+   1. 
+   
 
 ### Comments
 #### NPM modules
