@@ -1191,7 +1191,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       * `index.html` your scripts html `{{message}}`
       * `chat.js` `{ message: message }` as the second parameter for your mustache.render function
 * Rendering Location Messages
-   1. 
+   1. Create a seperate event for location sharing messages
+      - Have server emit "locationMessage" with the URL
+      - Have the client listen for "locationMessage" and print the URL to the console
+      - Test your work
+   2. Render new template for location messages
+      - Replicate the message template (change the id to something else)
+      - Add a line inside the paragraph with the link text ("My current location") - URL link should be the maps URL (dynamic)
+      - Select the template from Javascript
+      - Render the template with the URL and append to messages list
+      - Test your work.
    
 
 ### Comments
