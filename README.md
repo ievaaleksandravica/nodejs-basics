@@ -1201,7 +1201,30 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - Select the template from Javascript
       - Render the template with the URL and append to messages list
       - Test your work.
+* Working With Time
+   1. Generate, transfer and format timestamps
+   2. Generate date (example)
+      - `const now = new Date()` - whenever you call it, it is gonna generate the current time.
+      - `now.toString()` - converts the date to string
+      - `now.getDate()` - allows you to extract the day of the month
+      - `now.getTime()` - timestamp: returns a number which represents number of miliseconds since Jan 1, 1970 (unix epic)
+   3. Generate timestamps (chat app)
+      - `index.js` focus on `message` event first
+      - send back objects instead of strings to send back `   {text: "Welcome!", timestamp: new Date().getTime()}`
+      - create new directory and file `src/utils/messages.js` - this file will define few functions that are going to generate message objects
+      - `generateMessage` function to return the message with timestamp - export it, import in index.js and call it with the message.
+      - adjust the client side to work as well. In `chat.js` specify what you want to display: `message: message.text`
+   4. Integrate timestamps in the template
+      - adjust the mustache html template `{{createdAt}}` and make sure that in `chat.js` you are actually passing it.
+   5. Use `moment` library to format a date
+      - `<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>`
+      - `moment(message.createdAt).format('H:mm:ss')`
    
+   
+   create a seperate function 
+
+   
+
 
 ### Comments
 #### NPM modules
