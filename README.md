@@ -1219,10 +1219,12 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    5. Use `moment` library to format a date
       - `<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>`
       - `moment(message.createdAt).format('H:mm:ss')`
-   
-   
-   create a seperate function 
-
+* Add Timestamps for location messages
+   1. create `generateLocationMessage` and export url and created at
+   2. use `generateLocationMessage` when server emits `locationMessage`
+   3. Update template to render time before the url
+   4. Compile the template with the URL and the formatted time
+   5. Test your work!
    
 
 
