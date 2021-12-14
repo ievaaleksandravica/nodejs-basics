@@ -1225,7 +1225,26 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    3. Update template to render time before the url
    4. Compile the template with the URL and the formatted time
    5. Test your work!
-   
+* Styling the Chat App
+   1. links.mead.io/chatassets - download the necessary styles
+      - `css` contains stylesheet and minified version
+      - `img` has favicon icon to display
+   2. bring the two directories over to our chat app
+      - move them to our `public directory`
+   3. Adjust the `head` tag
+      - adjust the title
+      - link the icon
+      - load in the stylesheet
+   4. Integrate styles from the stylesheet
+      - create a div containing sidebar and main section
+      - move all the code to the main section
+   5. Adjust contents of the main section
+      - add a class for messages (to move the message section to the bottom)
+      - put both buttons in one div
+   6. Adjust message style
+      - adjust the styles in the script section
+      - add new paragraph and two span tags for the name and timestamp
+      - 
 
 
 ### Comments
