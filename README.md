@@ -1244,7 +1244,17 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    6. Adjust message style
       - adjust the styles in the script section
       - add new paragraph and two span tags for the name and timestamp
-      - 
+* Join Page
+   1. Allow users to provide the username and the room they would like to join
+   2. `public/chat.html` should contain everything we have in the chat frontend, so we need to move eveyrhing.
+   3. `public/index.html` will contain everything what we need for joining the room - clean out the code you moved to chat.html so that your body is empty
+   4. Build markup for the login page 
+      - create `divs` to structure the content
+      - create form with `username` and `room` inputs
+      - associate the `form action` with the `chat.html`
+   5. We will use socket.io to connect these pages
+* Socket.io Rooms
+
 
 
 ### Comments
