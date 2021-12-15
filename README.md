@@ -1254,7 +1254,23 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - associate the `form action` with the `chat.html`
    5. We will use socket.io to connect these pages
 * Socket.io Rooms
-
+   1. You have access to the query params in the url once the form is submitted
+      - `location.search` will give access you to the whole query string.
+   2. Parse the query params use `qs` library to pass the query string 
+      - load it in `chat.html` scripts
+      - `chat.js` `Qs.parse(location.search, { ignoreQueryPrefix: true })` will give you object with parsed query params
+   3. Create an event listener - send the data to the server `socket.emit('join', { username, room })`
+   4. Set up server to listen to the join event 
+      - `socket.join(room)`
+      - gives access to the room and new functions you specifically are joining.
+      - `io.to().emit` emit to everybody in a specific room
+      - `socket.broadcast.to().emit` to everyon in a specific room except the client who omits the event
+      - move the Welcome and New User messages in the `join` listener
+      - You can then personalize it
+   5. Adjust other events, e.g sending messages
+      - issue that we dont have access to the room and who
+* Storing users
+   1. 
 
 
 ### Comments
