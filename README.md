@@ -1270,7 +1270,20 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    5. Adjust other events, e.g sending messages
       - issue that we dont have access to the room and who
 * Storing users
-   1. 
+   1. Socket.io to keep track which users are in which rooms.
+   2. New file `utils/users.js` - here we will track users in array.
+   3. Create four functions that will allow us to track users `addUser`, `removeUser`, `getUser`, `getUsersInRoom`
+   4. `addUser`
+      - `const addUser = ({ id, username, room }) => {}`
+      - clean the data
+      - validate the data
+      - check for existing user
+      - validate username
+      - store user
+   5. `removeUser`
+      - `const removeUser = (id) => {}`
+      - find the user
+      - remove the user
 
 
 ### Comments
