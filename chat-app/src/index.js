@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
         if (filter.isProfane(message)) {
             return callback('Profanity is not allowed')
         }
-        io.to('apple').emit('message', generateMessage(message)
+        io.emit('message', generateMessage(message)
         )
         callback()
     })
