@@ -1284,6 +1284,10 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - `const removeUser = (id) => {}`
       - find the user
       - remove the user
+   6. `getUser`
+      - Accept id and return user object or undefined 
+   7. `getUsersInRoom`
+      - Acceot room name and return array of users or empty array
 
 
 ### Comments
