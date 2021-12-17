@@ -1288,6 +1288,22 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - Accept id and return user object or undefined 
    7. `getUsersInRoom`
       - Acceot room name and return array of users or empty array
+* Tracking Users Joining and Leaving
+   1. Integrate functions from `users.js` in the chat app:
+      - Import user related functions in `index.js`
+   2. Edit the `join` function
+      - `addUser({ id: socket.id, username, room })`
+   3. Give access to the error
+      - in `chat.js` when you are emiting the `join` event add a second argument (callback) which is gonna be in the case of error
+   4. Acknowledge the errors and success
+      - in `index.js` if adding the user fails (get an error), use callback function to acknowledge it `callback(error)`
+      -  if user is added, proceed with all the activities and use the `callback()` as the last function to acknowledge the join event
+   5. Use similar approach in the `disconnect` event
+      - `removeUser` 
+      - get the user and emit `to(room)`
+   6. Handle errors in `chat.js`
+      - `alert(error)`
+      - `location.href = '/'` to reload the page
 
 
 ### Comments
