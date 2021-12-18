@@ -1325,8 +1325,15 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - fetch the templates necessary
       - use moustache to insert content
 * Auto-scrolling
-   1. 
-
+   1. autoscrolling logic should be called everytime when we render a new message, so in `socket.on('message')` and `socket.on('location')`
+   2. create a function that you call in both above mentioned events `const autoscroll`
+      - new message element 
+      - height of the new message
+      - visible height
+      - height of messages container
+      - how far have I scrolled
+   3. Add conditional logic to check if you are at the bottom
+   4. Complexity here is due to checking if the user was on the bottom or not to decide if we want to autoscroll or not.
 
 ### Comments
 #### NPM modules
