@@ -1334,6 +1334,12 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
       - how far have I scrolled
    3. Add conditional logic to check if you are at the bottom
    4. Complexity here is due to checking if the user was on the bottom or not to decide if we want to autoscroll or not.
+* Deploy the app to production
+   1. Setup Git and commit files
+   2. Ignore node_modules folder
+   3. Setup a Github repository and push code up
+   4. Setup a Heroku app and push code up
+   5. Open the live app and test your work.
 
 ### Comments
 #### NPM modules
