@@ -1314,6 +1314,19 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    2. adjust arguments you pass in this method in `index.js`
    3. pass the username to mustache in `chat.js`
    4. use it in `chat.html` as a variable
+* Rendering User List
+   1. Emit an event from server to the client when user list changes.
+   2. When somebody joins the room: ` io.to(user.room).emit('roomData', {users, room})`
+   3. Same when users leave the room.
+   4. Update things for the client in `chat.js` with listening to this event
+   5. Update HTML to display the results
+      - Create a new script for the `sidebar-template`
+   6. Update the templates list in chat.js
+      - fetch the templates necessary
+      - use moustache to insert content
+* Auto-scrolling
+   1. 
+
 
 ### Comments
 #### NPM modules
