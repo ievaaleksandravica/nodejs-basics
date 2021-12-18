@@ -1304,7 +1304,16 @@ This repository is based on the Udemy course  [The Complete Node.js Developer Co
    6. Handle errors in `chat.js`
       - `alert(error)`
       - `location.href = '/'` to reload the page
-
+* Send messages to correct room
+   1. Use `getUser` inside `sendMessage` event handler to get user data
+   2. Emit the message to their  current room
+   3. Test your work!
+   4. Repeat for `sendLocation` 
+* Display Username
+   1. adjust `generateMessage` message in `messages.js` to also accept username
+   2. adjust arguments you pass in this method in `index.js`
+   3. pass the username to mustache in `chat.js`
+   4. use it in `chat.html` as a variable
 
 ### Comments
 #### NPM modules
